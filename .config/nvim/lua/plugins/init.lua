@@ -25,23 +25,6 @@ local default_plugins = {
         end
     },
     {
-        "NvChad/nvim-colorizer.lua",
-        init = function()
-            require("core.utils").lazy_load "nvim-colorizer.lua"
-        end,
-        config = function(_, opts)
-            require("colorizer").setup(opts)
-
-            -- execute colorizer as soon as possible
-            vim.defer_fn(
-                function()
-                    require("colorizer").attach_to_buffer(0)
-                end,
-                0
-            )
-        end
-    },
-    {
         "nvim-tree/nvim-web-devicons",
         opts = function()
             return {override = require "nvchad.icons.devicons"}
@@ -79,6 +62,50 @@ local default_plugins = {
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "syntax")
             require("nvim-treesitter.configs").setup(opts)
+        end
+    },
+    {
+        "goolord/alpha-nvim",
+        config = function()
+            local alpha = require("alpha")
+            local dashboard = require("alpha.themes.dashboard")
+
+            dashboard.section.header.val = {
+                [[  ██████╗ ██████╗ ███████╗███╗   ███╗ ██████╗ ██████╗ ██╗██╗   ██╗███╗   ███╗ ██████╗███████╗ ]],
+                [[ ██╔════╝██╔═══██╗██╔════╝████╗ ████║██╔═══██╗██╔══██╗██║██║   ██║████╗ ████║██╔════╝██╔════╝ ]],
+                [[ ██║     ██║   ██║███████╗██╔████╔██║██║   ██║██║  ██║██║██║   ██║██╔████╔██║██║     ███████╗ ]],
+                [[ ██║     ██║   ██║╚════██║██║╚██╔╝██║██║   ██║██║  ██║██║██║   ██║██║╚██╔╝██║██║     ╚════██║ ]],
+                [[ ╚██████╗╚██████╔╝███████║██║ ╚═╝ ██║╚██████╔╝██████╔╝██║╚██████╔╝██║ ╚═╝ ██║╚██████╗███████║ ]],
+                [[  ╚═════╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝╚══════╝ ]],
+                [[]],
+                [[             • Malware Development • Offensive Development • Payload Development •            ]]
+            }
+
+            dashboard.section.buttons.val = {
+                dashboard.button("n", "📄 • New File", ":ene <BAR> startinsert <CR>"),
+                dashboard.button("o", "📁 • Open File", ":Telescope find_files <CR>"),
+                dashboard.button("r", "👀 • Recently Used", ":Telescope oldfiles <CR>"),
+                dashboard.button("f", "🔎 • Find Text", ":Telescope live_grep <CR>"),
+                dashboard.button("e", "🤖 • Edit Config", ":e ~/.dotfiles/.config/nvim/init.lua<CR>"),
+                dashboard.button("q", "🙈 • Quit NeoVim", ":qa<CR>")
+            }
+
+            local function footer()
+                return "• NeoVim •"
+            end
+
+            dashboard.section.footer.val = footer()
+            alpha.setup(dashboard.config)
+        end
+    },
+    {"catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false},
+    {"wakatime/vim-wakatime", lazy = false},
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = {"MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop"},
+        ft = {"markdown"},
+        build = function()
+            vim.fn["mkdp#util#install"]()
         end
     },
     -- git stuff

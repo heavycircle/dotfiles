@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "d634f042d69a5c20",
+    "type": "split",
+    "children": [
+      {
+        "id": "354e6b6dc8171155",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a0e60447972fd0fb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5fdf0f573ed58cd6",
+    "type": "split",
+    "children": [
+      {
+        "id": "adc27853255f78d0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bde7356818e49730",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "cf84db54bf182448",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#Blue",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7662082817447437",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "232e0352385bc1fd",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c77607bb3f1dd73",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a81a3ba2de0b7765",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8b7e978901234075",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "02e811563355a819",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "19ec1444b349e38b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md"
+              }
+            }
+          },
+          {
+            "id": "1379547f8db7c682",
+            "type": "leaf",
+            "state": {
+              "type": "git-history-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "4f065a5ca431908e",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "327539a05a8d05d8",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "e00655ad13fad1e6",
+            "type": "leaf",
+            "state": {
+              "type": "mathpad-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 7
+      }
+    ],
+    "direction": "horizontal",
+    "width": 375.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "omnisearch:Omnisearch": false,
+      "mathpad:Open Mathpad": false
+    }
+  },
+  "active": "a0e60447972fd0fb",
+  "lastOpenFiles": [
+    "binex/02-canaries/02-05-32bit-canary/32-bit Canary.md",
+    "binex/Binary Exploitation.md",
+    "binex/Breaching Active Directory.pdf",
+    "getting-started/Using Pwntools.md",
+    "getting-started/Getting Started.md",
+    "C-programming/03-memory/Memory Allocation.md",
+    "C-programming/02-pointers/Pointers.md",
+    "C-programming/01-syntax/C Semantics.md",
+    "binex/02-canaries/02-04-practice01/Practice 1.md",
+    "binex/02-canaries/02-03-leak-canary/Leaking a Canary.md",
+    "binex/02-canaries/02-02-match-canary/Match Canary.md",
+    "binex/02-canaries/02-01-false-canary/False Canary.md",
+    "binex/01-buffer-overflow/01-05-32bit-overflow/32-bit Overflow.md",
+    "binex/01-buffer-overflow/01-04-practice01/Practice 1.md",
+    "binex/01-buffer-overflow/01-03-ret-overwrite/Return Overflow.md",
+    "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
+    "binex/01-buffer-overflow/01-02-var-overwrite/Variable Overwrite.md",
+    "red-teaming/active-directory/Active Directory Persistence.md",
+    "red-teaming/active-directory/Breaching Active Directory.md",
+    "red-teaming/active-directory/Active Directory Basics.md",
+    "red-teaming/active-directory/Lateral Movement.md",
+    "assets/Pasted image 20240617123336.png",
+    "assets/Pasted image 20240617130036.png",
+    "assets/Pasted image 20240617125936.png",
+    "jr-penetration-tester/burpsuite/Burpsuite Repeater.md",
+    "jr-penetration-tester/burpsuite/Burpsuite Intruder.md",
+    "jr-penetration-tester/burpsuite/Burpsuite Basics.md",
+    "red-teaming/active-directory/Enumerating Active Directory.md",
+    "cyber-defense/security-operations/Processes.tex",
+    "assets/Pasted image 20240616225202.png",
+    "assets/Pasted image 20240616224927.png",
+    "assets/Pasted image 20240616224132.png",
+    "assets/Pasted image 20240616213307.png",
+    "assets/Pasted image 20240616204721.png",
+    "assets/Pasted image 20240616194331.png",
+    "assets/Pasted image 20240616190202.png",
+    "cyber-defense/security-operations/Sysmon.md",
+    "assets/footer.txt",
+    "web-fundamentals",
+    "pre-security/cybersec-intro",
+    "pre-security/network-fundamentals",
+    "pre-security/web-fundamentals",
+    "pre-security/cybersec-intro/linux-fundamentals",
+    "pre-security/windows-fundamentals",
+    "pre-security"
+  ]
+}

@@ -1,12 +1,3 @@
----
-BasedOnStyle: LLVM
+BasedOnStyle: WebKit
 IndentWidth: 4
----
-Language: Cpp
-DerivePointerAlignment: false
-PointerAlignment: Right
----
-Language: C
-DerivePointerAlignment: false
-PointerAlignment: Right
----
+AccessModifierOffset: -4

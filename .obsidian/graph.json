@@ -1,38 +1,45 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
-  "showOrphans": true,
+  "showOrphans": false,
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "tag:#Red",
+      "query": "tag:#pwn",
       "color": {
         "a": 1,
-        "rgb": 14048348
+        "rgb": 16711680
       }
     },
     {
-      "query": "tag:#Blue",
+      "query": "tag:#lang",
       "color": {
         "a": 1,
-        "rgb": 6058198
+        "rgb": 16776960
       }
     },
     {
-      "query": "tag:#Windows  ",
+      "query": "tag:#toolkit  ",
       "color": {
         "a": 1,
-        "rgb": 11392604
+        "rgb": 65280
       }
     },
     {
-      "query": "tag:#Linux",
+      "query": "tag:#中文  ",
       "color": {
         "a": 1,
-        "rgb": 6084188
+        "rgb": 16711935
+      }
+    },
+    {
+      "query": "tag:#THM  ",
+      "color": {
+        "a": 1,
+        "rgb": 255
       }
     }
   ],
@@ -46,6 +53,6 @@
   "repelStrength": 11.00341796875,
   "linkStrength": 1,
   "linkDistance": 252,
-  "scale": 0.013251262680297646,
+  "scale": 0.13348388671875,
   "close": true
 }

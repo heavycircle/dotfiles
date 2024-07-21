@@ -1,0 +1,25 @@
+2024/07/18-16:49:04.847 1db4c7 Reusing MANIFEST /home/ironforge/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/MANIFEST-000001
+2024/07/18-16:49:04.847 1db4c7 Recovering log #34
+2024/07/18-16:49:04.866 1db4c7 Reusing old log /home/ironforge/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/000034.log 
+2024/07/19-16:14:53.525 1db4c7 Level-0 table #40: started
+2024/07/19-16:14:53.539 1db4c7 Level-0 table #40: 1278667 bytes OK
+2024/07/19-16:14:53.541 1db4c7 Delete type=0 #34
+2024/07/19-16:16:17.584 1db4c7 Compacting 1@1 + 2@2 files
+2024/07/19-16:16:17.613 1db4c7 Generated table #41@1: 961 keys, 2117442 bytes
+2024/07/19-16:16:17.623 1db4c7 Generated table #42@1: 4881 keys, 494349 bytes
+2024/07/19-16:16:17.623 1db4c7 Compacted 1@1 + 2@2 files => 2611791 bytes
+2024/07/19-16:16:17.624 1db4c7 compacted to: files[ 0 0 2 0 0 0 0 ]
+2024/07/19-16:16:17.625 1db4c7 Delete type=2 #36
+2024/07/19-16:16:17.625 1db4c7 Delete type=2 #40
+2024/07/19-16:16:17.625 1db4c7 Delete type=2 #37
+2024/07/20-13:46:05.502 1db4c7 Level-0 table #44: started
+2024/07/20-13:46:05.544 1db4c7 Level-0 table #44: 1360001 bytes OK
+2024/07/20-13:46:05.547 1db4c7 Delete type=0 #39
+2024/07/20-13:46:36.132 1db4c7 Compacting 1@1 + 2@2 files
+2024/07/20-13:46:36.161 1db4c7 Generated table #45@1: 955 keys, 2119276 bytes
+2024/07/20-13:46:36.172 1db4c7 Generated table #46@1: 4859 keys, 468035 bytes
+2024/07/20-13:46:36.172 1db4c7 Compacted 1@1 + 2@2 files => 2587311 bytes
+2024/07/20-13:46:36.173 1db4c7 compacted to: files[ 0 0 2 0 0 0 0 ]
+2024/07/20-13:46:36.173 1db4c7 Delete type=2 #41
+2024/07/20-13:46:36.173 1db4c7 Delete type=2 #44
+2024/07/20-13:46:36.173 1db4c7 Delete type=2 #42

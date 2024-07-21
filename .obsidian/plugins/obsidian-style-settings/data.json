@@ -14,7 +14,7 @@
   "anuppuccin-theme-settings@@anp-simple-rainbow-title-toggle": true,
   "anuppuccin-theme-settings@@anp-simple-rainbow-collapse-icon-toggle": false,
   "anuppuccin-theme-settings@@anp-simple-rainbow-indentation-toggle": true,
-  "anuppuccin-theme-settings@@anp-rainbow-subfolder-color-toggle": true,
+  "anuppuccin-theme-settings@@anp-rainbow-subfolder-color-toggle": false,
   "anuppuccin-theme-settings@@anp-depth-tab-text-invert": false,
   "anuppuccin-theme-settings@@anp-bg-fix": false,
   "anuppuccin-theme-settings@@anp-decoration-toggle": true,

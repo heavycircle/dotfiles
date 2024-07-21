@@ -1,0 +1,6 @@
+#!/bin/sh
+tmux send-keys 'nvim asd.py' C-m \; \
+    split-window -h \; \
+    send-keys 'gdb chall' C-m \; \
+    select-pane -t 0 \; \
+    split-window -v -p 30 \;

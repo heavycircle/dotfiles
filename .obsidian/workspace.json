@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "354e6b6dc8171155",
+        "id": "dd26520ba6c8da42",
         "type": "tabs",
         "children": [
           {
-            "id": "a0e60447972fd0fb",
+            "id": "c78b56e03a8a8f30",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
-                "mode": "preview",
+                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#Blue",
+                "query": "tag:#linux",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 338
   },
   "right": {
     "id": "232e0352385bc1fd",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
+                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
+                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md"
+                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md"
               }
             }
           },
@@ -161,71 +161,96 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 7
+        ]
+      },
+      {
+        "id": "1ab8166916b943d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a0e60447972fd0fb",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 375.5
+    "width": 533,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-raindrop-highlights:Sync your Raindrop bookmarks": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "templater-obsidian:Templater": false,
+      "daily-notes:Open today's daily note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "markdown-importer:Open format converter": false,
-      "omnisearch:Omnisearch": false,
-      "mathpad:Open Mathpad": false
+      "omnisearch:Omnisearch": false
     }
   },
-  "active": "a0e60447972fd0fb",
+  "active": "c78b56e03a8a8f30",
   "lastOpenFiles": [
-    "binex/02-canaries/02-05-32bit-canary/32-bit Canary.md",
-    "binex/Binary Exploitation.md",
-    "binex/Breaching Active Directory.pdf",
-    "getting-started/Using Pwntools.md",
-    "getting-started/Getting Started.md",
-    "C-programming/03-memory/Memory Allocation.md",
-    "C-programming/02-pointers/Pointers.md",
-    "C-programming/01-syntax/C Semantics.md",
-    "binex/02-canaries/02-04-practice01/Practice 1.md",
-    "binex/02-canaries/02-03-leak-canary/Leaking a Canary.md",
-    "binex/02-canaries/02-02-match-canary/Match Canary.md",
-    "binex/02-canaries/02-01-false-canary/False Canary.md",
-    "binex/01-buffer-overflow/01-05-32bit-overflow/32-bit Overflow.md",
-    "binex/01-buffer-overflow/01-04-practice01/Practice 1.md",
-    "binex/01-buffer-overflow/01-03-ret-overwrite/Return Overflow.md",
-    "binex/01-buffer-overflow/01-01-var-overflow/Variable Overflow.md",
-    "binex/01-buffer-overflow/01-02-var-overwrite/Variable Overwrite.md",
-    "red-teaming/active-directory/Active Directory Persistence.md",
-    "red-teaming/active-directory/Breaching Active Directory.md",
-    "red-teaming/active-directory/Active Directory Basics.md",
-    "red-teaming/active-directory/Lateral Movement.md",
-    "assets/Pasted image 20240617123336.png",
-    "assets/Pasted image 20240617130036.png",
-    "assets/Pasted image 20240617125936.png",
-    "jr-penetration-tester/burpsuite/Burpsuite Repeater.md",
-    "jr-penetration-tester/burpsuite/Burpsuite Intruder.md",
-    "jr-penetration-tester/burpsuite/Burpsuite Basics.md",
-    "red-teaming/active-directory/Enumerating Active Directory.md",
-    "cyber-defense/security-operations/Processes.tex",
-    "assets/Pasted image 20240616225202.png",
-    "assets/Pasted image 20240616224927.png",
-    "assets/Pasted image 20240616224132.png",
-    "assets/Pasted image 20240616213307.png",
-    "assets/Pasted image 20240616204721.png",
-    "assets/Pasted image 20240616194331.png",
-    "assets/Pasted image 20240616190202.png",
-    "cyber-defense/security-operations/Sysmon.md",
-    "assets/footer.txt",
-    "web-fundamentals",
-    "pre-security/cybersec-intro",
-    "pre-security/network-fundamentals",
-    "pre-security/web-fundamentals",
-    "pre-security/cybersec-intro/linux-fundamentals",
-    "pre-security/windows-fundamentals",
-    "pre-security"
+    "dev/exploits/binex/stack/05-write-what-where/05-04-practice01/Practice 1.md",
+    "dev/languages/asm/Instructions in Assembly.md",
+    "dev/languages/asm/Syscalls and Interrupts.md",
+    "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
+    "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/asd.py",
+    "Pasted image 20240718095222.png",
+    "dev/exploits/binex/stack/assets/0503-success.png",
+    "dev/exploits/binex/stack/assets/0504-success.png",
+    "Untitled.md",
+    "Pasted image 20240701212617.png.md",
+    "dev/exploits/binex/stack/03-arguments/03-04-artificial-x64/Artificial Jumps (x64).md",
+    "dev/exploits/binex/stack/05-write-what-where/05-04-practice01/keyring.deb",
+    "dev/exploits/binex/stack/05-write-what-where/05-03-gadget-writes/Using Gadgets to Write-What-Where.md",
+    "dev/THM",
+    "dev/learning/ACTP",
+    "dev/learning",
+    "dev/exploits/binex/stack/05-write-what-where/05-07-challenge03/Challenge 3.md",
+    "dev/exploits/binex/stack/08-shellcoding/08-01-leaked/0x232 - shell.md",
+    "dev/exploits/binex/stack/08-shellcoding/08-01-leaked/0x231 - location.md",
+    "dev/exploits/binex/stack/08-shellcoding/08-02-minicode/Smaller Shellcode.md",
+    "dev/exploits/binex/stack/08-shellcoding/Shellcoding.md",
+    "dev/exploits/binex/stack/08-shellcoding/08-02-minicode",
+    "dev/exploits/binex/stack/08-shellcoding/08-01-leaked",
+    "dev/exploits/binex/stack/07-aslr/07-01-ret2libc/ret2libc-32.md",
+    "dev/exploits/binex/stack/07-aslr/07-03-ret2plt/ret2plt.md",
+    "dev/exploits/binex/stack/07-aslr/07-01-ret2libc/ret2libc.md",
+    "dev/exploits/binex/stack/07-aslr/ASLR.md",
+    "dev/exploits/binex/stack/05-write-what-where/05-02-ret-overwrite/WWW - Return Overwrite.md",
+    "dev/exploits/binex/stack/06-format-write/06-01-any-write/Format Overflow.md",
+    "dev/exploits/binex/stack/05-write-what-where/05-01-var-overwrite/WWW - Variable Overwrite.md",
+    "dev/exploits/binex/stack/assets/got-plt.canvas",
+    "dev/exploits/binex/stack/06-format-write/06-02-target-write/Format Overwrite.md",
+    "dev/exploits/binex/stack/05-write-what-where/05-06-challenge02/Challenge 2.md",
+    "dev/exploits/binex/stack/06-format-write/06-03-challenge01/Challenge 1.md",
+    "dev/exploits/binex/stack/06-format-write/06-03-challenge01",
+    "dev/exploits/binex/stack/07-aslr/07-03-ret2plt",
+    "dev/exploits/binex/stack/07-aslr/07-01-ret2libc",
+    "dev/exploits/binex/stack/07-aslr/0x273 - leak64.md",
+    "dev/exploits/rev/02-ghidra/0x310 - Ghidra.md",
+    "VUNROTC/getting-started/Getting Started.md",
+    "dev/exploits/binex/stack/assets/0503-ldd.png",
+    "dev/exploits/binex/stack/assets/natural-jumps.canvas",
+    "dev/exploits/binex/stack/assets/artificial-jumps.canvas",
+    "dev/exploits/binex/stack/assets/0404-success.png",
+    "dev/exploits/binex/stack/assets/0403-success.png",
+    "dev/exploits/binex/stack/assets/0402-vmmap.png",
+    "dev/exploits/binex/stack/assets/0402-success.png",
+    "dev/exploits/binex/stack/assets/0401-success.png",
+    "dev/exploits/binex/stack/assets/0303-success.png",
+    "HACKERMAN/dev/exploits/binex/stack/binex/assets/natural-jumps.canvas",
+    "HACKERMAN/dev/exploits/binex/stack/binex/assets/artificial-jumps.canvas",
+    "HACKERMAN/VUNROTC/binex/assets/artificial-jumps.canvas",
+    "HACKERMAN/VUNROTC/binex/assets/natural-jumps.canvas"
   ]
 }

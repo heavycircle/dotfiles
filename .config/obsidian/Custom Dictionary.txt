@@ -1,0 +1,8 @@
+CTF
+Ghidra
+Shellcode
+binex
+decompilation
+decompiled
+dereferenced
+checksum_v1 = 49e66d90a5b52cbaded5bde5d44b7331

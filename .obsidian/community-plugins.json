@@ -5,14 +5,19 @@
   "calendar",
   "obsidian-style-settings",
   "omnisearch",
-  "url-into-selection",
   "obsidian-linter",
   "x86-flow-graphing",
-  "mathpad",
   "heading-level-indent",
   "obsidian-diagrams-net",
   "emoji-shortcodes",
   "settings-search",
   "obsidian-latex-suite",
-  "quick-latex"
+  "quick-latex",
+  "tag-wrangler",
+  "obsidian-raindrop-highlights",
+  "table-editor-obsidian",
+  "templater-obsidian",
+  "obsidian-spaced-repetition",
+  "nuke-orphans",
+  "html-tabs"
 ]

@@ -49,9 +49,13 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-#aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+# source an alias file if it exists
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
+# source the z-project
+. /usr/bin/z.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

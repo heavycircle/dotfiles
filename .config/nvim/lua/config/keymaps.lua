@@ -6,6 +6,31 @@ keymap({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", exp
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 keymap({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
+-- slide lines up and down
+keymap("v", "J", ":m '>+1<CR>gv=gv")
+keymap("v", "K", ":m '<-2<CR>gv=gv")
+
+-- keep cursor positioning when using J and K
+keymap("n", "J", "mzJ`z")
+
+-- keep cursor mid-page when using page up/down
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+
+-- keep cursor mid-page when searching
+keymap("n", "N", "Nzzzv")
+keymap("n", "n", "nzzzv")
+
+-- keep clipboard when pasting (huge remap)
+keymap("x", "<leader>p", '"_dp')
+keymap({ "x", "v" }, "<leader>d", '"_d')
+
+-- cancel Q
+keymap("n", "Q", "<nop>")
+
+-- switch projects using tmux
+keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>")
+
 -- move windows using vim keys
 keymap("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 keymap("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
@@ -39,6 +64,15 @@ keymap("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 keymap("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 keymap("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 keymap("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- buffers
+keymap("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+keymap("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+keymap("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+keymap("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+keymap("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+keymap("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+keymap("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- windows
 keymap("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })

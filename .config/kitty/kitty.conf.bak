@@ -1,0 +1,42 @@
+
+# vim:ft=kitty
+
+## name:     Catppuccin Kitty Mocha
+## author:   Catppuccin Org
+## license:  MIT
+## upstream: https://github.com/catppuccin/kitty/blob/main/mocha.conf
+## blurb:    Soothing pastel theme for the high-spirited!
+
+# copying to clipboard from term/tmux
+clipboard_control write-clipboard write-primary no-append
+editor nvim
+shell tmux
+enable_audio_bell no
+
+# background image
+background_opacity 0.5
+dynamic_background_opacity yes
+
+# cyberdream theme for kitty
+background            #16181a
+foreground            #ffffff
+cursor                #ffffff
+cursor_text_color     #16181a
+selection_background  #3c4048
+color0                #16181a
+color8                #3c4048
+color1                #ff6e5e
+color9                #ff6e5e
+color2                #5eff6c
+color10               #5eff6c
+color3                #f1ff5e
+color11               #f1ff5e
+color4                #5ea1ff
+color12               #5ea1ff
+color5                #bd5eff
+color13               #bd5eff
+color6                #5ef1ff
+color14               #5ef1ff
+color7                #ffffff
+color15               #ffffff
+selection_foreground  #ffffff

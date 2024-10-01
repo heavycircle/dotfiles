@@ -12,6 +12,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- set NASM as ASM
+vim.cmd [[ autocmd BufRead,BufNewFile *.nasm set filetype=asm ]]
+
 -- ColorScheme changes
 vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
   group = vim.api.nvim_create_augroup("Color", {}),

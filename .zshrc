@@ -32,10 +32,16 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 # Z jumper
-. /usr/bin/z.sh
+if [[ $OSTYPE == 'darwin'* ]]; then
+    # Homebrew
+    export PATH=/opt/homebrew/bin:$PATH
+    . $HOMEBREW_PREFIX/etc/profile.d/z.sh
+else
+    . /usr/bin/z.sh
+fi
 
 # PATH
-export PATH=/home/ironforge/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=/opt/nvim-linux64/bin:$PATH
 
 # Starship
@@ -51,6 +57,7 @@ eval "$(starship init zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 
 # Cargo
 . "$HOME/.cargo/env"

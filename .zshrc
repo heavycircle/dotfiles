@@ -15,6 +15,10 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 # OMZ Activate
 source $ZSH/oh-my-zsh.sh
 
+# OMZ Plugin Rebinds
+bindkey "^I" autosuggest-accept
+bindkey "^\n" autosuggest-execute
+
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
@@ -48,10 +52,10 @@ export PATH=/opt/nvim-linux64/bin:$PATH
 eval "$(starship init zsh)"
 
 # Override ls with eza
-# unalias ls 2>/dev/null || true
-# ls() {
-#   command eza --icons -1 -F --group-directories-first "$@"
-# }
+unalias ls 2>/dev/null || true
+ls() {
+  command eza --icons -1 -F --group-directories-first "$@"
+}
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

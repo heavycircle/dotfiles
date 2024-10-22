@@ -1,22 +1,14 @@
-ZSH_THEME="example" # set by `omz`
-
 # Configurations
 HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-# OH MY ZSH
-export ZSH="$HOME/.oh-my-zsh"
-zstyle ':omz:update' mode reminder
+# Antibody
+antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+source ~/.zsh_plugins.sh
 
-# OMZ Plugins
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-
-# OMZ Activate
-source $ZSH/oh-my-zsh.sh
-
-# OMZ Plugin Rebinds
-bindkey "^I" autosuggest-accept
+# Plugin Rebinds
+bindkey "^ " autosuggest-accept
 bindkey "^\n" autosuggest-execute
 
 # User configuration
@@ -50,6 +42,7 @@ export PATH=/opt/nvim-linux64/bin:$PATH
 
 # Starship
 eval "$(starship init zsh)"
+export FUNCNEST=100
 
 # Override ls with eza
 unalias ls 2>/dev/null || true

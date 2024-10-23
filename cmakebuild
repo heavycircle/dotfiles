@@ -1,0 +1,17 @@
+#!/bin/sh
+
+mkdir -p $(pwd)/.cmake-backup
+
+# Build environment
+clang-format -i $(pwd)/**/*.c $(pwd)/**/*.h
+cmake -B $(pwd)/cmake-build-debug -S $(pwd)
+cmake --build $(pwd)/cmake-build-debug
+
+# Cache compile_commands.json
+if [ $? -eq 0 ]; then
+    cp cmake-build-debug/compile_commands.json .cmake-backup/compile_commands.json
+else
+    cp .cmake-backup/compile_commands.json cmake-build-debug/compile_commands.json
+fi
+
+# runner: find . \( -name "*.c" -o -name "*.h" \) | entr -r cmakebuild

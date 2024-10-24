@@ -1,0 +1,173 @@
+2024-10-20 10:22:43 INFO  (LoggingInitialization) Using log config file: jar:file:/opt/ghidra/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2024-10-20 10:22:43 INFO  (LoggingInitialization) Using log file: /home/ironforge/.config/ghidra/ghidra_11.2_PUBLIC/application.log  
+2024-10-20 10:22:43 INFO  (Preferences) Loading user preferences: /home/ironforge/.config/ghidra/ghidra_11.2_PUBLIC/preferences  
+2024-10-20 10:22:45 INFO  (ClassSearcher) Searching for classes...  
+2024-10-20 10:22:46 INFO  (ClassSearcher) Class search complete (942 ms)  
+2024-10-20 10:22:46 INFO  (SSLContextInitializer) Initializing SSL Context  
+2024-10-20 10:22:46 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2024-10-20 10:22:46 INFO  (SecureRandomFactory) Random Number Generator initialization complete: NativePRNGNonBlocking  
+2024-10-20 10:22:46 INFO  (ApplicationTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2024-10-20 10:22:46 INFO  (GhidraRun) User ironforge started Ghidra.  
+2024-10-20 10:22:46 INFO  (GhidraRun) User settings directory: /home/ironforge/.config/ghidra/ghidra_11.2_PUBLIC  
+2024-10-20 10:22:46 INFO  (GhidraRun) User temp directory: /tmp/ironforge-ghidra  
+2024-10-20 10:22:46 INFO  (GhidraRun) User cache directory: /var/tmp/ironforge-ghidra  
+2024-10-20 10:22:46 DEBUG (DefaultProjectManager) No tools found; Installing default tools  
+2024-10-20 10:22:46 DEBUG (DefaultProjectManager) 	no recent project directories found  
+2024-10-20 10:22:47 DEBUG (RecoverySnapshotMgrPlugin) Recovery snapshot timer set to 5 minute(s)  
+2024-10-20 10:22:47 INFO  (GhidraRun) Ghidra startup complete (4479 ms)  
+2024-10-20 10:23:02 INFO  (DefaultProject) Creating project: /home/ironforge/Desktop/ghidra  
+2024-10-20 10:23:03 INFO  (FileCacheMaintenanceDaemon) Starting cache cleanup: /var/tmp/ironforge-ghidra/fscache2  
+2024-10-20 10:23:03 INFO  (FileCacheMaintenanceDaemon) Finished cache cleanup, estimated storage used: 0  
+2024-10-20 10:23:15 DEBUG (ElfHeader) Elf symbol table section .dynsym linked to string table section .dynstr  
+2024-10-20 10:23:15 DEBUG (ElfHeader) Elf relocation table section .rela.dyn linked to symbol table section .dynsym affecting PT_LOAD  
+2024-10-20 10:23:15 DEBUG (ElfHeader) Elf relocation table section .rela.plt linked to symbol table section .dynsym affecting .got  
+2024-10-20 10:23:17 DEBUG (ElfHeader) Elf symbol table section .dynsym linked to string table section .dynstr  
+2024-10-20 10:23:17 DEBUG (ElfHeader) Elf relocation table section .rela.dyn linked to symbol table section .dynsym affecting PT_LOAD  
+2024-10-20 10:23:17 DEBUG (ElfHeader) Elf relocation table section .rela.plt linked to symbol table section .dynsym affecting .got  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 3-byte alignment/filler segment_4.2 at 00102175  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 4-byte alignment/filler segment_4.4 at 00102204  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 5-byte alignment/filler segment_3.2 at 0010101b  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 1-byte alignment/filler segment_3.7 at 00101d63  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 4-byte alignment/filler segment_2.3 at 00100334  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 4-byte alignment/filler segment_2.7 at 001003ac  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 4-byte alignment/filler segment_2.9 at 001003e4  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 1-byte alignment/filler segment_2.12 at 00100833  
+2024-10-20 10:23:17 DEBUG (ElfProgramBuilder) Discarding 6-byte alignment/filler segment_2.14 at 00100872  
+2024-10-20 10:23:17 INFO  (ImporterUtilities) Additional info:
+Loading file:///home/ironforge/Downloads/lostflag/chall?MD5=aee1ae4197ff6217e447a7d60af20501...
+ELF Relocation Failure: R_X86_64_COPY (5, 0x5) at 00104020 (Symbol = stdout) - Runtime copy not supported (8-bytes)
+ELF Relocation Failure: R_X86_64_COPY (5, 0x5) at 00104030 (Symbol = stdin) - Runtime copy not supported (8-bytes)
+ELF Relocation Failure: R_X86_64_COPY (5, 0x5) at 00104040 (Symbol = stderr) - Runtime copy not supported (8-bytes)
+Setting block .init_array to read-only
+Setting block .fini_array to read-only
+Setting block .dynamic to read-only
+Failed to markup ELF Note at 00100338: data conflict
+Failed to markup ELF Note at 00100368: data conflict
+Failed to markup ELF Note at 0010038c: data conflict
+------------------------------------------------
+
+Linking the External Programs of 'chall' to imported libraries...
+  [libseccomp.so.2] -> not found in project
+  [libc.so.6] -> not found in project
+------------------------------------------------
+
+Resolving External Symbols of [/chall] - 24 unresolved symbols, no external libraries configured - skipping
+  
+2024-10-20 10:23:25 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:23:25 DEBUG (ToolTaskManager) Task Start: Auto Analysis  
+2024-10-20 10:23:26 INFO  (ExternalDebugFileSectionProvider) DWARF external debug information found: ExternalDebugInfo [filename=null, crc=0, hash=f9e608e1defeb2417fbd4e82eb983b9fbfe30c2d]  
+2024-10-20 10:23:26 INFO  (DWARFAnalyzer) Unable to find DWARF information, skipping DWARF analysis  
+2024-10-20 10:23:26 INFO  (DecompilerSwitchAnalyzer) hit non-returning function, restarting decompiler switch analyzer later  
+2024-10-20 10:23:26 WARN  (DecompileCallback) Decompiling 00101330, pcode error at 00105018: Unable to disassemble EXTERNAL block location: 00105018  
+2024-10-20 10:23:26 WARN  (DecompileCallback) Decompiling 00101360, pcode error at 001050c0: Unable to disassemble EXTERNAL block location: 001050c0  
+2024-10-20 10:23:27 INFO  (PackedDatabaseCache) Packed database cache: /var/tmp/ironforge-ghidra/packed-db-cache  
+2024-10-20 10:23:27 DEBUG (PackedDatabaseCache) Caching packed database: /opt/ghidra/Ghidra/Features/Base/data/typeinfo/generic/generic_clib_64.gdt  
+2024-10-20 10:23:27 DEBUG (PackedDatabase) Unpacking database /opt/ghidra/Ghidra/Features/Base/data/typeinfo/generic/generic_clib_64.gdt -> /var/tmp/ironforge-ghidra/packed-db-cache/pdb82CCFA65/db.1.gbf  
+2024-10-20 10:23:27 DEBUG (PackedDatabaseCache) Cache update completed: /opt/ghidra/Ghidra/Features/Base/data/typeinfo/generic/generic_clib_64.gdt  
+2024-10-20 10:23:27 INFO  (ApplyDataArchiveAnalyzer) Applied data type archive: generic_clib_64  
+2024-10-20 10:23:27 INFO  (ExternalSymbolResolverAnalyzer) Resolving External Symbols of [/chall] - 27 unresolved symbols, no external libraries configured - skipping  
+2024-10-20 10:23:27 INFO  (AutoAnalysisManager) -----------------------------------------------------
+    ASCII Strings                              0.246 secs
+    Apply Data Archives                        0.245 secs
+    Call Convention ID                         0.001 secs
+    Call-Fixup Installer                       0.002 secs
+    Create Address Tables                      0.003 secs
+    Create Function                            0.007 secs
+    DWARF                                      0.005 secs
+    Data Reference                             0.006 secs
+    Decompiler Switch Analysis                 0.020 secs
+    Decompiler Switch Analysis - One Time      0.722 secs
+    Demangler GNU                              0.006 secs
+    Disassemble Entry Points                   0.080 secs
+    ELF Scalar Operand References              0.012 secs
+    Embedded Media                             0.007 secs
+    External Entry References                  0.000 secs
+    External Symbol Resolver                   0.001 secs
+    Function ID                                0.024 secs
+    Function Start Search                      0.016 secs
+    Function Start Search After Code           0.002 secs
+    Function Start Search After Data           0.001 secs
+    GCC Exception Handlers                     0.036 secs
+    Non-Returning Functions - Discovered       0.009 secs
+    Non-Returning Functions - Known            0.002 secs
+    Reference                                  0.015 secs
+    Shared Return Calls                        0.007 secs
+    Stack                                      0.080 secs
+    Subroutine References                      0.004 secs
+    Subroutine References - One Time           0.000 secs
+    x86 Constant Reference Analyzer            0.111 secs
+-----------------------------------------------------
+     Total Time   1 secs
+-----------------------------------------------------
+  
+2024-10-20 10:23:27 DEBUG (ToolTaskManager) Start: Auto Analysis  
+2024-10-20 10:23:27 DEBUG (ToolTaskManager) Completed: Auto Analysis (0.0 secs)  
+2024-10-20 10:23:27 DEBUG (ToolTaskManager) Task Completed: Auto Analysis (1.747 secs)  
+2024-10-20 10:23:27 DEBUG (ToolTaskManager) Background processing complete (1.748 secs)  
+2024-10-20 10:25:01 INFO  (ThemeUtils) Saving theme to /home/ironforge/.config/ghidra/ghidra_11.2_PUBLIC/themes/Catppuccin_Mocha.theme  
+2024-10-20 10:25:02 ERROR (SwingExceptionHandler) Error: Uncaught Exception! 
+NullPointerException - Cannot invoke "javax.help.JHelpTOCNavigator.getModel()" because "this.toc" is null java.lang.NullPointerException: Cannot invoke "javax.help.JHelpTOCNavigator.getModel()" because "this.toc" is null
+	at javax.help.plaf.basic.BasicTOCNavigatorUI.presentData(BasicTOCNavigatorUI.java:244)
+	at javax.help.plaf.basic.BasicTOCNavigatorUI.access$100(BasicTOCNavigatorUI.java:75)
+	at javax.help.plaf.basic.BasicTOCNavigatorUI$NavSwingWorker.finished(BasicTOCNavigatorUI.java:267)
+	at com.sun.java.help.impl.SwingWorker$1.run(SwingWorker.java:133)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+ 
+2024-10-20 10:25:11 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:25:11 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:25:11 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.03 secs)  
+2024-10-20 10:25:11 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:25:11 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:25:11 DEBUG (ToolTaskManager) Background processing complete (0.032 secs)  
+2024-10-20 10:25:35 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:25:35 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:25:35 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.028 secs)  
+2024-10-20 10:25:35 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:25:35 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:25:35 DEBUG (ToolTaskManager) Background processing complete (0.029 secs)  
+2024-10-20 10:28:02 INFO  (RecoveryMgr) Sun Oct 20 10:28:02 EDT 2024 Recovery snapshot created: /home/ironforge/Desktop/ghidra.rep/idata/00/~00000000.db/snapshotA.grf  
+2024-10-20 10:32:47 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:32:47 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:32:47 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.027 secs)  
+2024-10-20 10:32:47 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:32:47 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:32:47 DEBUG (ToolTaskManager) Background processing complete (0.028 secs)  
+2024-10-20 10:33:02 INFO  (RecoveryMgr) Sun Oct 20 10:33:02 EDT 2024 Recovery snapshot created: /home/ironforge/Desktop/ghidra.rep/idata/00/~00000000.db/snapshotB.grf  
+2024-10-20 10:33:34 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:33:34 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:33:34 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.025 secs)  
+2024-10-20 10:33:34 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:33:34 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:33:34 DEBUG (ToolTaskManager) Background processing complete (0.026 secs)  
+2024-10-20 10:33:46 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:33:46 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:33:46 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.017 secs)  
+2024-10-20 10:33:46 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:33:46 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:33:46 DEBUG (ToolTaskManager) Background processing complete (0.018 secs)  
+2024-10-20 10:34:13 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:34:13 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:34:13 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.027 secs)  
+2024-10-20 10:34:13 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:34:13 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:34:13 DEBUG (ToolTaskManager) Background processing complete (0.029 secs)  
+2024-10-20 10:34:46 ERROR (RenameVariableTask) Rename Failed: Symbol name contains invalid characters: heap base  
+2024-10-20 10:36:46 DEBUG (ToolTaskManager) Background processing started...  
+2024-10-20 10:36:46 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:36:46 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.028 secs)  
+2024-10-20 10:36:46 DEBUG (ToolTaskManager) Task Start: Edit Label  
+2024-10-20 10:36:46 DEBUG (ToolTaskManager) Task Completed: Edit Label (0.0 secs)  
+2024-10-20 10:36:46 DEBUG (ToolTaskManager) Background processing complete (0.028 secs)  
+2024-10-20 10:38:02 INFO  (RecoveryMgr) Sun Oct 20 10:38:02 EDT 2024 Recovery snapshot created: /home/ironforge/Desktop/ghidra.rep/idata/00/~00000000.db/snapshotA.grf  

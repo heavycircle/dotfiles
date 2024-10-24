@@ -1,0 +1,24 @@
+#User Preferences
+#Sun Oct 20 14:20:10 EDT 2024
+G_FILE_CHOOSER.HEIGHT.Choose\ Theme\ File=600
+G_FILE_CHOOSER.HEIGHT.Select\ File\ to\ Import=600
+G_FILE_CHOOSER.ShowDotFiles=true
+G_FILE_CHOOSER.VIEW_STYLE.Choose\ Theme\ File=SimpleView
+G_FILE_CHOOSER.VIEW_STYLE.Select\ File\ to\ Import=SimpleView
+G_FILE_CHOOSER.WIDTH.Choose\ Theme\ File=800
+G_FILE_CHOOSER.WIDTH.Select\ File\ to\ Import=800
+GhidraShowWhatsNew=false
+LAST_USED_OPTIONS_CONFIG=Standard Defaults
+LastImportFile=/home/ironforge/Downloads/lostflag/chall
+LastNewProjectDirectory=/home/ironforge/Desktop/
+LastOpenedProject=/home/ironforge/Desktop/ghidra
+ProjectDirectory=/home/ironforge/Desktop/
+RECENT_0=/home/ironforge/.config/ghidra/themes
+RECENT_1=/home/ironforge/Downloads/lostflag
+RecentProjects=/home/ironforge/Desktop/ghidra
+SHOW.HELP.NAVIGATION.AID=true
+SHOW_TIPS=true
+TIP_INDEX=1
+Theme=File\:/home/ironforge/.config/ghidra/ghidra_11.2_PUBLIC/themes/Catppuccin_Mocha.theme
+USER_AGREEMENT=ACCEPT
+ViewedProjects=

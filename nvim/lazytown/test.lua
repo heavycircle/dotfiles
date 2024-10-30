@@ -1,0 +1,1 @@
+vim.fn.executable("git")

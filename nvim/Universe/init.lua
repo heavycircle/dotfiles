@@ -14,6 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- All our configs are inside lua/config/lazy.
+-- All our configs are inside lua/config.
 -- Configurations either do it like this or place the configurations here.
 require("uvim.config").setup({})

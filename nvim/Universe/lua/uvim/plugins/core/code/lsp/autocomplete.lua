@@ -46,8 +46,8 @@ return {
     },
     opts = function(_, opts)
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-      local cmp = require "cmp"
-      local defaults = require "cmp.config.default"()
+      local cmp = require("cmp")
+      local defaults = require("cmp.config.default")()
       require("luasnip.loaders.from_vscode").lazy_load()
 
       return {
@@ -59,7 +59,7 @@ return {
 
         preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
 
-        mapping = cmp.mapping.preset.insert {
+        mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
@@ -67,7 +67,7 @@ return {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               local entries = cmp.get_entries()
-              cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 
               if #entries == 1 then
                 cmp.confirm()
@@ -79,7 +79,7 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               local entries = cmp.get_entries()
-              cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
+              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 
               if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
@@ -89,8 +89,8 @@ return {
             end
           end, { "i", "s" }),
 
-          ["<CR>"] = cmp.mapping.confirm { select = false }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        },
+          ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        }),
 
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -123,7 +123,7 @@ return {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.recently_used,
-            require "clangd_extensions.cmp_scores",
+            require("clangd_extensions.cmp_scores"),
             cmp.config.compare.kind,
             cmp.config.compare.sort_text,
             cmp.config.compare.length,

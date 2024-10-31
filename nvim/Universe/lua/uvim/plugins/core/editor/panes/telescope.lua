@@ -21,7 +21,7 @@ return {
       {
         "<leader>ff",
         function()
-          require("telescope.builtin").find_files { cwd = vim.g.root }
+          require("telescope.builtin").find_files({ cwd = vim.g.root })
         end,
         desc = "Find Files (root)",
       },
@@ -29,7 +29,7 @@ return {
       {
         "<leader>fg",
         function()
-          require("telescope.builtin").live_grep { cwd = vim.g.root }
+          require("telescope.builtin").live_grep({ cwd = vim.g.root })
         end,
         desc = "Live Grep (root)",
       },

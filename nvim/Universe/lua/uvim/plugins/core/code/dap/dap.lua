@@ -21,7 +21,7 @@ return {
       {
         "<leader>dB",
         function()
-          require("dap").set_breakpoint(vim.fn.input "Breakpoint condition: ")
+          require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
         end,
         desc = "Breakpoint Condition",
       },
@@ -42,7 +42,7 @@ return {
       {
         "<leader>da",
         function()
-          require("dap").continue { before = get_args }
+          require("dap").continue({ before = get_args })
         end,
         desc = "Run with Args",
       },

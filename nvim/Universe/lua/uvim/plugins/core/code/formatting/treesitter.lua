@@ -32,7 +32,7 @@ return {
     lazy = vim.fn.argc(-1) == 0,
     init = function(plugin)
       require("lazy.core.loader").add_to_rtp(plugin)
-      require "nvim-treesitter.query_predicates"
+      require("nvim-treesitter.query_predicates")
     end,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {

@@ -51,35 +51,35 @@ return {
       {
         "<leader>snl",
         function()
-          require("noice").cmd "last"
+          require("noice").cmd("last")
         end,
         desc = "Noice Last Message",
       },
       {
         "<leader>snh",
         function()
-          require("noice").cmd "history"
+          require("noice").cmd("history")
         end,
         desc = "Noice History",
       },
       {
         "<leader>sna",
         function()
-          require("noice").cmd "all"
+          require("noice").cmd("all")
         end,
         desc = "Noice All",
       },
       {
         "<leader>snd",
         function()
-          require("noice").cmd "dismiss"
+          require("noice").cmd("dismiss")
         end,
         desc = "Dismiss All",
       },
       {
         "<leader>snt",
         function()
-          require("noice").cmd "pick"
+          require("noice").cmd("pick")
         end,
         desc = "Noice Picker (Telescop/Fzf)",
       },

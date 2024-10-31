@@ -2,6 +2,7 @@ local M = {}
 
 local maps = {
   c = "cpp",
+  nasm = "asm",
 }
 
 function M.install(lang)
@@ -10,10 +11,8 @@ function M.install(lang)
   local status, err = pcall(require, langfile)
 
   if status then
-      local reg = require("mason-registry")
-      reg.refresh()
+    require("mason-registry").refresh()
     print("Installed " .. name)
-
   else
     print("Error loading config: ", err)
   end

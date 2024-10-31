@@ -69,34 +69,11 @@ return {
           size = { height = 0.5 },
         },
         {
-          title = "Neo-Tree Git",
-          ft = "neo-tree",
-          filter = function(buf)
-            return vim.b[buf].neo_tree_source == "git_status"
-          end,
+          title = "Aerial",
+          ft = "aerial",
           pinned = true,
-          collapsed = true, -- show window as closed/collapsed on start
-          open = "Neotree position=right git_status",
-        },
-        {
-          title = "Neo-Tree Buffers",
-          ft = "neo-tree",
-          filter = function(buf)
-            return vim.b[buf].neo_tree_source == "buffers"
-          end,
-          pinned = true,
-          collapsed = true, -- show window as closed/collapsed on start
-          open = "Neotree position=top buffers",
-        },
-        {
-          title = function()
-            local buf_name = vim.api.nvim_buf_get_name(0) or "[No Name]"
-            return vim.fn.fnamemodify(buf_name, ":t")
-          end,
-          ft = "Outline",
-          pinned = true,
-          open = "Outline",
-          size = { height = 0.2 },
+          open = "AerialOpen",
+          size = { height = 0.5 },
         },
         -- any other neo-tree windows
         "neo-tree",

@@ -9,7 +9,7 @@ function M.setup(shell)
 end
 
 function M.spawn(cmd, opts)
-  local key = vim.inspect { cmd = cmd or "shell", cwd = opts.cwd, env = opts.env }
+  local key = vim.inspect({ cmd = cmd or "shell", cwd = opts.cwd, env = opts.env })
 
   -- check for existing terminal
   if term[key] and vim.api.nvim_buf_is_valid(term[key].buf) then
@@ -52,7 +52,7 @@ function M.spawn(cmd, opts)
     })
     vim.wo.number = false
     vim.wo.relativenumber = false
-    vim.cmd "startinsert"
+    vim.cmd("startinsert")
 
     -- start writing immediately
     vim.api.nvim_create_autocmd("BufEnter", {
@@ -62,7 +62,7 @@ function M.spawn(cmd, opts)
       end,
     })
 
-    vim.cmd "noh"
+    vim.cmd("noh")
   end
 
   return term[key]

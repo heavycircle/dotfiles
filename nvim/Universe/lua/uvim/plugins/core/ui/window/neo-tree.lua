@@ -37,7 +37,7 @@ return {
       {
         "<leader>fe",
         function()
-          require("neo-tree.command").execute { toggle = true, dir = vim.g.root }
+          require("neo-tree.command").execute({ toggle = true, dir = vim.g.root })
         end,
         desc = "Explore NeoTree (root)",
       },
@@ -50,7 +50,7 @@ return {
       {
         "<leader>fE",
         function()
-          require("neo-tree.command").execute { toggle = true, dir = vim.uv.cwd() }
+          require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
         end,
         desc = "Explore NeoTree (cwd)",
       },
@@ -63,14 +63,14 @@ return {
       {
         "<leader>ge",
         function()
-          require("neo-tree.command").execute { source = "git_status", toggle = true }
+          require("neo-tree.command").execute({ source = "git_status", toggle = true })
         end,
         desc = "Git Explorer",
       },
       {
         "<leader>be",
         function()
-          require("neo-tree.command").execute { source = "buffers", toggle = true }
+          require("neo-tree.command").execute({ source = "buffers", toggle = true })
         end,
         desc = "Buffer Explorer",
       },

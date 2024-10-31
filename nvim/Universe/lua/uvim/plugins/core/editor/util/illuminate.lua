@@ -7,7 +7,7 @@ return {
   {
     "RRethy/vim-illuminate",
     config = function()
-      require("illuminate").configure {
+      require("illuminate").configure({
         providers = {
           "lsp",
           "treesitter",
@@ -15,7 +15,7 @@ return {
         },
         delay = 100,
         filetype_overrides = {},
-      }
+      })
     end,
     keys = {
       {

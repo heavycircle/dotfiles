@@ -15,7 +15,7 @@ sudo apt-get full-upgrade -y
 sudo apt install zsh tmux neovim git -y
 
 # -- Configuration files
-git clone https://github.com/coleellis/lazytown.nvim.git ~/.config/nvim
+git clone https://github.com/vim-universe/Uvim.nvim.git ~/.config/nvim
 git clone https://github.com/coleellis/dotfiles.git ~/Desktop/dotfiles
 
 # -- ZSH

@@ -1,15 +1,6 @@
--- The leader key.  This key provides access to the rest of nvim's functionality.
--- The most common key used here is <space>.
-vim.g.mapleader = " "
-
-vim.g.autoformat = true -- Vim autoformat
-
-vim.g.lazyvim_picker = "auto" -- Which picker to use (telescope, fzf)
-vim.g.lazygit_config = true -- Automatic configuration for lazygit (enables NF icons, theme, etc)
-
-vim.g.trouble_lualine = true -- oShows document symbols from Trouble in lualine
-
--- Making it faster to change the vim options
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
 local opt = vim.opt
 
 opt.autowrite = true -- Enable autowrite
@@ -19,14 +10,6 @@ opt.conceallevel = 2 -- Hide * on markdown for bold/italic, but not markers with
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Adds highlighting on current cursor line (disabled for better transparent feel)
 opt.expandtab = true -- Use spaces instead of tabs
-opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}
 opt.foldlevel = 99
 opt.hlsearch = false -- Don't keep terms highlighted post-search
 opt.incsearch = true -- Highlight as you search
@@ -48,16 +31,9 @@ opt.splitright = true -- New window right of current
 opt.swapfile = false -- We have undotree, we don't want a swapfile
 opt.tabstop = 4 -- Tabs are 4 spaces
 opt.termguicolors = true -- True colors for terminal
-opt.undodir = os.getenv "HOME" .. "/.vim/undodir" -- Store undotree
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir" -- Store undotree
 opt.undofile = true -- Yes, we want undo history
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file faster
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false -- Disable line wrap
-
-vim.g.markdown_recommended_style = 0 -- Fix terminal size
-
--- Change line number colors (overriden by :TransparentEnable)
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#D3D3D3" })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#D3D3D3" })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#FFD700" })

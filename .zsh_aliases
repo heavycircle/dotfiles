@@ -1,8 +1,19 @@
 alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 
+# Force History
+alias history="history 0"
+
+# Custom Functions
 alias q='function _go() {mkdir -p "$1" && cd "$1" }; _go'
 alias fuck='function _fuck() {rm -rf "$1"}; _fuck'
+
+# Shortcuts
 alias e='exit'
 alias c='clear'
 alias cl='c && l'
+
+# LS Shortcuts
+alias ll="ls -l"
+alias la="ls -A"
+alias l="ls -CF"
+alias li="ls -lisah"

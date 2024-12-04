@@ -1,21 +1,14 @@
-﻿---
-BasedOnStyle: WebKit
+﻿BasedOnStyle: WebKit
 AccessModifierOffset: 4
-# AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveMacros: true
 AlignConsecutiveDeclarations: true
 AlignOperands: true
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: None
 BreakBeforeBraces: Allman
 ColumnLimit: 100
 IncludeBlocks: Regroup
-IndentPPDirectives: None
-IndentWidth: 4
+InsertNewlineAtEOF: true
 PointerAlignment: Right
-SortIncludes: false
-SpaceAfterCStyleCast: false
-SpaceBeforeAssignmentOperators: true
-SpaceBeforeRangeBasedForLoopColon: true
-SpacesInContainerLiterals: true
-TabWidth: 4
-UseTab: Never
-
-...
+SortIncludes: true

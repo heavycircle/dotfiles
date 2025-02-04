@@ -4,22 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "dd26520ba6c8da42",
+        "id": "d8fa60aa41e496e9",
         "type": "tabs",
         "children": [
           {
-            "id": "c78b56e03a8a8f30",
+            "id": "0bd54b08c37431ea",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
+                "file": "dev/languages/asm/Branches and Jumps.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Branches and Jumps"
+            }
+          },
+          {
+            "id": "6223a704aa6a870a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SSH Public Keys.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SSH Public Keys"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -33,28 +50,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "bde7356818e49730",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              }
-            }
-          },
-          {
             "id": "cf84db54bf182448",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#linux",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,14 +71,30 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "9da500e797a55d17",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 338
+    "width": 357
   },
   "right": {
     "id": "232e0352385bc1fd",
@@ -85,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
+                "file": "dev/operating-system/UNIX/exploits/binex/stack/06-format-write/06-03-challenge01/Challenge 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +118,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Challenge 1"
             }
           },
           {
@@ -102,10 +129,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
+                "file": "dev/operating-system/UNIX/exploits/binex/stack/06-format-write/06-03-challenge01/Challenge 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Challenge 1"
             }
           },
           {
@@ -114,9 +143,11 @@
             "state": {
               "type": "tag",
               "state": {
-                "sortOrder": "frequency",
+                "sortOrder": "alphabetical",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -125,8 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md"
-              }
+                "file": "SSH Public Keys.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of SSH Public Keys"
             }
           },
           {
@@ -134,7 +170,9 @@
             "type": "leaf",
             "state": {
               "type": "git-history-view",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -142,7 +180,9 @@
             "type": "leaf",
             "state": {
               "type": "git-view",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -150,107 +190,125 @@
             "type": "leaf",
             "state": {
               "type": "calendar",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
-            "id": "e00655ad13fad1e6",
+            "id": "f7fe37b149728585",
             "type": "leaf",
             "state": {
               "type": "mathpad-view",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "5ce86c464ba34e2e",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       },
       {
-        "id": "1ab8166916b943d9",
+        "id": "f729e1d564f97f67",
         "type": "tabs",
         "children": [
           {
-            "id": "a0e60447972fd0fb",
+            "id": "b7152265f64cd7d5",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "graph",
-              "state": {}
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 533,
-    "collapsed": true
+    "width": 464
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-raindrop-highlights:Sync your Raindrop bookmarks": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "templater-obsidian:Templater": false,
-      "daily-notes:Open today's daily note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "markdown-importer:Open format converter": false,
-      "omnisearch:Omnisearch": false
+      "daily-notes:Open today's daily note": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "omnisearch:Omnisearch": false,
+      "obsidian-kanban:Create new board": false
     }
   },
-  "active": "c78b56e03a8a8f30",
+  "active": "6223a704aa6a870a",
   "lastOpenFiles": [
-    "dev/exploits/binex/stack/05-write-what-where/05-04-practice01/Practice 1.md",
-    "dev/languages/asm/Instructions in Assembly.md",
-    "dev/languages/asm/Syscalls and Interrupts.md",
-    "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/Challenge 1.md",
-    "dev/exploits/binex/stack/05-write-what-where/05-05-challenge01/asd.py",
-    "Pasted image 20240718095222.png",
-    "dev/exploits/binex/stack/assets/0503-success.png",
-    "dev/exploits/binex/stack/assets/0504-success.png",
-    "Untitled.md",
-    "Pasted image 20240701212617.png.md",
-    "dev/exploits/binex/stack/03-arguments/03-04-artificial-x64/Artificial Jumps (x64).md",
-    "dev/exploits/binex/stack/05-write-what-where/05-04-practice01/keyring.deb",
-    "dev/exploits/binex/stack/05-write-what-where/05-03-gadget-writes/Using Gadgets to Write-What-Where.md",
-    "dev/THM",
-    "dev/learning/ACTP",
-    "dev/learning",
-    "dev/exploits/binex/stack/05-write-what-where/05-07-challenge03/Challenge 3.md",
-    "dev/exploits/binex/stack/08-shellcoding/08-01-leaked/0x232 - shell.md",
-    "dev/exploits/binex/stack/08-shellcoding/08-01-leaked/0x231 - location.md",
-    "dev/exploits/binex/stack/08-shellcoding/08-02-minicode/Smaller Shellcode.md",
-    "dev/exploits/binex/stack/08-shellcoding/Shellcoding.md",
-    "dev/exploits/binex/stack/08-shellcoding/08-02-minicode",
-    "dev/exploits/binex/stack/08-shellcoding/08-01-leaked",
-    "dev/exploits/binex/stack/07-aslr/07-01-ret2libc/ret2libc-32.md",
-    "dev/exploits/binex/stack/07-aslr/07-03-ret2plt/ret2plt.md",
-    "dev/exploits/binex/stack/07-aslr/07-01-ret2libc/ret2libc.md",
-    "dev/exploits/binex/stack/07-aslr/ASLR.md",
-    "dev/exploits/binex/stack/05-write-what-where/05-02-ret-overwrite/WWW - Return Overwrite.md",
-    "dev/exploits/binex/stack/06-format-write/06-01-any-write/Format Overflow.md",
-    "dev/exploits/binex/stack/05-write-what-where/05-01-var-overwrite/WWW - Variable Overwrite.md",
-    "dev/exploits/binex/stack/assets/got-plt.canvas",
-    "dev/exploits/binex/stack/06-format-write/06-02-target-write/Format Overwrite.md",
-    "dev/exploits/binex/stack/05-write-what-where/05-06-challenge02/Challenge 2.md",
-    "dev/exploits/binex/stack/06-format-write/06-03-challenge01/Challenge 1.md",
-    "dev/exploits/binex/stack/06-format-write/06-03-challenge01",
-    "dev/exploits/binex/stack/07-aslr/07-03-ret2plt",
-    "dev/exploits/binex/stack/07-aslr/07-01-ret2libc",
-    "dev/exploits/binex/stack/07-aslr/0x273 - leak64.md",
-    "dev/exploits/rev/02-ghidra/0x310 - Ghidra.md",
-    "VUNROTC/getting-started/Getting Started.md",
-    "dev/exploits/binex/stack/assets/0503-ldd.png",
-    "dev/exploits/binex/stack/assets/natural-jumps.canvas",
-    "dev/exploits/binex/stack/assets/artificial-jumps.canvas",
-    "dev/exploits/binex/stack/assets/0404-success.png",
-    "dev/exploits/binex/stack/assets/0403-success.png",
-    "dev/exploits/binex/stack/assets/0402-vmmap.png",
-    "dev/exploits/binex/stack/assets/0402-success.png",
-    "dev/exploits/binex/stack/assets/0401-success.png",
-    "dev/exploits/binex/stack/assets/0303-success.png",
-    "HACKERMAN/dev/exploits/binex/stack/binex/assets/natural-jumps.canvas",
-    "HACKERMAN/dev/exploits/binex/stack/binex/assets/artificial-jumps.canvas",
-    "HACKERMAN/VUNROTC/binex/assets/artificial-jumps.canvas",
-    "HACKERMAN/VUNROTC/binex/assets/natural-jumps.canvas"
+    "dev.png",
+    "photo.png",
+    "gym.png",
+    "SSH Public Keys.md",
+    "index.md",
+    "Sample Markdown Image.md",
+    "GeoGuessr/I forgor.md",
+    "GeoGuessr/Europe/Finland.md",
+    "Meals.md",
+    "GeoGuessr/Hong Kong.md",
+    "GeoGuessr/_assets/Pasted image 20241201140226.png",
+    "GeoGuessr/_assets/Pasted image 20241201143037.png",
+    "GeoGuessr/_assets/Pasted image 20241201143238.png",
+    "GeoGuessr/City Signs.md",
+    "xoua.png",
+    "GeoGuessr/_assets/fi-street.png",
+    "GeoGuessr/_assets/mk-directional.png",
+    "GeoGuessr/Europe/North Macedonia.md",
+    "GeoGuessr/_assets/bg-street.png",
+    "GeoGuessr/Europe/Bulgaria.md",
+    "GeoGuessr/Europe/Serbia.md",
+    "dev/operating-system/UNIX/exploits/binex/stack/06-format-write/06-03-challenge01/Challenge 1.md",
+    "GeoGuessr/Europe/Czechoslovakia.md",
+    "GeoGuessr/Europe/Montenegro.md",
+    "GeoGuessr/Europe/Lithuania.md",
+    "GeoGuessr/Europe/Albania.md",
+    "GeoGuessr/Europe/Sweden.md",
+    "GeoGuessr/Europe/Denmark.md",
+    "GeoGuessr/_assets",
+    "GeoGuessr/Europe/Belgium.md",
+    "GeoGuessr/The E-Road Network.md",
+    "GeoGuessr/License Plates.md",
+    "dev/operating-system/UNIX/user-mode/cno/04 Hooking.md",
+    "GeoGuessr/Europe",
+    "GeoGuessr",
+    "dev/operating-system/UNIX/kernel-mode/09 CNO Kernel Practices.md",
+    "dev/operating-system/UNIX/kernel-mode/08 Security Modules.md",
+    "dev/operating-system/UNIX/kernel-mode/07 Sysfs.md",
+    "dev/operating-system/UNIX/user-mode/vre",
+    "dev/ctf-writeups/_assets",
+    "dev/operating-system/UNIX/exploits/binex/stack/08-shellcode/05-write-what-where/05-01-var-overwrite",
+    "dev/operating-system/UNIX/exploits/binex/stack/08-shellcode/05-write-what-where/05-02-ret-overwrite",
+    "dev/operating-system/UNIX/exploits/binex/stack/08-shellcode/05-write-what-where/05-03-gadget-writes",
+    "dev/operating-system/UNIX/exploits/binex/stack/08-shellcode/01-buffer-overflow/01-05-32bit-overflow",
+    "dev/operating-system/UNIX/exploits/binex/stack/08-shellcode/01-buffer-overflow/01-02-var-overwrite",
+    "dev/operating-system/UNIX/exploits/binex/stack/_assets/got-plt.canvas",
+    "dev/operating-system/UNIX/exploits/binex/stack/_assets/artificial-jumps.canvas",
+    "dev/operating-system/UNIX/exploits/binex/stack/_assets/natural-jumps.canvas",
+    "HACKERMAN/IWO/IWO Diagrams.canvas",
+    "dev/operating-system/UNIX/exploits/binex/stack/assets/got-plt.canvas",
+    "dev/operating-system/UNIX/exploits/binex/stack/assets/artificial-jumps.canvas",
+    "dev/operating-system/UNIX/exploits/binex/stack/assets/natural-jumps.canvas",
+    "HACKERMAN/dev/exploits/binex/stack/assets/artificial-jumps.canvas",
+    "HACKERMAN/dev/exploits/binex/stack/assets/natural-jumps.canvas",
+    "HACKERMAN/VUNROTC/binex/assets/artificial-jumps.canvas"
   ]
 }

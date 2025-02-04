@@ -1,8 +1,9 @@
 {
-  "accentColor": "",
+  "interfaceFontFamily": "Cascadia Code,CaskaydiaCove Nerd Font",
+  "textFontFamily": "Cascadia Code,CaskaydiaCove Nerd Font",
+  "monospaceFontFamily": "Cascadia Code,CaskaydiaCove Nerd Font",
   "cssTheme": "AnuPpuccin",
   "theme": "obsidian",
-  "monospaceFontFamily": "CaskaydiaCove Nerd Font Mono",
   "enabledCssSnippets": [
     "images",
     "tables"

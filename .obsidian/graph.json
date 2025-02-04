@@ -1,58 +1,37 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": false,
+  "showTags": true,
   "showAttachments": false,
-  "hideUnresolved": false,
-  "showOrphans": false,
-  "collapse-color-groups": false,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "tag:#pwn",
+      "query": "tag:#linux  ",
       "color": {
         "a": 1,
-        "rgb": 16711680
+        "rgb": 14701138
       }
     },
     {
-      "query": "tag:#lang",
+      "query": "tag:#windows  ",
       "color": {
         "a": 1,
-        "rgb": 16776960
-      }
-    },
-    {
-      "query": "tag:#toolkit  ",
-      "color": {
-        "a": 1,
-        "rgb": 65280
-      }
-    },
-    {
-      "query": "tag:#中文  ",
-      "color": {
-        "a": 1,
-        "rgb": 16711935
-      }
-    },
-    {
-      "query": "tag:#THM  ",
-      "color": {
-        "a": 1,
-        "rgb": 255
+        "rgb": 14725458
       }
     }
   ],
-  "collapse-display": false,
-  "showArrow": true,
-  "textFadeMultiplier": -0.6,
-  "nodeSizeMultiplier": 1.19679768880208,
-  "lineSizeMultiplier": 1.63523763020833,
-  "collapse-forces": false,
-  "centerStrength": 0.475179036458333,
-  "repelStrength": 11.00341796875,
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
   "linkStrength": 1,
-  "linkDistance": 252,
-  "scale": 0.13348388671875,
+  "linkDistance": 250,
+  "scale": 0.1368833899766197,
   "close": true
 }

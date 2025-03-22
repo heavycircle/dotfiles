@@ -10,7 +10,7 @@ alias fuck='function _fuck() {rm -rf "$1"}; _fuck'
 # Shortcuts
 alias e='exit'
 alias c='clear'
-alias cl='c && l'
+alias cl='clear && ls'
 
 # LS Shortcuts
 alias ll="ls -l"

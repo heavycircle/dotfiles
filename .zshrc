@@ -75,6 +75,25 @@ export FUNCNEST=100
 export PATH=$HOME/.local/bin:$PATH
 export PATH=/opt/nvim-linux64/bin:$PATH
 
+# Auto-source .venv
+function auto_venv() {
+    if [[ -n "$VIRTUAL_ENV" && ! -f ".venv/bin/activate" ]]; then
+        deactivate
+    fi
+
+    if [[ -f ".venv/bin/activate" && "$VIRTUAL_ENV" != "$(pwd)/.venv" ]]; then
+        source .venv/bin/activate
+    fi
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd auto_venv # Hook to cd
+auto_venv # Once on shell start
+
+export PATH=~/scripts:$PATH
+for dir in ~/scripts/** ; do
+    [[ -d "$dir" ]] && PATH="$dir:$PATH"
+done
+
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
@@ -86,3 +105,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Cargo
 . "$HOME/.cargo/env"
+
+# Tinychain
+source ~/Documents/c-no-evil/tinychain/tinychain/tinychain.env

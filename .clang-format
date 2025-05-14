@@ -1,9 +1,6 @@
 ﻿BasedOnStyle: WebKit
 AccessModifierOffset: 4
-AlignConsecutiveAssignments: true
 AlignConsecutiveMacros: true
-AlignConsecutiveDeclarations: true
-AlignOperands: true
 AlignTrailingComments: true
 AllowShortFunctionsOnASingleLine: None
 BreakBeforeBraces: Allman

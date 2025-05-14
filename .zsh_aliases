@@ -6,6 +6,7 @@ alias history="history 0"
 # Custom Functions
 alias q='function _go() {mkdir -p "$1" && cd "$1" }; _go'
 alias fuck='function _fuck() {rm -rf "$1"}; _fuck'
+alias cop='function _cop() {cat $1 | xclip -sel c}; _cop'
 
 # Shortcuts
 alias e='exit'

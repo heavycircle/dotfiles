@@ -73,7 +73,7 @@ export FUNCNEST=100
 
 # PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=/opt/nvim-linux64/bin:$PATH
+export PATH=/opt/nvim-linux-x86_64/bin:$PATH
 
 # Auto-source .venv
 function auto_venv() {
@@ -107,4 +107,4 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 # Tinychain
-source ~/Documents/c-no-evil/tinychain/tinychain/tinychain.env
+source ~/Documents/tinychain/tinychain/tinychain.env

@@ -2,6 +2,11 @@
 # Standard ZSH config with starship & antibody
 # author: echoscorpion
 
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
 # --- ZSH Configs --------------------------------
 
 # Configurations
@@ -43,8 +48,19 @@ fi
 # --- Plugins ------------------------------------
 
 # Antibody
-antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-source ~/.zsh_plugins.sh
+#antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+#source ~/.zsh_plugins.sh
+
+# OMZ
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-vi-mode
+)
+source $ZSH/oh-my-zsh.sh
 
 # Plugin Rebinds
 bindkey "^ " autosuggest-accept

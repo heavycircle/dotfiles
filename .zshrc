@@ -2,11 +2,6 @@
 # Standard ZSH config with starship & antibody
 # author: echoscorpion
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
-
 # --- ZSH Configs --------------------------------
 
 # Configurations
@@ -47,33 +42,36 @@ fi
 
 # --- Plugins ------------------------------------
 
-# Antibody
-#antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-#source ~/.zsh_plugins.sh
+ZSH_PATH="${HOME}/.config/zsh"
+export ZSH="${ZSH_PATH}/oh-my-zsh"
 
-# OMZ
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+# oh-my-zsh
 plugins=(
-    git
+    command-not-found
+    copybuffer
+    copyfile
+    copypath
+    vi-mode
+    z
     zsh-autosuggestions
+    zsh-bat
     zsh-syntax-highlighting
-    zsh-vi-mode
 )
+
+# omz plugin options
+VI_MODE_SET_CURSOR=true     # vi-mode
+
+# oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+# Source anything in $ZSH_PATH
+for f in ${ZSH_PATH}/*; do
+    [ -f "$f" ] && source "$f"
+done
 
 # Plugin Rebinds
 bindkey "^ " autosuggest-accept
 bindkey "^\n" autosuggest-execute
-
-# Z jumper (OS-Specific location)
-if [[ $OSTYPE == 'darwin'* ]]; then
-    # Homebrew while we're at it
-    export PATH=/opt/homebrew/bin:$PATH
-    . $HOMEBREW_PREFIX/etc/profile.d/z.sh
-else
-    . /usr/bin/z.sh
-fi
 
 # Override ls with eza
 unalias ls 2>/dev/null || true

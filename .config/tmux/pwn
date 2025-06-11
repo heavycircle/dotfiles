@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 tmux new-session \; \
     send-keys 'nvim asd.py' C-m \; \
     split-window -h \; \

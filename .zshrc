@@ -120,5 +120,5 @@ export NVM_DIR="$HOME/.nvm"
 # Cargo
 . "$HOME/.cargo/env"
 
-# Tinychain
+# Tinychain (github.com/heavycircle/tinychain)
 source ~/Documents/tinychain/tinychain/tinychain.env

@@ -44,6 +44,7 @@ fi
 
 ZSH_PATH="${HOME}/.config/zsh"
 export ZSH="${ZSH_PATH}/oh-my-zsh"
+export ZSH_THEME="heavycircle"
 
 # oh-my-zsh
 plugins=(
@@ -73,21 +74,13 @@ done
 bindkey "^ " autosuggest-accept
 bindkey "^\n" autosuggest-execute
 
-# Override ls with eza
-unalias ls 2>/dev/null || true
-ls() {
-  command eza --icons -1 -F --group-directories-first "$@"
-}
-
-# Starship
-eval "$(starship init zsh)"
-export FUNCNEST=100
-
 # --- PATH ---------------------------------------
 
 # PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 export PATH=/opt/nvim-linux-x86_64/bin:$PATH
+export PATH=/opt/metasploit-framework/bin:$PATH
 
 # Auto-source .venv
 function auto_venv() {
@@ -120,5 +113,5 @@ export NVM_DIR="$HOME/.nvm"
 # Cargo
 . "$HOME/.cargo/env"
 
-# Tinychain (github.com/heavycircle/tinychain)
+# Tinychain
 source ~/Documents/tinychain/tinychain/tinychain.env

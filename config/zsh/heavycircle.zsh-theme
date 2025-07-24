@@ -1,20 +1,16 @@
-# Example of two-line ZSH prompt with four components.
+# heavycircle.zsh-theme
 #
-#   top-left                         top-right
-#   bottom-left                   bottom-right
+# Inspired from the romkatv two-line prompt example. Has four components:
 #
-# Components can be customized by editing set-prompt function.
+#   top-left                            top-right
+#   bottom-left                      bottom-right
 #
-# Installation:
+# Edit the respective functions to yield changes in output.
 #
-#   (cd && curl -fsSLO https://gist.githubusercontent.com/romkatv/2a107ef9314f0d5f76563725b42f7cab/raw/two-line-prompt.zsh)
-#   echo 'source ~/two-line-prompt.zsh' >>~/.zshrc
+# You can symlink this file into the themes folder.
 #
-# Accompanying article:
-# https://www.reddit.com/r/zsh/comments/cgbm24/multiline_prompt_the_missing_ingredient/
-#
-# This is only an example. If you are looking for a good ZSH prompt,
-# try https://github.com/romkatv/powerlevel10k/.
+# sudo ln -s $(pwd)/heavycircle.zsh-theme ${ZSH}/themes/heavycircle.zsh-theme
+# echo "export ZSH_THEME=heavycircle" >> ~/.zshrc
 
 # Load zsh colors
 autoload -Uz colors

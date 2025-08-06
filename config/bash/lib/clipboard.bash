@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+
+# A bash-compliant version of the oh-my-zsh clipboard.zsh file that
+# determines the clipboard to use for copy and paste operations.
+#
+# Author: heavycircle
+# Date: August 06, 2025
+# License: MIT
+
 # Check whether a command appears valid.
 _check_command() {
     command -v "$1" >/dev/null

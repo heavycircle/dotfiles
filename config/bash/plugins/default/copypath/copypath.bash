@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 # Copies the path of the given directory or file to the system clipboard.
+# Adapted from the oh-my-zsh copypath method.
+#
+# Author: heavycircle
+# Date: August 06, 2025
+# License: MIT
 
 copypath() {
     set -x

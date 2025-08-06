@@ -22,3 +22,9 @@ vim.keymap.set({"x", "v"}, "<leader>d", '"_d')
 -- Better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- Me function
+vim.keymap.set("i", "<C-l>", function()
+    local date = os.date("%B %d, %Y")
+    return string.format("\nAuthor: heavycircle\nDate: %s\nLicense: MIT", date)
+end, { expr = true })

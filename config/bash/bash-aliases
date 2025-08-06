@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# A list of bash command remaps and additional shortcuts I use to 
+# make my coding experience faster.
+#
+# Author: heavycircle
+# Date: Sometime 2024
+# License: MIT
 
 # Color rebinds
 alias ls="ls --color=auto"

@@ -5,6 +5,10 @@
 #
 # This code comes from the original zsh-bat plugin
 # for oh-my-zsh: https://github.com/fdellwing/zsh-bat.
+#
+# Author: heavycircle
+# Date: August 06, 2025
+# License: MIT
 
 if command -v batcat >/dev/null; then
     # Save cat -> rcat

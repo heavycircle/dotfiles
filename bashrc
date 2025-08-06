@@ -1,4 +1,11 @@
-# ~/.bashrc
+#!/usr/bin/env bash
+
+# Standard BASH configuration using bashplug for plugin
+# management.
+#
+# Author: heavycircle
+# Date: 2025
+# License: MIT
 
 # If not running interactively, don't do anything
 [[ -n "$PS1" ]] || return

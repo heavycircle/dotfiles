@@ -44,15 +44,12 @@ CONFIG_DIRS=(
     kitty
     nvim 
     tmux
-    zsh
 )
 
 # Files, found in $HOME/.file
 CONFIG_FILES=(
     bashrc 
     clang-format
-    vimrc 
-    zshrc
 )
 
 fatal() {

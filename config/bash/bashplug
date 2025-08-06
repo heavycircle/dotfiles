@@ -1,13 +1,34 @@
 #!/usr/bin/env bash
 
 # A bash plugin utility for getting plugins.
+#
+# This started as a way to mirror oh-my-zsh plugins that use zsh-specific
+# functions as I revert from zsh to bash. If there becomes a need to make
+# this its own repository and do a full bash implementation, I might 
+# consider doing it.
+#
+# There's still lots to do in this mini-project. I've marked some of them
+# as todos. I can't guarantee timely updates while this project sits in my
+# dotfiles repository.
+#
+# I also want this project, to as much extent as reasonable, to not use
+# external utilities. Meaning, only shell built-ins for core processing.
+# Of course, plugins might need external functions.
+#
+# Author: heavycircle
+# Date: August 2025
+# License: MIT
 
 usage() {
     echo "Usage: ${0##*/} COMMAND"
     echo
-    echo "Manage Plugins"
+    echo "Manage Bash Plugins."
     echo
     echo "COMMAND"
+    echo "    disable   Disable a single plugin"
+    echo "    enable    Enable a single plugin"
+    echo "    init      Source all installed plugins"
+    echo "    install   Install a plugin via Git repository"
     echo "    list      List available plugins."
     echo
     echo "OPTIONS"
@@ -24,7 +45,7 @@ get-plugins() {
     [[ -d "$BASHPLUG_PLUGINS" ]] || fatal "Missing plugins directory!"
 
     # Get plugin list
-    local plug plugtype plugdir
+    local plug plugtype
     local -a plugins
 
     # Default plugins
@@ -91,6 +112,7 @@ plug-list() {
     get-plugins
     local -a plugins=($REPLY)
 
+    # TODO - Sort plugins by location (default, custom, private)
     echo "Your available plugins:"
     local idx
     for idx in "${!plugins[@]}"; do
@@ -121,10 +143,14 @@ plug-install() {
 
 plug-enable() {
     local plugin="$1"
+
+    # TODO - Finish Implementation
 }
 
 plug-disable() {
     local plugin="$1"
+
+    # TODO - Finish Implementation
 }
 
 # Main program driver.

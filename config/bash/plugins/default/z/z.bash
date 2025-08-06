@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Copyright (c) 2009 rupa deadwyler. Licensed under the WTFPL license, Version 2
-
 # Find the original repo: https://github.com/rupa/z
 
 [ -d "${_Z_DATA:-$HOME/.z}" ] && {

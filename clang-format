@@ -6,6 +6,5 @@ AllowShortFunctionsOnASingleLine: None
 BreakBeforeBraces: Allman
 ColumnLimit: 100
 IncludeBlocks: Regroup
-InsertNewlineAtEOF: true
 PointerAlignment: Right
 SortIncludes: true

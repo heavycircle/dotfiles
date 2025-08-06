@@ -1,0 +1,4 @@
+require "plugins.colorscheme"
+require "plugins.git"
+require "plugins.lsp"
+require "plugins.ui"

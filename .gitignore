@@ -1,1 +1,3 @@
-.git
+# External Repositories
+config/zsh/oh-my-zsh/
+config/ghidra/ghidra_*_PUBLIC/

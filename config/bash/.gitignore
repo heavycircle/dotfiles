@@ -1,0 +1,3 @@
+# Ignore the private directory.
+# This is meant for private plugins.
+plugins/private

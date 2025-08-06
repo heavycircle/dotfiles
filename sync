@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# Usage: sync TYPE
+#
+# Sync dotfiles to/from their actual locations.
+# This makes it easy to version control changes
+# to dotfiles and serve them on another machine.
+#
+# TYPE
+#     push, to, out
+#         Push files from this directory out to
+#         their home locations.
+#
+#     pull, from, in
+#         Pull files from their home locations
+#         into this directory.
+# 
+# The dotfiles directory is version-controlled,
+# however, your actual configuration locations
+# are not. Understand which direction you want
+# to use. I recommend defaulting to pull if
+# you're not sure, because pulling moves files
+# into the version-controlled environment.
+#
+# The list of files to pull are below, listed
+# in CONFIG_DIRS and CONFIG_FILES.
+#
+#     CONFIG_DIRS expects to pull these files
+#     from ~/.config/* .
+#
+#     CONFIG_FILES expects to pull these files
+#     from ~/.* . Therefore, they should NOT
+#     be dotted.
+#
+# Use git reset HEAD if you need to reset the
+# current folder back to the latest commit.
+
+# Folders, found in $HOME/.config/folder
+CONFIG_DIRS=(
+    bash 
+    ghidra
+    kitty
+    nvim 
+    tmux
+    zsh
+)
+
+# Files, found in $HOME/.file
+CONFIG_FILES=(
+    bashrc 
+    clang-format
+    vimrc 
+    zshrc
+)
+
+fatal() {
+    echo -e "[\033[31m-\033[0m] FATAL: $1"
+    exit 1
+}
+
+debug() {
+    echo -e "[\033[32m+\033[0m] $1"
+}
+
+# Sync files based on the SYNC_DIR environment
+# set in main().
+sync() {
+    local cmd src dst
+
+    # Get the command of choice
+    if command -v rsync >/dev/null; then
+        cmd="rsync -ah --delete"
+    else
+        cmd="cp -rv"
+    fi
+
+    # Get the direction
+    if [[ $SYNC_DIR = "pull" ]]; then
+        src="$1"
+        dst="$2"
+    elif [[ $SYNC_DIR == "push" ]]; then
+        src="$2"
+        dst="$1"
+    else
+        fatal "Impossible Sync Direction: $1"
+    fi
+
+    # Perform the action
+    debug "Syncing: $src -> $dst"
+    $cmd "$src" "$dst" 2>/dev/null || fatal "No such file: $src"
+}
+
+# Bring files from their .config locations to this folder.
+main() {
+    declare -g SYNC_DIR
+
+    local way="$1"
+    case "$way" in
+        from | in | pull) SYNC_DIR="pull" ;;
+        to | out | push) SYNC_DIR="push" ;;
+        *) fatal "Invalid Argument: $dir" ;;
+    esac
+
+    # Copy config directories
+    local dir
+    for dir in "${CONFIG_DIRS[@]}"; do
+        sync "$HOME"/.config/"$dir" ./config/
+    done
+
+    # Copy config home files
+    local file
+    for file in "${CONFIG_FILES[@]}"; do
+        sync "$HOME"/."$file" ./"$file"
+    done
+}
+
+main "$@"

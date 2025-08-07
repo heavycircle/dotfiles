@@ -1,3 +1,7 @@
 # External Repositories
 config/zsh/oh-my-zsh/
 config/ghidra/ghidra_*_PUBLIC/
+
+# Submodules
+config/obsidian/plugins/
+config/tmux/plugins/

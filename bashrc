@@ -34,19 +34,18 @@ shopt -s histappend
 BASH_CONFIG="$HOME"/.config/bash
 
 # Source custom files
-. "$BASH_CONFIG"/bash-aliases   # Function aliases and shortcuts
-. "$BASH_CONFIG"/bashplug       # Bash plugin manager
+. "$BASH_CONFIG"/bash-prompt  # Terminal Prompt
+. "$BASH_CONFIG"/bash-aliases # Function aliases and shortcuts
+. "$BASH_CONFIG"/bashplug     # Bash plugin manager
 
 # Start our plugin manager
 bashplug init
-
-# Set Terminal Prompt
-PS1='\[\e[32m\]\u@\h:\W \$\[\e[m\] '
 
 # Source packages
 . "$HOME/.cargo/env"
 . "$HOME"/.local/share/bob/env/env.sh
 
+# Load NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

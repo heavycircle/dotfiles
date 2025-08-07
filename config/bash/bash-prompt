@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Generate a bash prompt.
+
+# Get the full current working directory.
+cwd() {
+    echo -ne "\033[38;5;33m\]" # Dark blue
+    echo -ne "\w"              # full CWD
+    echo -ne "\033[0m\]"       # Reset
+}
+
+# Get our current git branch, if we're inside a Git repo.
+git-branch() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    [[ -n "$branch" ]] || return
+
+    echo -ne "\033[38;5;92;1;3m\]" # Bold, Italic, Purple
+    echo -ne " $branch"           # Git branch
+    echo -ne "\033[0m\]"           # Reset
+}
+
+# Determine if we're inside a Python virtualenv and report
+# its name. Also, disable the default virtualenv prompt
+# regardless.
+python-venv() {
+    export VIRTUAL_ENV_DISABLE_PROMPT
+    [[ -n "$VIRTUAL_ENV" ]] || return
+    local venv=$(basename "$VIRTUAL_ENV")
+
+    echo -ne "\033[93;1m\]" # Bold, Yellow
+    echo -ne " $venv"      # Virtualenv name
+    echo -ne "\033[0m\]"    # Reset
+}
+
+# Get the last exit code and print its exit status in red
+# if it was non-zero.
+last-exit() {
+    local code=$?
+    ((code == 0)) && return
+
+    echo -ne "\033[38;5;196m\]" # Bold, Yellow
+    echo -ne " $code"          # Exit code
+    echo -ne "\033[0m\]"        # Reset
+}
+
+# Print the prompt to screen.
+prompt-sign() {
+    echo -ne "$ " # Terminal Prompt
+}
+
+# Builds PS1 with the above functions.
+make-prompt() {
+    PS1="\n"
+    PS1+="$(cwd) $(git-branch) $(python-venv) $(last-exit)\n"
+    PS1+="$(prompt-sign)"
+}
+
+# Use PROMPT_COMMAND so it updates every run
+export PROMPT_COMMAND=make-prompt

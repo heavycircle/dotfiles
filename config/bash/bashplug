@@ -4,7 +4,7 @@
 #
 # This started as a way to mirror oh-my-zsh plugins that use zsh-specific
 # functions as I revert from zsh to bash. If there becomes a need to make
-# this its own repository and do a full bash implementation, I might 
+# this its own repository and do a full bash implementation, I might
 # consider doing it.
 #
 # There's still lots to do in this mini-project. I've marked some of them
@@ -39,7 +39,7 @@ usage() {
 
 # Get the list of available plugins.
 get-plugins() {
-    shopt -s nullglob   # Don't glob an empty directory
+    shopt -s nullglob # Don't glob an empty directory
 
     # Ensure directory exists
     [[ -d "$BASHPLUG_PLUGINS" ]] || fatal "Missing plugins directory!"
@@ -60,7 +60,7 @@ get-plugins() {
             dirname=${dirname##*/}
 
             # Add to the list
-            plugins+=( "$dirname"/"$basename" )
+            plugins+=("$dirname"/"$basename")
         done
     done
 
@@ -76,8 +76,8 @@ set-env() {
     local BASHPLUG_HOME=${BASH_CONFIG:-$HOME/.config/bash}
 
     # Export key locations
-    export BASHPLUG_LIB=${BASHPLUG_HOME}/lib            # Library functions
-    export BASHPLUG_PLUGINS=${BASHPLUG_HOME}/plugins    # Default installed plugins
+    export BASHPLUG_LIB=${BASHPLUG_HOME}/lib         # Library functions
+    export BASHPLUG_PLUGINS=${BASHPLUG_HOME}/plugins # Default installed plugins
 }
 
 fatal() {
@@ -125,9 +125,9 @@ plug-list() {
 # Automatically sources this new plugin.
 plug-install() {
     local plugin="$1"
-    local plugname=${plugin##*/}    # Basename 
-    plugname=${plugname%.git}       # Remove .git
-    plugname=${plugname,,}          # Lowercase
+    local plugname=${plugin##*/} # Basename
+    plugname=${plugname%.git}    # Remove .git
+    plugname=${plugname,,}       # Lowercase
 
     # Sanity check
     command -v git >/dev/null || fatal "Git not installed!"

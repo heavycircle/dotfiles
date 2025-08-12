@@ -8,19 +8,18 @@ vim.pack.add({
     { src = "https://github.com/L3MON4D3/LuaSnip" },
 })
 
-require "mason".setup()
 require "showkeys".setup({ position = "top-right" })
-
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
-vim.keymap.set('n', '<leader>e', ":Oil<CR>")
-vim.keymap.set('t', '', "")
-vim.keymap.set('t', '', "")
 
 ---- LSP CONFIGURATION -----------------------------------------
 
+-- Mason
+require "mason".setup()
+
 -- Treesitter
 require('nvim-treesitter.configs').setup({ highlight = { enable = true, }, })
+
+-- Telescope
+require("plugins.telescope")
 
 -- LSPs
 vim.lsp.enable({ "bashls", "shellcheck", "shfmt" })                                  -- Bash
@@ -36,8 +35,8 @@ vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format)
 vim.diagnostic.config({ virtual_text = true })
 
 -- Error navigation
-vim.keymap.set("n", "[q", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]q", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end )
+vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end )
 vim.keymap.set("n", "<leader>xf", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>xx", vim.diagnostic.setloclist)
 

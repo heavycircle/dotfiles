@@ -21,6 +21,9 @@ else
     export VISUAL='nvim'
 fi
 
+# Use nvim for man pages
+export MANPAGER="nvim +Man!"
+
 # History
 export HISTCONTROL=ignoreboth
 export HISTFILE="$HOME"/.bash_history

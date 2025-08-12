@@ -37,7 +37,7 @@ python-venv() {
 # if it was non-zero.
 last-exit() {
     local code=$?
-    ((code == 0)) && return
+    ((code == 0)) && return     # TODO - You don't persist very well
 
     echo -ne "\033[38;5;196m\]" # Bold, Yellow
     echo -ne " $code"          # Exit code
@@ -52,7 +52,7 @@ prompt-sign() {
 # Builds PS1 with the above functions.
 make-prompt() {
     PS1="\n"
-    PS1+="$(cwd) $(git-branch) $(python-venv) $(last-exit)\n"
+    PS1+="$(cwd) $(git-branch) $(python-venv)\n"
     PS1+="$(prompt-sign)"
 }
 

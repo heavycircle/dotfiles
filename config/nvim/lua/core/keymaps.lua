@@ -4,6 +4,10 @@
 vim.keymap.set("v", "J", ":m >+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m <-2<CR>gv=gv")
 
+-- Accepting autocomplete
+vim.keymap.set("i", "<C-Space>", "<C-x><C-o>", { noremap = true })
+vim.keymap.set("i", "<C-e>", "<C-e>", { noremap = true })
+
 -- Keep cursor positioning when using J and K
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -17,7 +21,7 @@ vim.keymap.set("n", "n", "nzzzv")
 
 -- Keep clipboard when pasting with <leader>
 vim.keymap.set("x", "<leader>p", '"_dp')
-vim.keymap.set({"x", "v"}, "<leader>d", '"_d')
+vim.keymap.set({ "x", "v" }, "<leader>d", '"_d')
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv")

@@ -13,6 +13,7 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
 -- UI Changes
+vim.o.completeopt = "menu,menuone,noselect"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.showmode = false
@@ -20,7 +21,7 @@ vim.opt.signcolumn = "yes" -- Still don't know why this isn't true
 vim.opt.termguicolors = true
 vim.opt.winborder = "rounded"
 
--- Scrolling: Always keep 8 lines 
+-- Scrolling: Always keep 8 lines
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 

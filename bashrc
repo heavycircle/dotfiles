@@ -7,6 +7,8 @@
 # Date: 2025
 # License: MIT
 
+# ---- GENERAL -------------------------------------------------
+
 # If not running interactively, don't do anything
 [[ -n "$PS1" ]] || return
 
@@ -36,10 +38,8 @@ BASH_CONFIG="$HOME"/.config/bash
 # Source custom files
 . "$BASH_CONFIG"/bash-prompt  # Terminal Prompt
 . "$BASH_CONFIG"/bash-aliases # Function aliases and shortcuts
-. "$BASH_CONFIG"/bashplug     # Bash plugin manager
 
-# Start our plugin manager
-bashplug init
+# ---- UTILITIES -----------------------------------------------
 
 # Source packages
 . "$HOME/.cargo/env"
@@ -49,3 +49,11 @@ bashplug init
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# ---- BASHPLUG ------------------------------------------------
+
+plugins=(copyfile copypath follow fzf z)
+
+# Start our plugin manager
+. ~/.bashplug/bashplug
+bashplug init -v "${plugins[@]}"

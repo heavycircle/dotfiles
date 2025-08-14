@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Standard BASH configuration using bashplug for plugin
-# management.
+# Standard bash configuration using bashplug for plugin management.
 #
 # Author: heavycircle
 # Date: 2025
@@ -14,49 +13,40 @@
 
 # Set Editor
 if [[ -n "$SSH_CONNECTION" ]]; then
-    export EDITOR='vim'
-    export VISUAL='vim'
+    export EDITOR="vim"
+    export VISUAL="vim"
 else
-    export EDITOR='nvim'
-    export VISUAL='nvim'
+    export EDITOR="nvim"
+    export VISUAL="nvim"
 fi
 
-# Use nvim for man pages
+# Use nvim for man paging
 export MANPAGER="nvim +Man!"
 
-# History
+# History Settings
 export HISTCONTROL=ignoreboth
 export HISTFILE="$HOME"/.bash_history
 export HISTSIZE=5000
 export HISTFILESIZE=5000
 
-# Shell Options
+# Shell options
 shopt -s cdspell
 shopt -s checkwinsize
 shopt -s extglob
 shopt -s histappend
 
+# ---- BASH CONFIGURATION ---------------------------------------
+
 BASH_CONFIG="$HOME"/.config/bash
 
 # Source custom files
 . "$BASH_CONFIG"/bash-prompt  # Terminal Prompt
-. "$BASH_CONFIG"/bash-aliases # Function aliases and shortcuts
+. "$BASH_CONFIG"/bash-aliases # Function aliases
 
 # ---- UTILITIES -----------------------------------------------
 
+# Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Source packages
-. "$HOME/.cargo/env"
 . "$HOME"/.local/share/bob/env/env.sh
-
-# Load NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# ---- BASHPLUG ------------------------------------------------
-
-plugins=(copyfile copypath follow fzf z)
-
-# Start our plugin manager
-. ~/.bashplug/bashplug
-bashplug init -v "${plugins[@]}"

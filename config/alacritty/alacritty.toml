@@ -1,0 +1,30 @@
+[env]
+TERM = "xterm-256color"
+
+[terminal]
+shell = "tmux"
+
+# ---- FONT SETTINGS ---------------------------
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "CodeNewRoman Nerd Font"
+style = "Regular"
+
+# ---- WINDOW SETTINGS -------------------------
+
+[window]
+opacity = 0.6
+decorations = "none"
+dynamic_padding = true
+
+[window.padding]
+x = 12
+y = 12
+
+# ---- COLORSCHEME -----------------------------
+
+[general]
+import = [ "themes/current.toml" ]

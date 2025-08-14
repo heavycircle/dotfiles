@@ -1,5 +1,4 @@
 vim.pack.add({
-    { src = "https://github.com/catppuccin/nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -10,13 +9,16 @@ vim.pack.add({
 
 require "showkeys".setup({ position = "top-right" })
 
+require "plugins.colorscheme"
+require "plugins.transparency"
+
 ---- LSP CONFIGURATION -----------------------------------------
 
 -- Mason
 require "mason".setup()
 
 -- Treesitter
-require('nvim-treesitter.configs').setup({ highlight = { enable = true, }, })
+-- require('nvim-treesitter.configs').setup({ highlight = { enable = true, }, })
 
 -- Telescope
 require("plugins.telescope")
@@ -42,50 +44,6 @@ vim.keymap.set("n", "<leader>xx", vim.diagnostic.setloclist)
 
 ---- COLORSCHEME -----------------------------------------------
 
-require("catppuccin").setup({
-    flavour = "mocha",
-    transparent_background = false,
-    show_end_of_buffer = false,
-    term_colors = false,
-    styles = {
-        comments = { "italic" },
-        conditionals = { "italic" },
-        functions = {},
-        loops = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-    },
-    integrations = {
-        fzf = true,
-        native_lsp = {
-            enabled = true,
-            virtual_text = {
-                errors = { "italic" },
-                hints = { "italic" },
-                warnings = { "italic" },
-                information = { "italic" },
-                ok = { "italic" },
-            },
-            underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" },
-                ok = { "underline" },
-            },
-            inlay_hints = {
-                background = true,
-            },
-        },
-    }
-})
-vim.cmd.colorscheme "catppuccin"
 
 ---- SNIPPETS --------------------------------------------------
 

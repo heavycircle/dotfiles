@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# Set the current theme.
+#
+# This changes the compatible programs to use the current
+# theme.
+
+declare -g THEME_DIR="$HOME/.config/theme"
+declare -g CURR_THEME="current"
+
+fatal() {
+    echo -e "[\033[31m-\033[0m] $1"
+    exit 1
+}
+
+debug() {
+    echo -e "[\033[32m+\033[0m] $1"
+}
+
+warning() {
+    echo -e "[\033[33m*\033[0m] $1"
+}
+
+# Get the list of available themes.
+get-themes() {
+    declare -g THEMES
+
+    # Get the current themes. Skip $CURR_THEME
+    for theme in "$THEME_DIR"/*; do
+        local base=${theme##*/}
+        [[ -d "$base" ]] || continue
+        [[ "$base" == "$CURR_THEME" ]] && continue
+        THEMES+=("$base")
+    done
+}
+
+# Auto-restart the applications we can.
+auto-restart() {
+    # bash
+    debug "bash: no action required!"
+
+    # hyprpaper
+    if command -v hyprctl >/dev/null; then
+        debug "hyprpaper: restarting"
+        killall hyprpaper
+        hyprpaper >/dev/null &
+        debug "hyprpaper: restarted!"
+    fi
+
+    # neovim
+    warning "neovim: requires restart!"
+
+    # tmux
+    if command -v tmux >/dev/null; then
+        debug "tmux: sourcing"
+        tmux source ~/.config/tmux/themes/current.conf
+        debug "tmux: sourced!"
+    fi
+
+    # waybar
+    if command -v waybar >/dev/null; then
+        debug "waybar: restarting"
+        killall waybar
+        waybar >/dev/null &
+        debug "waybar: restarted!"
+    fi
+}
+
+main() {
+    local choice="$1"
+
+    # Validate our theme choice
+    get-themes
+    if [[ "${THEMES[*]}" =~ "$choice" ]]; then
+        fatal "invalid theme: $choice"
+    fi
+
+    # Make the change
+    debug "Switching to $choice . . ."
+    rm -f ~/.config/theme/current
+    ln -sf ~/.config/theme/"$choice" ~/.config/theme/current
+    debug "Theme applied!"
+
+    # Restart applications
+    debug "Restarting applications . . ."
+    auto-restart
+}
+
+main "$@"

@@ -17,13 +17,18 @@ the files tracked via `sync`.
 Use `./sync pull` to pull changes from your config directories into the
 dotfiles folder.
 
+> _The goal of this configuration is to be as portable as possible. This
+comes with the side effect that not every system I use is configured the
+same. For example, my Debian 12 doesn't use Wayland, so hyprland/waybar
+don't matter._
+
 ## Configurations
 
 I use the following stack:
 
 1. Bash - The latest version
-    - I am using `bashplug`, a hand-written plugin management system, for 
-      holding my bash plugins. There aren't that many at the moment. The
+- I am using `bashplug`, a hand-written plugin management system, for
+holding my bash plugins. There aren't that many at the moment. The
       ones inside are copies of core oh-my-zsh plugins that I missed when
       I migrated back to bash.
 2. Neovim - The nightly release
@@ -32,9 +37,16 @@ I use the following stack:
       a LazyVim-based configuration.
 3. Tmux - At least v3.5
     - The current configuration uses tpm for plugin management. I'm not sure
-      how much longer I'll keep it around because I want almost my entire 
+how much longer I'll keep it around because I want almost my entire 
       configuration to be hand-written. It brings a lot of bloat I just don't
-      need.
+need.
 
-I use Catppuccin Mocha for my theme wherever reasonable.
+## Theme
 
+I got bored of the same theme wherever I went, so I implemented theme switching.
+You can see this inside [theme](config/bash/theme). This script allows you to
+change the theme of the major applications with one command.
+
+The available themes are inside [config/theme](./config/theme). Other programs
+reference [current](./config/theme/current) whose symlink is changed each time
+the theme is switched. Most applications require restart.

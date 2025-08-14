@@ -2,11 +2,18 @@
 
 # Generate a bash prompt.
 
+# Syntax
+B="\033[1m"
+I="\033[2m"
+U="\033[4m"
+
+RESET="\e[0m\]"
+
 # Get the full current working directory.
 cwd() {
-    echo -ne "\033[38;5;33m\]" # Dark blue
-    echo -ne "\w"              # full CWD
-    echo -ne "\033[0m\]"       # Reset
+    echo -ne "$CWD_COLOR$B" # bold
+    echo -ne "\w"           # full cwd
+    echo -ne "$RESET"       # reset
 }
 
 # Get our current git branch, if we're inside a Git repo.
@@ -15,9 +22,9 @@ git-branch() {
     local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
     [[ -n "$branch" ]] || return
 
-    echo -ne "\033[38;5;92;1;3m\]" # Bold, Italic, Purple
-    echo -ne " $branch"           # Git branch
-    echo -ne "\033[0m\]"           # Reset
+    echo -ne "$GIT_COLOR$B" # bold color
+    echo -ne " $branch"    # git branch
+    echo -ne "$RESET"       # reset
 }
 
 # Determine if we're inside a Python virtualenv and report
@@ -28,29 +35,34 @@ python-venv() {
     [[ -n "$VIRTUAL_ENV" ]] || return
     local venv=$(basename "$VIRTUAL_ENV")
 
-    echo -ne "\033[93;1m\]" # Bold, Yellow
-    echo -ne " $venv"      # Virtualenv name
-    echo -ne "\033[0m\]"    # Reset
+    echo -ne "$VENV_COLOR$B" # bold theme
+    echo -ne " $venv"       # virtualenv name
+    echo -ne "$RESET"        # reset
 }
 
 # Get the last exit code and print its exit status in red
 # if it was non-zero.
 last-exit() {
     local code=$?
-    ((code == 0)) && return     # TODO - You don't persist very well
+    ((code == 0)) && return # TODO - You don't persist very well
 
-    echo -ne "\033[38;5;196m\]" # Bold, Yellow
-    echo -ne " $code"          # Exit code
-    echo -ne "\033[0m\]"        # Reset
+    echo -ne "\033[38;5;124m\]" # bold red
+    echo -ne " $code"          # exit code
+    echo -ne "$RESET"           # reset
 }
 
 # Print the prompt to screen.
 prompt-sign() {
-    echo -ne "$ " # Terminal Prompt
+    echo -ne "$FG_COLOR$B" # bold theme
+    echo -ne "$ "          # prompt
+    echo -ne "$RESET"      # reset
 }
 
 # Builds PS1 with the above functions.
 make-prompt() {
+    # Source the theme
+    source ~/.config/bash/theme.bash
+
     PS1="\n"
     PS1+="$(cwd) $(git-branch) $(python-venv)\n"
     PS1+="$(prompt-sign)"

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -eu
-
 # Usage: sync TYPE
 #
 # Sync dotfiles to/from their actual locations.
@@ -16,7 +14,7 @@ set -eu
 #     pull, from, in
 #         Pull files from their home locations
 #         into this directory.
-# 
+#
 # The dotfiles directory is version-controlled,
 # however, your actual configuration locations
 # are not. Understand which direction you want
@@ -37,18 +35,23 @@ set -eu
 # Use git reset HEAD if you need to reset the
 # current folder back to the latest commit.
 
-# Folders, found in $HOME/.config/folder
+# Folders, found in $HOME/.config/<folder>
 CONFIG_DIRS=(
-    bash 
+    alacritty
+    bash
+    btop
     ghidra
-    kitty
-    nvim 
+    hypr
+    nvim
+    ranger
+    theme
     tmux
+    waybar
 )
 
-# Files, found in $HOME/.file
+# Files, found in $HOME/.<file>
 CONFIG_FILES=(
-    bashrc 
+    bashrc
     clang-format
 )
 

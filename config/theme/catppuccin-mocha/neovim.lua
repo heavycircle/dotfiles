@@ -1,3 +1,5 @@
+-- catppuccin-mocha neovim theme
+
 -- Add the plugin
 vim.pack.add({
     { src = "https://github.com/catppuccin/nvim" },
@@ -47,4 +49,6 @@ require("catppuccin").setup({
         },
     }
 })
+
+-- Set the colorscheme
 vim.cmd.colorscheme "catppuccin"

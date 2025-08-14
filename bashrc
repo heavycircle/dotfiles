@@ -40,8 +40,8 @@ shopt -s histappend
 BASH_CONFIG="$HOME"/.config/bash
 
 # Source custom files
-. "$BASH_CONFIG"/bash-prompt  # Terminal Prompt
-. "$BASH_CONFIG"/bash-aliases # Function aliases
+. "$BASH_CONFIG"/bash-prompt    # Terminal Prompt
+. "$BASH_CONFIG"/bash-aliases   # Function aliases
 
 # ---- UTILITIES -----------------------------------------------
 

@@ -60,6 +60,10 @@ fatal() {
     exit 1
 }
 
+warning() {
+    echo -e "[\033[33m*\033[0m] FATAL: $1"
+}
+
 debug() {
     echo -e "[\033[32m+\033[0m] $1"
 }
@@ -89,7 +93,7 @@ sync() {
 
     # Perform the action
     debug "Syncing: $src -> $dst"
-    $cmd "$src" "$dst" 2>/dev/null || fatal "No such file: $src"
+    $cmd "$src" "$dst" 2>/dev/null || warning "No such file: $src"
 }
 
 # Bring files from their .config locations to this folder.
@@ -100,7 +104,7 @@ main() {
     case "$way" in
         from | in | pull) SYNC_DIR="pull" ;;
         to | out | push) SYNC_DIR="push" ;;
-        *) fatal "Invalid Argument: $dir" ;;
+        *) fatal "Invalid Argument: $way" ;;
     esac
 
     # Copy config directories

@@ -24,11 +24,11 @@ require "mason".setup()
 require("plugins.telescope")
 
 -- LSPs
-vim.lsp.enable({ "bashls", "shellcheck", "shfmt" })                                  -- Bash
-vim.lsp.enable({ "clangd", "cmakelang", "cmakelint" })                               -- C / CMake
-vim.lsp.enable({ "docker-compose-language-service", "dockerfile-language-service" }) -- Docker
-vim.lsp.enable({ "lua_ls" })                                                         -- Lua
-vim.lsp.enable({ "black", "pyright", "ruff" })                                       -- Python
+vim.lsp.enable({ "bashls" })                                                    -- Bash
+vim.lsp.enable({ "clangd", "cmake" })                                           -- C / CMake
+vim.lsp.enable({ "docker_compose_language_service", "docker_language_server" }) -- Docker
+vim.lsp.enable({ "lua_ls" })                                                    -- Lua
+vim.lsp.enable({ "pyright", "ruff" })                                           -- Python
 
 -- Code format
 vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format)
@@ -37,8 +37,8 @@ vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format)
 vim.diagnostic.config({ virtual_text = true })
 
 -- Error navigation
-vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end )
-vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end )
+vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end)
+vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end)
 vim.keymap.set("n", "<leader>xf", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>xx", vim.diagnostic.setloclist)
 

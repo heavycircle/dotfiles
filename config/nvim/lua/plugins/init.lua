@@ -28,6 +28,7 @@ vim.lsp.enable({ "bashls" })                                                    
 vim.lsp.enable({ "clangd", "cmake" })                                           -- C / CMake
 vim.lsp.enable({ "docker_compose_language_service", "docker_language_server" }) -- Docker
 vim.lsp.enable({ "lua_ls" })                                                    -- Lua
+vim.lsp.enable({ "harper_ls" })                                                 -- Text files
 vim.lsp.enable({ "pyright", "ruff" })                                           -- Python
 
 -- Code format

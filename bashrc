@@ -45,6 +45,11 @@ BASH_CONFIG="$HOME"/.config/bash
 
 # ---- UTILITIES -----------------------------------------------
 
+plugins=(copyfile copypath follow fzf z)
+
+# Bashplug
+. "$HOME"/.bashplug/bashplug -v
+
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 

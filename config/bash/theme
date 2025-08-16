@@ -9,21 +9,24 @@ declare -g THEME_DIR="$HOME/.config/theme"
 declare -g CURR_THEME="current"
 
 fatal() {
-    echo -e "[\033[31m-\033[0m] $1"
+    echo -e "\033[1;31m[-]\033[0m  $1"
     exit 1
 }
 
 debug() {
-    echo -e "[\033[32m+\033[0m] $1"
+    echo -e "\033[1;32m[+]\033[0m  $1"
 }
 
 warning() {
-    echo -e "[\033[33m*\033[0m] $1"
+    echo -e "\033[1;33m[*]\033[0m  $1"
 }
 
 # Get the list of available themes.
 get-themes() {
     declare -g THEMES
+
+    # Sanity check
+    [[ -d "$THEME_DIR" ]] || fatal "missing theme directory: $THEME_DIR"
 
     # Get the current themes. Skip $CURR_THEME
     for theme in "$THEME_DIR"/*; do
@@ -66,12 +69,12 @@ auto-restart() {
     fi
 }
 
-main() {
+theme() {
     local choice="$1"
 
-    # Validate our theme choice
+    # Validate our theme choice.
     get-themes
-    if [[ "${THEMES[*]}" =~ "$choice" ]]; then
+    if [[ "${THEMES[*]}" =~ $choice ]]; then
         fatal "invalid theme: $choice"
     fi
 
@@ -86,4 +89,7 @@ main() {
     auto-restart
 }
 
-main "$@"
+# Allow users to run this file directly.
+if (! return 2>/dev/null); then
+    theme "$@"
+fi

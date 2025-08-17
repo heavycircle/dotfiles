@@ -1,0 +1,39 @@
+# masked-ronin alacritty theme
+
+[colors]
+[colors.primary]
+background = "#0A0A0A"
+foreground = "#C8CDD1"
+dim_foreground = "#ECE6DA"
+
+[colors.cursor]
+text = "#0A0A0A"
+cursor = "#C8CDD1"
+
+[colors.vi_mode_cursor]
+text = "#0A0A0A"
+cursor = "#C8CDD1"
+
+[colors.selection]
+text = "CellForeground"
+background = "#495159"         
+
+[colors.normal]
+black   = "#0A0A0A"
+red     = "#A11212"
+green   = "#2B6C73"
+yellow  = "#C8CDD1"
+blue    = "#495159"
+magenta = "#7A0D0D"
+cyan    = "#ECE6DA"
+white   = "#C8CDD1"
+
+[colors.bright]
+black   = "#495159"
+red     = "#C01A1A"
+green   = "#2A666B"
+yellow  = "#ECE6DA"
+blue    = "#2F3E4F"
+magenta = "#A11212"
+cyan    = "#C8CDD1"
+white   = "#FFFFFF"

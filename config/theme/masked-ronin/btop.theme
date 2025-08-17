@@ -1,0 +1,70 @@
+# masked-ronin btop theme
+
+# Main background, empty for terminal default (keep empty for transparency)
+theme[main_bg]=""
+theme[main_fg]="#C8CDD1"   # Moonlight Silver
+
+# Title color for boxes
+theme[title]="#C8CDD1"     # Moonlight Silver
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#C01A1A"     # Highlight Crimson
+
+# Selected colors
+theme[selected_bg]="#A11212"  # Crimson Glow
+theme[selected_fg]="#ECE6DA"  # Spirit Ash
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#495159"  # Iron Midnight
+
+# Misc colors for processes box (mini graphs, details text)
+theme[proc_misc]="#C8CDD1"    # Moonlight Silver
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#495159"      # Iron Midnight
+theme[mem_box]="#495159"
+theme[net_box]="#495159"
+theme[proc_box]="#495159"
+
+# Box divider line and small boxes line color
+theme[div_line]="#495159"     # Iron Midnight
+
+# Temperature graph colors (cool → hot)
+theme[temp_start]="#2B6C73"   # Storm Teal
+theme[temp_mid]  ="#C8CDD1"   # Moonlight Silver
+theme[temp_end]  ="#C01A1A"   # Highlight Crimson
+
+# CPU graph colors (idle → load)
+theme[cpu_start]="#2B6C73"
+theme[cpu_mid]  ="#C8CDD1"
+theme[cpu_end]  ="#C01A1A"
+
+# Mem/Disk free meter (low-key cool gradient)
+theme[free_start]="#495159"   # Iron Midnight
+theme[free_mid]  ="#C8CDD1"   # Moonlight Silver
+theme[free_end]  ="#2B6C73"   # Storm Teal
+
+# Mem/Disk cached meter
+theme[cached_start]="#495159"
+theme[cached_mid]  ="#C8CDD1"
+theme[cached_end]  ="#2B6C73"
+
+# Mem/Disk available meter
+theme[available_start]="#495159"
+theme[available_mid]  ="#C8CDD1"
+theme[available_end]  ="#2B6C73"
+
+# Mem/Disk used meter (rises toward crimson)
+theme[used_start]="#2B6C73"
+theme[used_mid]  ="#C8CDD1"
+theme[used_end]  ="#A11212"
+
+# Download graph colors (teal glow)
+theme[download_start]="#495159"
+theme[download_mid]  ="#2B6C73"
+theme[download_end]  ="#C8CDD1"
+
+# Upload graph colors (teal glow)
+theme[upload_start]="#495159"
+theme[upload_mid]  ="#2B6C73"
+theme[upload_end]  ="#C8CDD1"

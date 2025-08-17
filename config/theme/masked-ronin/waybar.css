@@ -1,0 +1,58 @@
+/* masked-ronin waybar theme */
+
+/* Base palette */
+@define-color foreground   #C8CDD1;   /* Moonlight Silver */
+@define-color background   #0A0A0A;   /* Void Black */
+@define-color accent-red   #A11212;   /* Crimson Glow */
+@define-color accent-teal  #2B6C73;   /* Storm Teal */
+@define-color muted-gray   #495159;   /* Iron Midnight */
+@define-color highlight    #C01A1A;   /* Bright Highlight Crimson */
+
+/* Bar */
+window#waybar {
+    background-color: @background;
+    color: @foreground;
+    border-bottom: 1px solid @muted-gray;
+}
+
+/* Modules */
+#workspaces button {
+    color: @foreground;
+    padding: 0 8px;
+}
+
+#workspaces button.focused {
+    color: @highlight;
+    border-bottom: 2px solid @highlight;
+}
+
+#workspaces button.urgent {
+    color: @accent-red;
+    border-bottom: 2px solid @accent-red;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio {
+    padding: 0 10px;
+    color: @foreground;
+}
+
+/* Hover accents */
+#cpu:hover,
+#memory:hover,
+#network:hover,
+#pulseaudio:hover,
+#battery:hover {
+    color: @accent-teal;
+}
+
+/* Tooltip */
+tooltip {
+    background: @muted-gray;
+    color: @foreground;
+    border: 1px solid @accent-red;
+}

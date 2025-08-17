@@ -42,6 +42,13 @@ auto-restart() {
     # bash
     debug "bash: no action required!"
 
+    # hyprland
+    if command -v hyprctl >/dev/null; then
+        debug "hyprland: reloading"
+        hyprctl reload
+        debug "hyprland: reloaded!"
+    fi
+
     # hyprpaper
     if command -v hyprctl >/dev/null; then
         debug "hyprpaper: restarting"
@@ -62,10 +69,7 @@ auto-restart() {
 
     # waybar
     if command -v waybar >/dev/null; then
-        debug "waybar: restarting"
-        killall waybar
-        waybar >/dev/null &
-        debug "waybar: restarted!"
+        debug "waybar: no action required!"
     fi
 }
 

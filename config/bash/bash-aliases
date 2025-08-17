@@ -19,6 +19,9 @@ alias grep='grep --color=auto'
 alias fzf='fzf --tmux'
 alias shfmt='shfmt -ci -i=4'
 
+# Remaps
+alias sl='ls'
+
 # Shortcuts
 alias e='exit'
 alias c='clear'

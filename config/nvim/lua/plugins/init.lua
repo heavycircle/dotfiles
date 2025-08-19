@@ -17,5 +17,5 @@ require "plugins.transparency"
 -- Utility
 require "plugins.telescope"
 require "plugins.lsp"
+require "plugins.luasnip"
 require "plugins.statusbar"
-require "plugins.snippets"

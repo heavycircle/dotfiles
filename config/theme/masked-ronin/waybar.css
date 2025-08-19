@@ -12,7 +12,7 @@
 window#waybar {
     background-color: @background;
     color: @foreground;
-    border-bottom: 1px solid @muted-gray;
+    border-bottom: 2px solid @muted-gray;
 }
 
 /* Modules */

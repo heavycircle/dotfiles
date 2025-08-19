@@ -1,12 +1,14 @@
 vim.pack.add({
-    { src = 'https://github.com/NvChad/showkeys', opt = true },
+    { src = 'https://github.com/NvChad/showkeys',      opt = true },
     { src = 'https://github.com/stevearc/oil.nvim' },
+    { src = 'https://github.com/wakatime/vim-wakatime' },
 })
 
-require "oil".setup()
 require "showkeys".setup({ position = "top-right" })
 
-vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", help="Oil")
+-- Oil
+require "oil".setup()
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>")
 
 -- Colorscheme
 require "plugins.colorscheme"

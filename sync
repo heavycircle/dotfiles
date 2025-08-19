@@ -61,7 +61,7 @@ fatal() {
 }
 
 warning() {
-    echo -e "[\033[33m*\033[0m] FATAL: $1"
+    echo -e "[\033[33m*\033[0m] $1"
 }
 
 debug() {
@@ -77,11 +77,11 @@ sync() {
     if command -v rsync >/dev/null; then
         cmd="rsync -ah --delete"
     else
-        cmd="cp -rv"
+        cmd="cp -aT"
     fi
 
     # Get the direction
-    if [[ $SYNC_DIR = "pull" ]]; then
+    if [[ $SYNC_DIR == "pull" ]]; then
         src="$1"
         dst="$2"
     elif [[ $SYNC_DIR == "push" ]]; then
@@ -99,6 +99,7 @@ sync() {
 # Bring files from their .config locations to this folder.
 main() {
     declare -g SYNC_DIR
+    local file dir
 
     local way="$1"
     case "$way" in
@@ -108,13 +109,11 @@ main() {
     esac
 
     # Copy config directories
-    local dir
     for dir in "${CONFIG_DIRS[@]}"; do
-        sync "$HOME"/.config/"$dir" ./config/
+        sync "$HOME"/.config/"$dir"/ ./config/"$dir"/
     done
 
     # Copy config home files
-    local file
     for file in "${CONFIG_FILES[@]}"; do
         sync "$HOME"/."$file" ./"$file"
     done

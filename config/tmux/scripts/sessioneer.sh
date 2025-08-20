@@ -45,7 +45,7 @@ check-deps() {
 }
 
 main() {
-    local sel name
+    local sel name cur
 
     # Clear the debug file
     >/tmp/tmux-debug
@@ -63,10 +63,14 @@ main() {
     # Ensure they selected something
     [[ -n "$sel" ]] || exit 0
 
+    # Get current session
+    cur=$(tmux display-message -p '#S' 2>/dev/null || echo "")
+
     # Make a session name. This cannot have any periods because tmux
     # uses this to denote panes within windows.
     name=${sel##*/}
     name=${name/./_}
+
 
     # Check if we have this session already
     if ! tmux has-session -t "$name"; then
@@ -76,6 +80,11 @@ main() {
 
     # Switch to this session
     tmux switch-client -t "$name"
+
+    # Kill the old session if it was default
+    if [[ "$cur" =~ ^[0-9]+$ ]]; then
+        tmux kill-session -t "$cur" 2>/dev/null || true
+    fi
 }
 
 main "$@"

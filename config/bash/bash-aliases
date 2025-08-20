@@ -11,9 +11,15 @@
 alias bsrc='source ~/.bashrc'
 alias bedit='$EDITOR ~/.bashrc'
 
+# Rebind ls to eza
+alias ls='eza -l --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+
 # Color rebinds
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 # Flag rebinds
 alias fzf='fzf --tmux'

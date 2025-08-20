@@ -41,6 +41,7 @@ vim.keymap.set({ "i", "s" }, "<C-l>", function()
     end
 end, { silent = true })
 
+require "plugins.snippets.all"
 require "plugins.snippets.c"
 require "plugins.snippets.python"
 require "plugins.snippets.sh"

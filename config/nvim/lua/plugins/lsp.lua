@@ -15,6 +15,7 @@ vim.lsp.enable({ "docker_compose_language_service", "docker_language_server" }) 
 vim.lsp.enable({ "lua_ls" })                                                    -- Lua
 vim.lsp.enable({ "harper_ls" })                                                 -- Text files
 vim.lsp.enable({ "pyright", "ruff" })                                           -- Python
+vim.lsp.enable({ "ts_ls", "prismals" })                                         -- Webdev
 
 -- Code format
 vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format)

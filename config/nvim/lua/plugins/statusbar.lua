@@ -7,7 +7,6 @@ vim.pack.add({
 -- Setup a statusbar
 require("lualine").setup({
     options = {
-        theme = "ronin",
         globalstatus = true,
         icons_enabled = true,
     },

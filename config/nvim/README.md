@@ -42,7 +42,7 @@ Colorschemes
 
 ## Changing How I Neovim
 
-Every so often I find a new thing that fully changes how I Neovim. Since switching to `vim.pack`, I looked at all my plugins and decided what I did and didn't like and made a lot of decisions.  More often than not, I went with the minimal plugin choice. I stayed with plugins that did small things *really well*. If you look at [folke's dotfiles](https://github.com/folke/dot/tree/master/nvim), he has like 50+ plugins. Sure, he probably wrote half of them, but still.
+Every so often I find a new thing that fully changes how I Neovim. Since switching to `vim.pack`, I looked at all my plugins and decided what I did and didn't like and made a lot of decisions. More often than not, I went with the minimal plugin choice. I stayed with plugins that did small things _really well_. If you look at [folke's dotfiles](https://github.com/folke/dot/tree/master/nvim), he has like 50+ plugins. Sure, he probably wrote half of them, but still.
 
 Most of the UI "nice-to-haves" were the first things to go. `noice.nvim`, `nvim-notify`, `neo-tree`, etc. I'm somewhat a fan of the default Neovim look.
 
@@ -50,6 +50,6 @@ I was a tmux-er first, so most of the buffer-related things went away next. `nvi
 
 > That second one doesn't make much sense, but since I'm not using Neovim buffers, I don't really need it.
 
-The only thing I can say I *sometimes* miss is autocomplete. Especially with new languages and frameworks. But, diagnostics/LSP save the day *most* of the time.
+The only thing I can say I _sometimes_ miss is autocomplete. Especially with new languages and frameworks. But, diagnostics/LSP save the day _most_ of the time.
 
 Oil is slowly becoming my favorite plugin in the list, followed by LuaSnip. I'm still new at LuaSnip and it's not fully configured for all my use cases, but even already it has me moving faster than ever.

@@ -28,9 +28,13 @@
 # Date: August 2025
 # License: MIT
 
-debug() {
-    printf '[DEBUG] %02d: %s\n' "${BASH_LINENO[0]}" "$BASH_COMMAND" >>/tmp/tmux-debug
-}
+# Log to /tmp/tmux-debug
+exec 2>/tmp/tmux-debug
+set -x
+
+# Directories not to include in the fuzzy find.
+declare -r IGNORE_DIRS=( .cache .fzf .java .npm .vim )
+declare -g BASE_DIRS=( $HOME $HOME/Documents )
 
 check-deps() {
     if ! command -v tmux &>/dev/null; then
@@ -44,20 +48,25 @@ check-deps() {
     fi
 }
 
+exclude-args() {
+    local -a args=()
+    for dir in "${IGNORE_DIRS[@]}"; do
+        args+=("-name $dir -prune -o")
+    done
+    echo "${args[@]}"
+}
+
 main() {
     local sel name cur
 
-    # Clear the debug file
-    >/tmp/tmux-debug
-    trap debug DEBUG
-
+    # Ensure that fzf and tmux are available
     check-deps
 
     # Check for selected window
     if (($# == 1)); then
         sel="$1"
     else
-        sel=$(find "$HOME" -type d -maxdepth 2 | fzf)
+        sel=$(find "${BASE_DIRS[@]}" $(exclude-args) -type d -maxdepth 2 -print | fzf)
     fi
 
     # Ensure they selected something

@@ -2,6 +2,7 @@
 vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = 'https://github.com/stevearc/conform.nvim' },
     { src = "https://github.com/mason-org/mason.nvim" },
 })
 
@@ -18,7 +19,36 @@ vim.lsp.enable({ "pyright", "ruff" })                                           
 vim.lsp.enable({ "ts_ls", "prismals" })                                         -- Webdev
 
 -- Code format
-vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format)
+local conform = require "conform"
+conform.setup({
+    formatters = {
+        -- shfmt should use 4 spaces
+        shfmt = {
+            append_args = { "-i", "4" },
+        }
+    },
+    formatters_by_ft = {
+        -- The web stack should use prettier
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
+        markdown = { "prettier" },
+        json = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        -- The shells should use shfmt
+        sh = { "shfmt" },
+        bash = { "shfmt" },
+        zsh = { "shfmt" },
+        -- The C langs should use clang-format
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        -- Python needs isort and black
+        python = { "isort", "black" },
+    }
+})
+vim.keymap.set('n', '<leader>cf', function() conform.format({ lsp_fallback = true }) end)
 
 -- Error lens
 vim.diagnostic.config({ virtual_text = true })

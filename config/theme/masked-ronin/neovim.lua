@@ -7,9 +7,10 @@ vim.pack.add({
 
 -- Setup ronin options
 require("ronin").setup({
-    transparent = false,
-    brighter_red = true,
-    italics = { comments = true, keywords = true },
+    transparent = true,
+    plugins = {
+        all = true
+    }
 })
 
 -- Set the theme

@@ -15,3 +15,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Add :W command
 vim.api.nvim_create_user_command("W", "w", {})
+
+-- Start Treesitter
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { '<filetype>' },
+    callback = function() vim.treesitter.start() end,
+})

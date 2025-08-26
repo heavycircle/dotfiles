@@ -1,58 +1,103 @@
 /* masked-ronin waybar theme */
 
-/* Base palette */
-@define-color foreground   #C8CDD1;   /* Moonlight Silver */
-@define-color background   #0A0A0A;   /* Void Black */
-@define-color accent-red   #A11212;   /* Crimson Glow */
-@define-color accent-teal  #2B6C73;   /* Storm Teal */
-@define-color muted-gray   #495159;   /* Iron Midnight */
-@define-color highlight    #C01A1A;   /* Bright Highlight Crimson */
+@define-color foreground   #C8CDD1; /* Moonlight Silver */
+@define-color background   #0A0A0A; /* Void Black */
+@define-color accent-red   #A11212; /* Crimson Glow */
+@define-color accent-teal  #2B6C73; /* Storm Teal */
+@define-color muted-gray   #495159; /* Iron Midnight */
+@define-color highlight    #C01A1A; /* Bright Crimson */
 
-/* Bar */
+/* The waybar itself */
+
 window#waybar {
-    background-color: @background;
-    color: @foreground;
-    border-bottom: 2px solid @muted-gray;
+  background-color: transparent;
+  color: @foreground;
+  border-bottom: none;
+  border-radius: 14px;
+  margin: 6px 12px;
+  padding: 4px 10px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-/* Modules */
+/* Workspace Buttons */
+
 #workspaces button {
-    color: @foreground;
-    padding: 0 8px;
+  background: transparent;
+  color: alpha(@foreground, 0.65);
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 8px;
+  border: 1px solid transparent;
 }
 
-#workspaces button.focused {
-    color: @highlight;
-    border-bottom: 2px solid @highlight;
+#workspaces button.active {
+  background: alpha(@highlight, 0.22);
+  color: @highlight;
+  border: 1px solid alpha(@highlight, 0.8);
 }
 
-#workspaces button.urgent {
-    color: @accent-red;
-    border-bottom: 2px solid @accent-red;
+#workspaces button:hover {
+  background: alpha(@accent-teal, 0.22);
+  color: @accent-teal;
+  border: 1px solid alpha(@accent-teal, 0.8);
+  box-shadow: inherit;
+  text-shadow: inherit;
+  transition-property: all;
+  transition-duration: 300ms;
 }
 
-#clock,
-#battery,
+/* Non-Workspace Views */
+
+#workspaces,
+#pulseaudio,
+#network,
 #cpu,
 #memory,
-#network,
-#pulseaudio {
-    padding: 0 10px;
-    color: @foreground;
+#custom-temperature,
+#clock,
+#battery,
+#window {
+  background-color: rgba(30, 42, 54, 0.45);
+  color: @foreground;
+  border-radius: 12px;
+  border: 1px solid alpha(@muted-gray, 0.25);
+  margin: 4px 6px;
+  padding: 6px 10px;
 }
 
-/* Hover accents */
 #cpu:hover,
 #memory:hover,
 #network:hover,
 #pulseaudio:hover,
-#battery:hover {
-    color: @accent-teal;
+#battery:hover,
+#clock:hover {
+  color: @accent-teal;
+}
+
+/* Align first and last to hyprland border*/
+
+#workspaces {
+  margin-left: 20px;
+}
+#clock {
+  margin-right: 20px;
+}
+
+/* Muted/error states */
+
+#pulseaudio.muted {
+  color: @accent-red;
+}
+#custom-temperature.critical {
+  color: @accent-red;
 }
 
 /* Tooltip */
+
 tooltip {
-    background: @muted-gray;
-    color: @foreground;
-    border: 1px solid @accent-red;
+  background: alpha(@muted-gray, 0.8);
+  color: @foreground;
+  border: 1px solid @accent-red;
+  border-radius: 8px;
 }

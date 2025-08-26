@@ -32,6 +32,7 @@ function M.setup()
             javascriptreact = { "prettier" },
             markdown = { "prettier" },
             json = { "prettier" },
+            jsonc = { "prettier" },
             css = { "prettier" },
             html = { "prettier" },
             -- The shells should use shfmt

@@ -80,7 +80,6 @@ main() {
     name=${sel##*/}
     name=${name/./_}
 
-
     # Check if we have this session already
     if ! tmux has-session -t "$name"; then
         tmux new-session -ds "$name" -c "$sel"

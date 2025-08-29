@@ -15,6 +15,7 @@ function M.get_langs()
         "bashls",                                                    -- Bash
         "clangd", "cmake",                                           -- C / CMake
         "docker_compose_language_service", "docker_language_server", -- Docker
+        "hyprls",                                                    -- Hyprlang
         "lua_ls",                                                    -- Lua
         "harper_ls",                                                 -- Text files
         "pyright", "ruff",                                           -- Python

@@ -1,7 +1,18 @@
 # External Repositories
-config/zsh/oh-my-zsh/
 config/ghidra/ghidra_*_PUBLIC/
 
 # Submodules
 config/obsidian/plugins/
 config/tmux/plugins/
+config/zsh/plugins/
+
+# Symlinks
+config/theme/current
+config/alacritty/themes/current.conf
+config/bash/theme.bash
+config/btop/themes/current.theme
+config/nvim/lua/plugins/colorscheme.lua
+config/ranger/colorschemes/current.py
+config/tmux/themes/current.conf
+config/waybar/current.css
+config/zsh/theme.zsh

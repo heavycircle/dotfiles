@@ -1,122 +1,203 @@
 #!/usr/bin/env bash
 
-# Usage: sync TYPE
-#
-# Sync dotfiles to/from their actual locations.
-# This makes it easy to version control changes
-# to dotfiles and serve them on another machine.
-#
-# TYPE
-#     push, to, out
-#         Push files from this directory out to
-#         their home locations.
-#
-#     pull, from, in
-#         Pull files from their home locations
-#         into this directory.
-#
-# The dotfiles directory is version-controlled,
-# however, your actual configuration locations
-# are not. Understand which direction you want
-# to use. I recommend defaulting to pull if
-# you're not sure, because pulling moves files
-# into the version-controlled environment.
-#
-# The list of files to pull are below, listed
-# in CONFIG_DIRS and CONFIG_FILES.
-#
-#     CONFIG_DIRS expects to pull these files
-#     from ~/.config/* .
-#
-#     CONFIG_FILES expects to pull these files
-#     from ~/.* . Therefore, they should NOT
-#     be dotted.
-#
-# Use git reset HEAD if you need to reset the
-# current folder back to the latest commit.
+set -o pipefail
 
-# Folders, found in $HOME/.config/<folder>
-CONFIG_DIRS=(
+################################################################
+#   USAGE INFORMATION                                          #
+################################################################
+
+usage() {
+    echo "Usage: $(basename $0) <push|pull> <items>"
+    echo
+    echo "Sync dotfiles to/from their configuration locations. Make it easy"
+    echo "to version control changes to dotfiles and sync across devices."
+    echo
+    echo "ARGUMENTS:"
+    echo "    push"
+    echo "    pull"
+    echo
+    echo "ITEMS:"
+    echo "    A space-separated list of files or folders to configure. This"
+    echo "    script will auto-determine if it's a file or folder by finding"
+    echo "    it in your directory. Expected file locations are below."
+    echo
+    echo -e "    Folder Location:\t\$XDG_CONFIG_HOME=$LOC_FOLDER"
+    echo -e "    File Location:\t\$HOME=$LOC_FILE"
+    echo
+    echo "OPTIONS:"
+    echo "    -d        Dry-run: Show the desired move"
+    echo "    -h        Display this help message."
+    echo "    -v        Verbose output."
+    echo
+    exit 1
+}
+
+################################################################
+#   CONFIG                                                     #
+################################################################
+
+# Base items to sync
+BASE_CONFIG=(
+    # Directories to sync
     alacritty
     bash
     btop
-#    ghidra
+    ghidra
     hypr
     nvim
     ranger
     theme
     tmux
     waybar
-)
-
-# Files, found in $HOME/.<file>
-CONFIG_FILES=(
+    zsh
+    # Files to sync
     bashrc
     clang-format
 )
 
+# Files and folders
+LOC_FOLDER="${XDG_CONFIG_HOME:-$HOME/.config}"
+LOC_FILE="$HOME"
+
+################################################################
+#   LOGGERS                                                    #
+################################################################
+
+OUT="/dev/stdout"
+
 fatal() {
-    echo -e "[\033[31m-\033[0m] FATAL: $1"
+    echo -e "[\033[31m-\033[0m] FATAL: $1" >&2
     exit 1
 }
 
 warning() {
-    echo -e "[\033[33m*\033[0m] $1"
+    echo -e "[\033[33m*\033[0m] $1" >&2
 }
 
 debug() {
-    echo -e "[\033[32m+\033[0m] $1"
+    echo -e "[\033[32m+\033[0m] $1" >>"$OUT"
 }
+
+################################################################
+#   UTILITIES                                                  #
+################################################################
 
 # Sync files based on the SYNC_DIR environment
 # set in main().
 sync() {
-    local cmd src dst
+    local item="$1"
 
-    # Get the command of choice
-    if command -v rsync >/dev/null; then
-        cmd="rsync -ah --delete"
-    else
-        cmd="cp -aT"
+    # Check for rsync
+    if ! command -v rsync >/dev/null; then
+        fatal "missing command: rsync"
     fi
 
-    # Get the direction
-    if [[ $SYNC_DIR == "pull" ]]; then
-        src="$1"
-        dst="$2"
-    elif [[ $SYNC_DIR == "push" ]]; then
-        src="$2"
-        dst="$1"
-    else
-        fatal "Impossible Sync Direction: $1"
-    fi
+    is-dir "$item"
+    local kind=$?
 
-    # Perform the action
-    debug "Syncing: $src -> $dst"
-    $cmd "$src" "$dst" 2>/dev/null || warning "No such file: $src"
-}
-
-# Bring files from their .config locations to this folder.
-main() {
-    declare -g SYNC_DIR
-    local file dir
-
-    local way="$1"
-    case "$way" in
-        from | in | pull) SYNC_DIR="pull" ;;
-        to | out | push) SYNC_DIR="push" ;;
-        *) fatal "Invalid Argument: $way" ;;
+    # Get the local and remote names
+    local home repo
+    case "$kind" in
+    0)
+        home="$LOC_FILE/.$item"
+        repo="$item"
+        ;;
+    1)
+        home="$LOC_FOLDER/$item/"
+        repo="config/$item/"
+        ;;
+    2)
+        warning "Could not find item: $item"
+        warning "Checked: '$LOC_FOLDER/$item', '$LOC_FILE/.$item'"
+        return 1
+        ;;
     esac
 
-    # Copy config directories
-    for dir in "${CONFIG_DIRS[@]}"; do
-        sync "$HOME"/.config/"$dir"/ ./config/"$dir"/
+    # Get the sync direction
+    local src dst
+    case "$SYNC_DIR" in
+    push)
+        src="$repo"
+        dst="$home"
+        ;;
+    pull)
+        src="$home"
+        dst="$repo"
+        ;;
+    esac
+
+    debug "Sync: $src -> $dst"
+    ((DRY_RUN == 0)) || return 0
+
+    # Perform the sync
+    rsync -ah --delete "$src" "$dst" 2>/dev/null
+}
+
+# Check if the syncing item is a directory.
+is-dir() {
+    local item="$1"
+
+    # Check directory and file
+    [[ -d "$LOC_FOLDER"/"$item" ]] && return 1
+    [[ -f "$LOC_FILE"/."$item" ]] && return 0
+
+    warning "Could not find item: $item"
+    return 2
+}
+
+################################################################
+#   DRIVERS                                                    #
+################################################################
+
+main() {
+    declare -g DRY_RUN=0 SYNC_ALL=0
+    declare -g SYNC_DIR
+
+    local -a positional=() items=()
+
+    # Drain flags
+    local -a positional
+    while (($# > 0)); do
+        case "$1" in
+        # Flags
+        -a | --all) SYNC_ALL=1 ;;
+        -d | --dry-run) DRY_RUN=1 ;;
+        -v | --quiet) OUT=/dev/null ;;
+        -h | --help) usage ;;
+        # Positional
+        push | pull) SYNC_DIR="$1" ;;
+        --)
+            shift
+            while (($# > 0)); do
+                positional+=("$1")
+                shift
+            done
+            break
+            ;;
+        # Catch-all
+        --*) fatal "unknown option: --$1" ;;
+        -*) fatal "unknown option: -$1" ;;
+        *) positional+=("$1") ;;
+        esac
+        shift
+    done
+    set -- "${positional[@]}"
+
+    [[ -n "$SYNC_DIR" ]] || fatal "Missing sync direction!"
+
+    # Get what to sync
+    if ((SYNC_ALL == 1)); then
+        items=("${BASE_CONFIG[@]}")
+    else
+        items=("${positional[@]}")
+    fi
+
+    # Sync each item
+    for item in "${items[@]}"; do
+        sync "$item" || return $?
     done
 
-    # Copy config home files
-    for file in "${CONFIG_FILES[@]}"; do
-        sync "$HOME"/."$file" ./"$file"
-    done
+    debug "Sync complete!"
 }
 
 main "$@"

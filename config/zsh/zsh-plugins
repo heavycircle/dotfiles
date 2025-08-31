@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+for plug in "${0:A:h}"/plugins/*(/N); do
+    # Get the plugin
+    base="${plug:t}"
+    f="$plug/$base.plugin.zsh"
+
+    # Ensure it's readable before sourcing
+    [[ -r "$f" ]] || { print -u2 "skip: $f (missing/unreadable)"; continue }
+    source "$f" || print -u2 "error: $f (status $?)"
+done

@@ -1,1 +1,0 @@
-/home/heavybluecircle/.config/theme/current/bash.bash

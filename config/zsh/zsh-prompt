@@ -1,0 +1,97 @@
+#!/usr/bin/env zsh
+
+# Generate a zsh prompt.
+#
+# Author: heavycircle
+# Date: August 2025
+# License: MIT
+
+setopt PROMPT_SUBST
+autoload -Uz colors && colors
+
+# Syntax
+B="%B"
+b="%b"
+R="%f%k%b"
+
+_hex() {
+    local h="$1"
+    [[ $h == \#* ]] && print -r -- "$h" || print -r -- "#$h"
+}
+
+fghex() { 
+    print -r -- "%F{$(_hex "$1")}"
+}
+
+# Get the full current working directory.
+cwd() {
+    print -nr -- "$(fghex "$CWD_HEX")${B}" # bold color
+    print -nr -- "%~"                      # cwd
+    print -nr -- "${b}${R}"                # reset
+}
+
+# Get our current git branch, if we're inside a Git repo.
+git-branch() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return 0
+    local br
+    br=$(git symbolic-ref --short HEAD 2>/dev/null) || return 0
+
+    print -nr -- "$(fghex "$GIT_HEX")${B}"
+    print -nr -- " ${br}"
+    print -nr -- "${b}${R}"
+}
+
+# Determine if we're inside a Python virtualenv and report
+# its name. Also, disable the default virtualenv prompt.
+python-venv() {
+    [[ -n $VIRTUAL_ENV ]] || return 0
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+    print -nr -- "$(fghex "$VENV_HEX")${B}"
+    print -nr -- " ${VIRTUAL_ENV:t}"
+    print -nr -- "${b}${R}"
+}
+
+# Get the last exit code and print its exit status in red
+# if it was non-zero.
+last-exit() {
+    (($1 == 0)) && return
+
+    print -nr -- "%F{#ff5f5f}"
+    print -nr -- "${B} $1"
+    print -nr -- "${b}%f"
+}
+
+# Print the prompt to screen.
+prompt-sign() {
+    print -nr -- "$(fghex "$FG_HEX")${B}"
+    print -nr -- "\$ "
+    print -nr -- "${b}${R}"
+}
+
+# Builds PS1 with the above functions.
+make-prompt() {
+    # Get the last exit
+    local code=$?
+    [[ -r ~/.config/zsh/theme.zsh ]] && source ~/.config/zsh/theme.zsh
+
+    # Define out locals
+    local gb pv le
+    local -a parts=("$(cwd)")
+
+    # Compute the segments
+    gb=$(git-branch)
+    pv=$(python-venv)
+    le=$(last-exit "$code")
+
+    # Add the segments
+    [[ -n $gb ]] && parts+="$gb"
+    [[ -n $pv ]] && parts+="$pv"
+    [[ -n $le ]] && parts+="$le"
+
+    # Split the spaces
+    PROMPT=$'\n'"${(j: :)parts}"$'\n'"$(prompt-sign)"
+}
+
+# ZSH uses precmd to define the prompt command.
+precmd() { make-prompt; }

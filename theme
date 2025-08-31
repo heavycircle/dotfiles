@@ -5,20 +5,62 @@
 # This changes the compatible programs to use the current
 # theme.
 
-declare -g THEME_DIR="$HOME/.config/theme"
-declare -g CURR_THEME="current"
+################################################################
+#   CONFIG                                                     #
+################################################################
+
+THEME_DIR="$HOME/.config/theme"
+CURR_THEME="current"
+
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+# The list of supported consumers requiring symlinks.
+declare -A CONSUMERS=(
+    ["alacritty.toml"]="${CONFIG_DIR}/alacritty/themes/current.toml"
+    ["bash.bash"]="${CONFIG_DIR}/bash/theme.bash"
+    ["btop.theme"]="${CONFIG_DIR}/btop/themes/current.theme"
+    ["neovim.lua"]="${CONFIG_DIR}/nvim/lua/plugins/colorscheme.lua"
+    ["ranger.py"]="${CONFIG_DIR}/ranger/colorschemes/current.py"
+    ["tmux.conf"]="${CONFIG_DIR}/tmux/themes/current.conf"
+    ["waybar.css"]="${CONFIG_DIR}/waybar/current.css"
+    ["zsh.zsh"]="${CONFIG_DIR}/zsh/theme.zsh"
+)
+
+################################################################
+#   LOGGERS                                                    #
+################################################################
 
 fatal() {
-    echo -e "\033[1;31m[-]\033[0m  $1"
+    echo -e "\033[1;31m[-]\033[0m  $*" >&2
     exit 1
 }
 
 debug() {
-    echo -e "\033[1;32m[+]\033[0m  $1"
+    echo -e "\033[1;32m[+]\033[0m  $*" >&2
 }
 
 warning() {
-    echo -e "\033[1;33m[*]\033[0m  $1"
+    echo -e "\033[1;33m[*]\033[0m  $*" >&2
+}
+
+################################################################
+#   UTILITIES                                                  #
+################################################################
+
+# Fix broken symlinks caused by absolute path issues
+fix-symlinks() {
+    local tgt
+
+    for c in "${!CONSUMERS[@]}"; do
+        # Check for a working symlink
+        tgt=$(readlink "${CONSUMERS[$c]}")
+        [[ -n "$tgt" ]] || continue
+        [[ -f "$tgt" ]] && continue
+
+        warning "fixing broken symlink: ${CONSUMERS[$c]} -> $tgt"
+        rm "${CONSUMERS[$c]}"                                       # Remove broken symlink
+        ln -snf "$HOME/.config/theme/current/$c" "${CONSUMERS[$c]}" # Replace with fixed
+    done
 }
 
 # Get the list of available themes.
@@ -87,6 +129,9 @@ theme() {
     rm -f ~/.config/theme/current
     ln -sf ~/.config/theme/"$choice" ~/.config/theme/current
     debug "Theme applied!"
+
+    # Fix broken symlinks
+    fix-symlinks
 
     # Restart applications
     debug "Restarting applications . . ."

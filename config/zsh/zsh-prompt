@@ -25,7 +25,7 @@ fghex() {
 
 # Get the full current working directory.
 cwd() {
-    print -nr -- "$(fghex "$CWD_HEX")${B}" # bold color
+    print -nr -- "$(fghex "$CWD_COLOR")${B}" # bold color
     print -nr -- "%~"                      # cwd
     print -nr -- "${b}${R}"                # reset
 }
@@ -36,7 +36,7 @@ git-branch() {
     local br
     br=$(git symbolic-ref --short HEAD 2>/dev/null) || return 0
 
-    print -nr -- "$(fghex "$GIT_HEX")${B}"
+    print -nr -- "$(fghex "$GIT_COLOR")${B}"
     print -nr -- " ${br}"
     print -nr -- "${b}${R}"
 }
@@ -47,7 +47,7 @@ python-venv() {
     [[ -n $VIRTUAL_ENV ]] || return 0
     export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    print -nr -- "$(fghex "$VENV_HEX")${B}"
+    print -nr -- "$(fghex "$VENV_COLOR")${B}"
     print -nr -- " ${VIRTUAL_ENV:t}"
     print -nr -- "${b}${R}"
 }
@@ -64,7 +64,7 @@ last-exit() {
 
 # Print the prompt to screen.
 prompt-sign() {
-    print -nr -- "$(fghex "$FG_HEX")${B}"
+    print -nr -- "$(fghex "$FG_COLOR")${B}"
     print -nr -- "\$ "
     print -nr -- "${b}${R}"
 }

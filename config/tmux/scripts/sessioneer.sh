@@ -33,8 +33,8 @@ exec 2>/tmp/tmux-debug
 set -x
 
 # Directories not to include in the fuzzy find.
-declare -r IGNORE_DIRS=( .cache .fzf .java .npm .vim )
-declare -g BASE_DIRS=( $HOME $HOME/Documents )
+declare -r IGNORE_DIRS=(.cache .fzf .java .npm .vim)
+declare -g BASE_DIRS=("$HOME" "$HOME/Documents" "$HOME/playground")
 
 check-deps() {
     if ! command -v tmux &>/dev/null; then

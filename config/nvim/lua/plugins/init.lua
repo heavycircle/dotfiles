@@ -28,4 +28,4 @@ require "plugins.statusbar".setup()
 require "plugins.treesitter".setup()
 
 -- Custom stuff (gitignored)
-require "plugins.custom"
+-- require "plugins.custom"

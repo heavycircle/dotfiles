@@ -8,7 +8,7 @@ config/zsh/plugins/
 
 # Symlinks
 config/theme/current
-config/alacritty/themes/current.conf
+config/alacritty/themes/current.toml
 config/bash/theme.bash
 config/btop/themes/current.theme
 config/nvim/lua/plugins/colorscheme.lua

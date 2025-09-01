@@ -1,4 +1,4 @@
-# catppuccin-mocha bash theme
+# catppuccin-mocha zsh theme
 
 export CWD_COLOR="c7a6f4"
 export GIT_COLOR="8caaee"

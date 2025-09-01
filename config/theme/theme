@@ -9,10 +9,10 @@
 #   CONFIG                                                     #
 ################################################################
 
-THEME_DIR="$HOME/.config/theme"
-CURR_THEME="current"
-
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+THEME_DIR="$CONFIG_DIR/theme"
+CURR_THEME="current"
 
 # The list of supported consumers requiring symlinks.
 declare -A CONSUMERS=(
@@ -100,7 +100,9 @@ auto-restart() {
     fi
 
     # neovim
-    warning "neovim: requires restart!"
+    if command -v nvim >/dev/null; then
+        warning "neovim: requires restart!"
+    fi
 
     # tmux
     if command -v tmux >/dev/null; then
@@ -113,6 +115,11 @@ auto-restart() {
     if command -v waybar >/dev/null; then
         debug "waybar: no action required!"
     fi
+
+    # zsh
+    if command -v zsh >/dev/null; then
+        warning "zsh: requires sourcing!"
+    fi
 }
 
 theme() {
@@ -120,7 +127,7 @@ theme() {
 
     # Validate our theme choice.
     get-themes
-    if [[ "${THEMES[*]}" =~ $choice ]]; then
+    if ! [[ "${THEMES[*]}" =~ $choice ]]; then
         fatal "invalid theme: $choice"
     fi
 

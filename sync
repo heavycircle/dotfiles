@@ -141,7 +141,6 @@ is-dir() {
     [[ -d "$LOC_FOLDER"/"$item" ]] && return 1
     [[ -f "$LOC_FILE"/."$item" ]] && return 0
 
-    warning "Could not find item: $item"
     return 2
 }
 
@@ -194,7 +193,7 @@ main() {
 
     # Sync each item
     for item in "${items[@]}"; do
-        sync "$item" || return $?
+        sync "$item"
     done
 
     debug "Sync complete!"

@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
 # Set the current theme.
-#
-# This changes the compatible programs to use the current
-# theme.
 
 ################################################################
 #   CONFIG                                                     #
@@ -14,7 +11,6 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 THEME_DIR="$CONFIG_DIR/theme"
 CURR_THEME="current"
 
-# The list of supported consumers requiring symlinks.
 declare -A CONSUMERS=(
     ["alacritty.toml"]="${CONFIG_DIR}/alacritty/themes/current.toml"
     ["bash.bash"]="${CONFIG_DIR}/bash/theme.bash"
@@ -47,7 +43,6 @@ warning() {
 #   UTILITIES                                                  #
 ################################################################
 
-# Fix broken symlinks caused by absolute path issues
 fix-symlinks() {
     local tgt
 
@@ -58,19 +53,16 @@ fix-symlinks() {
         [[ -f "$tgt" ]] && continue
 
         warning "fixing broken symlink: ${CONSUMERS[$c]} -> $tgt"
-        rm "${CONSUMERS[$c]}"                                       # Remove broken symlink
-        ln -snf "$HOME/.config/theme/current/$c" "${CONSUMERS[$c]}" # Replace with fixed
+        rm "${CONSUMERS[$c]}"
+        ln -snf "$HOME/.config/theme/current/$c" "${CONSUMERS[$c]}"
     done
 }
 
-# Get the list of available themes.
 get-themes() {
     declare -g THEMES
 
-    # Sanity check
     [[ -d "$THEME_DIR" ]] || fatal "missing theme directory: $THEME_DIR"
 
-    # Get the current themes. Skip $CURR_THEME
     for theme in "$THEME_DIR"/*; do
         local base=${theme##*/}
         [[ -d "$base" ]] || continue
@@ -79,44 +71,34 @@ get-themes() {
     done
 }
 
-# Auto-restart the applications we can.
 auto-restart() {
-    # bash
     debug "bash: no action required!"
 
-    # hyprland
     if command -v hyprctl >/dev/null; then
         debug "hyprland: reloading"
         hyprctl reload
         debug "hyprland: reloaded!"
-    fi
 
-    # hyprpaper
-    if command -v hyprctl >/dev/null; then
         debug "hyprpaper: restarting"
         killall hyprpaper
         hyprpaper >/dev/null &
         debug "hyprpaper: restarted!"
     fi
 
-    # neovim
     if command -v nvim >/dev/null; then
         warning "neovim: requires restart!"
     fi
 
-    # tmux
     if command -v tmux >/dev/null; then
         debug "tmux: sourcing"
         tmux source ~/.config/tmux/themes/current.conf
         debug "tmux: sourced!"
     fi
 
-    # waybar
     if command -v waybar >/dev/null; then
         debug "waybar: no action required!"
     fi
 
-    # zsh
     if command -v zsh >/dev/null; then
         warning "zsh: requires sourcing!"
     fi
@@ -125,27 +107,20 @@ auto-restart() {
 theme() {
     local choice="$1"
 
-    # Validate our theme choice.
     get-themes
     if ! [[ "${THEMES[*]}" =~ $choice ]]; then
         fatal "invalid theme: $choice"
     fi
 
-    # Make the change
     debug "Switching to $choice . . ."
     rm -f ~/.config/theme/current
     ln -sf ~/.config/theme/"$choice" ~/.config/theme/current
     debug "Theme applied!"
 
-    # Fix broken symlinks
     fix-symlinks
-
-    # Restart applications
-    debug "Restarting applications . . ."
     auto-restart
 }
 
-# Allow users to run this file directly.
 if (! return 2>/dev/null); then
     theme "$@"
 fi

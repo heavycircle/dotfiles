@@ -7,7 +7,7 @@ set -o pipefail
 ################################################################
 
 usage() {
-    echo "Usage: $(basename $0) <push|pull> <items>"
+    echo "Usage: $(basename "$0") <push|pull> <items>"
     echo
     echo "Sync dotfiles to/from their configuration locations. Make it easy"
     echo "to version control changes to dotfiles and sync across devices."
@@ -137,9 +137,11 @@ sync() {
 is-dir() {
     local item="$1"
 
-    # Check directory and file
     [[ -d "$LOC_FOLDER"/"$item" ]] && return 1
+    [[ -d "config/$item" ]] && return 1
+
     [[ -f "$LOC_FILE"/."$item" ]] && return 0
+    [[ -f "$item" ]] && return 0
 
     return 2
 }

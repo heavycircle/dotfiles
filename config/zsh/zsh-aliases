@@ -1,15 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # A list of bash command remaps and additional shortcuts I use to
 # make my coding experience faster.
-#
-# Author: heavycircle
-# Date: Sometime 2024
-# License: MIT
 
-# Bash config edits
-alias bsrc='source ~/.bashrc'
-alias bedit='$EDITOR ~/.bashrc'
+# ZSH config edits
+alias zsrc='source ~/.zshrc'
+alias zedit='$EDITOR ~/.zshrc'
 
 # Rebind ls to eza
 alias ls='eza -l --group-directories-first --icons=auto'
@@ -35,6 +31,8 @@ alias cl='clear && ls'
 alias r="ranger"
 alias nv='nvim $(fzf)'
 alias venv='source .venv/bin/activate'
+
+alias mnt='cd /mnt/c/Users/student/'
 
 # Simple functions
 q() { mkdir "$1" && cd "$1" || return $?; }

@@ -42,7 +42,7 @@ fi
 # Use nvim for man paging
 export MANPAGER="nvim +Man!"
 
-# ---- BASH CONFIGURATION --------------------------------------
+# ---- ZSH CONFIGURATION ---------------------------------------
 
 ZSH_CONFIG="${HOME}/.config/zsh"
 

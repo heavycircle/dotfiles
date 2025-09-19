@@ -1,5 +1,3 @@
--- Telescope saves Neovim.
-
 local M = {}
 
 function M.install()

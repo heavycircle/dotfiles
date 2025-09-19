@@ -1,7 +1,3 @@
--- Use lualine for the statusbar.
---
--- It's easy to configure, and easy enough for me to use my custom colorscheme with it.
-
 local M = {}
 
 function M.install()

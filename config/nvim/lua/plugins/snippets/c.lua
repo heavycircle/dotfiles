@@ -2,16 +2,13 @@ local ls = require "luasnip"
 local ex = require "luasnip.extras"
 local fm = require "luasnip.extras.fmt"
 
--- Basics
 local s = ls.snippet
 local i = ls.insert_node
 
--- Extras
 local r = ex.rep
 local f = fm.fmt
 
 ls.add_snippets("c", {
-    -- Commented functions
     s(
         { trig = "fn", name = "function", dscr = "function" },
         f(

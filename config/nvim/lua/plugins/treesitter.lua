@@ -12,7 +12,6 @@ function M.setup()
     M.install()
 
     require 'nvim-treesitter.configs'.setup {
-        -- A list of parser names, or "all" (the listed parsers MUST always be installed)
         ensure_installed = {
             "bash",
             "c", "cmake",
@@ -23,7 +22,6 @@ function M.setup()
             "asm", "nasm"
         },
 
-        -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -32,13 +30,11 @@ function M.setup()
         },
     }
 
-    -- Treesitter Highlights
     vim.api.nvim_create_autocmd("FileType", {
         pattern = { '<filetype>' },
         callback = function() vim.treesitter.start() end,
     })
 
-    -- Treesitter indentation
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 end
 

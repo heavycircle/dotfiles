@@ -1,13 +1,3 @@
--- This file sets up LSP (and autocomplete) support for the file types I use.
---
--- The goal is to, as much as possible, extrapolate the locations where specific LSPs are
--- referenced to make it as easy as possible to setup more languages as necessary.
---
--- The current solution isn't perfect, but it's definitely a start. In my eyes, the main
--- issue is with nvim-lspconfig. Having this file around means having two places to handle
--- configurations, rather than one. In the future, I might take out lspconfig and start
--- manually defining configurations when I need them.
-
 local M = {}
 
 function M.get_langs()
@@ -34,10 +24,8 @@ end
 function M.setup()
     M.install()
 
-    -- Mason
     require "mason".setup()
 
-    -- Autocomplete
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     local langs = M.get_langs()
     for _, lsp in ipairs(langs) do
@@ -48,7 +36,6 @@ function M.setup()
     -- Error lens
     vim.diagnostic.config({ virtual_text = true })
 
-    -- Error navigation
     vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end)
     vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end)
     vim.keymap.set("n", "<leader>xf", vim.diagnostic.open_float)

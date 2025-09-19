@@ -3,8 +3,6 @@ config/ghidra/ghidra_*_PUBLIC/
 
 # Submodules
 config/obsidian/plugins/
-config/tmux/plugins/
-config/zsh/plugins/
 
 # Symlinks
 config/theme/current

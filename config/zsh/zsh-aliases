@@ -30,9 +30,11 @@ alias c='clear'
 alias cl='clear && ls'
 alias r="ranger"
 alias nv='nvim $(fzf)'
+alias vinit='python3 -m venv .venv'
 alias venv='source .venv/bin/activate'
 
-alias mnt='cd /mnt/c/Users/student/'
+alias mnt='cd /mnt/c/Users/student/ || return $?'
 
 # Simple functions
 q() { mkdir "$1" && cd "$1" || return $?; }
+root() { cd "$(tmux display-message -p '#{session_path}')" || return $?; }

@@ -20,7 +20,8 @@ vim.opt.smarttab = true
 vim.opt.tabstop = 4
 
 -- UI Changes
-vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = "menuone,noselect,popup"
+
 vim.opt.termguicolors = true
 vim.opt.title = true
 vim.opt.winborder = "rounded"

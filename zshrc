@@ -44,16 +44,16 @@ export MANPAGER="nvim +Man!"
 
 # ---- ZSH CONFIGURATION ---------------------------------------
 
-ZSH_CONFIG="${HOME}/.config/zsh"
+ZSH_CONFIG="$HOME/.config/zsh"
 
 . "$ZSH_CONFIG"/zsh-prompt  # Terminal prompt
 . "$ZSH_CONFIG"/zsh-aliases # Function aliases
 . "$ZSH_CONFIG"/zsh-plugins # Manual plugin management
 
 # Source custom scripts
-export PATH=${HOME}/scripts:$PATH
-for dir in ${HOME}/scripts/**; do
-    [ -d "${dir}" ] && PATH="${dir}:${PATH}"
+export PATH="$HOME/scripts":"$PATH"
+for dir in $HOME/scripts/**; do
+    [[ -d "$dir" ]] && PATH="$dir:$PATH"
 done
 
 # ---- UTILITIES -----------------------------------------------

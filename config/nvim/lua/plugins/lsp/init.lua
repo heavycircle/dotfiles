@@ -1,16 +1,7 @@
 local M = {}
 
 function M.get_langs()
-    return {
-        "bashls",                                                    -- Bash
-        "clangd", "cmake",                                           -- C / CMake
-        "docker_compose_language_service", "docker_language_server", -- Docker
-        "hyprls",                                                    -- Hyprlang
-        "lua_ls",                                                    -- Lua
-        "harper_ls",                                                 -- Text files
-        "pyright", "ruff",                                           -- Python
-        "ts_ls", "prismals",                                         -- Webdev
-    }
+    return { "python", "c" }
 end
 
 function M.install()
@@ -26,11 +17,14 @@ function M.setup()
 
     require "mason".setup()
 
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
+    -- Share native capabilities with neovim ones.
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    M.capabilities = require("blink.cmp").get_lsp_capabilities()
+
+    -- Enable our known languages
     local langs = M.get_langs()
     for _, lsp in ipairs(langs) do
-        vim.lsp.config(lsp, { capabilities = capabilities })
-        vim.lsp.enable(lsp)
+        require("plugins.lsp." .. lsp).setup()
     end
 
     -- Error lens

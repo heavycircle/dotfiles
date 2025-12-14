@@ -20,7 +20,6 @@ require "plugins.transparency"
 
 -- Utility
 require "plugins.autocomplete".setup()
-require "plugins.dashboard".setup()
 require "plugins.formatter".setup()
 require "plugins.telescope".setup()
 require "plugins.lsp".setup()

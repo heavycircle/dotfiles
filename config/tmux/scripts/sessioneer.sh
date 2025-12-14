@@ -66,7 +66,7 @@ main() {
     if (($# == 1)); then
         sel="$1"
     else
-        sel=$(find "${BASE_DIRS[@]}" $(exclude-args) -type d -maxdepth 2 -print | fzf)
+        sel=$(find "${BASE_DIRS[@]}" $(exclude-args) -type d -maxdepth 3 -print | fzf)
     fi
 
     # Ensure they selected something

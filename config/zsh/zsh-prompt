@@ -36,9 +36,9 @@ git-branch() {
     local br
     br=$(git symbolic-ref --short HEAD 2>/dev/null) || return 0
 
-    print -nr -- "$(fghex "$GIT_COLOR")${B}"
-    print -nr -- " ${br}"
-    print -nr -- "${b}${R}"
+    print -nr -- "$(fghex "$GIT_COLOR")$B"
+    print -nr -- "[ $br]"
+    print -nr -- "$R"
 }
 
 # Determine if we're inside a Python virtualenv and report
@@ -47,9 +47,9 @@ python-venv() {
     [[ -n $VIRTUAL_ENV ]] || return 0
     export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    print -nr -- "$(fghex "$VENV_COLOR")${B}"
-    print -nr -- " ${VIRTUAL_ENV:t}"
-    print -nr -- "${b}${R}"
+    print -nr -- "$(fghex "$VENV_COLOR")$B"
+    print -nr -- "[ $VIRTUAL_ENV_PROMPT]"
+    print -nr -- "$R"
 }
 
 # Get the last exit code and print its exit status in red
@@ -58,15 +58,15 @@ last-exit() {
     (($1 == 0)) && return
 
     print -nr -- "%F{#ff5f5f}"
-    print -nr -- "${B} $1"
-    print -nr -- "${b}%f"
+    print -nr -- "$B $1"
+    print -nr -- "$R%f"
 }
 
 # Print the prompt to screen.
 prompt-sign() {
-    print -nr -- "$(fghex "$FG_COLOR")${B}"
+    print -nr -- "$(fghex "$FG_COLOR")$B"
     print -nr -- "\$ "
-    print -nr -- "${b}${R}"
+    print -nr -- "$R"
 }
 
 # Builds PS1 with the above functions.

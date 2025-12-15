@@ -30,7 +30,7 @@ alias c='clear'
 alias cl='clear && ls'
 alias r="ranger"
 alias nv='nvim $(fzf)'
-alias vinit='python3 -m venv .venv'
+alias mkenv='uv env create'
 alias venv='source .venv/bin/activate'
 
 alias mnt='cd /mnt/c/Users/student/ || return $?'

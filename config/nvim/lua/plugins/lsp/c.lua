@@ -10,7 +10,11 @@ function M.setup()
             "--background-index",
             "--clang-tidy",
             "--completion-style=detailed",
-            "--tweaks=-std=c99",
+            "--header-insertion=never",
+        },
+        init_options = {
+            fallbackFlags = { "-std=c99" },
+            compilationDatabasePath = "build",
         },
     })
 

@@ -1,7 +1,7 @@
 local M = {}
 
 function M.get_langs()
-    return { "python", "c" }
+    return { "bash", "c", "python", "typescript" }
 end
 
 function M.install()

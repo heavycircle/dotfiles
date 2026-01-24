@@ -13,8 +13,8 @@ usage() {
     echo "to version control changes to dotfiles and sync across devices."
     echo
     echo "ARGUMENTS:"
-    echo "    push"
-    echo "    pull"
+    echo "    push      Push arguments to their actual locations."
+    echo "    pull      Pull arguments to the repository"
     echo
     echo "ITEMS:"
     echo "    A space-separated list of files or folders to configure. This"

@@ -17,6 +17,10 @@
       "rev": "0775e567b6c0be96d01a61795f7b64c1758262f6",
       "src": "https://github.com/nvimdev/dashboard-nvim"
     },
+    "gitsigns.nvim": {
+      "rev": "736f51d2bb684c06f39a2032f064d7244f549981",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "lualine.nvim": {
       "rev": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -28,6 +32,10 @@
     "matteblack.nvim": {
       "rev": "3bfd406f3b2e41eb3458fe735e06447c08b67d03",
       "src": "https://github.com/tahayvr/matteblack.nvim"
+    },
+    "mini.pick": {
+      "rev": "82ec629ca108c7b96b8b9bb733d235b39e137690",
+      "src": "https://github.com/echasnovski/mini.pick"
     },
     "nvim": {
       "rev": "3aaf3ab60221bca8edb1354e41bd514a22c89de2",
@@ -81,6 +89,10 @@
     "typst-preview.nvim": {
       "rev": "dea4525d5420b7c32eebda7de15a6beb9d6574fa",
       "src": "https://github.com/chomosuke/typst-preview.nvim"
+    },
+    "vague.nvim": {
+      "rev": "676e5b4d74f32ff91c1583eba9c326d2b749672f",
+      "src": "https://github.com/vague2k/vague.nvim"
     },
     "vim-wakatime": {
       "rev": "d7973b157a632d1edeff01818f18d67e584eeaff",

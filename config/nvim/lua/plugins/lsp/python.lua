@@ -8,9 +8,14 @@ function M.setup()
         settings = {
             python = { 
                 analysis = {
-                    typeCheckingMode = "basic",
+                    typeCheckingMode = "strict",
                     autoSearchPaths = true,
                     useLibraryCodeForTypes = true,
+                    diagnosticMode = "workspace",
+                    inlayHints = {
+                        variableTypes = true,
+                        functionReturnTypes = true,
+                    },
                 },
             },
         },

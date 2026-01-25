@@ -4,52 +4,71 @@ This configuration is designed to be minimal, yet powerful.
 
 ## Requirements
 
-As of August 20, 2025, this configuration requires use of the Neovim nightly release to take advantage of Neovim's built-in package manager. I'm a really big fan (not to dig on lazy.nvim). My configuration is many times smaller.
+This configuration uses the [Neovim default package manager](https://github.com/neovim/neovim/pull/34009). Therefore, you'll need to install Neovim nightly release if you want to use this. I maintain the nightly release using [bob.nvim](https://github.com/MordechaiHadad/bob).
 
-I maintain the nightly release using [bob.nvim](https://github.com/MordechaiHadad/bob).
+This configuration also has a number of external "dependencies" that are expected to be in $PATH somewhere.
+
+| Tool           | Reason            | How I installed it             |
+| -------------- | ----------------- | ------------------------------ |
+| `clangd`       | C: LSP            | OS Package Manager             |
+| `clang-format` | C: Formatting     | OS Package Manager             |
+| `codelldb`     | C: Debugging      | Mason                          |
+| `debugpy`      | Python: Debugging | `uv tool install debugpy`      |
+| `basedpyright` | Python: LSP       | `uv tool install basedpyright` |
+| `mypy`         | Python: LSP       | `uv tool install mypy`         |
+| `ruff`         | Python: LSP       | `uv tool install ruff`         |
+| `pylint`       | Python: LSP       | `uv tool install pylint`       |
+| `prettier`     | Web: Debugging    | Mason                          |
+| `vtsls`        | Web: LSP          | Mason                          |
 
 ## Installed Plugins
 
-Major Plugins
+**Major Plugins**
 
 | **Plugin**                                                            | **Purpose**                |
 | --------------------------------------------------------------------- | -------------------------- |
+| [blink.cmp](https://github.com/sahgen/blink.cmp)                      | Autocompletion             |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)          | Status Bar                 |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                        | Snippets                   |
 | [mason.nvim](https://github.com/mason-org/mason.nvim)                 | LSP/Formatter Installation |
+| [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)             | Bridging non-native LSPs   |
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap)                  | Debugging                  |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                | Debugging UI               |
 | [nvim-lspconfig](https://github.com/nvim-lspconfig/nvim-lspconfig)    | Default LSP Configurations |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax Highlighting        |
-| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)   | Icon Support               |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                      | File Navigation            |
-| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)              | Dependency for Telescope   |
-| [ripgrep](https://github.com/BurntSushi/ripgrep)                      | Dependency for Telescope   |
 | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)    | Find things Faster         |
 
-Personal Plugins
+**Dependency Plugins**
 
-| **Plugin**                                           | **Purpose**                      |
-| ---------------------------------------------------- | -------------------------------- |
-| [showkeys](https://github.com/NvChad/showkeys)       | Prints keystrokes (for teaching) |
-| [Wakatime](https://github.com/wakatime/vim-wakatime) | Developer Analytics              |
+| **Plugin**                                                          | **Purpose**              |
+| ------------------------------------------------------------------- | ------------------------ |
+| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | Icon Support             |
+| [nvim-nio](https://github.com/nvim-neotext/nvim-io)                 | Dependency for DapUI     |
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)            | Dependency for Telescope |
+| [ripgrep](https://github.com/BurntSushi/ripgrep)                    | Dependency for Telescope |
 
-Colorschemes
+**Personal Plugins**
 
-| **Plugin**                                                    | **Purpose**         |
-| ------------------------------------------------------------- | ------------------- |
-| [catppuccin-mocha](https://github.com/catppuccin/nvim)        | Developer Analytics |
-| [matteblack.nvim](https://github.com/tahayvr/matteblack.nvim) | Developer Analytics |
-| [ronin.nvim](https://github.com/heavycircle/ronin.nvim)       | Developer Analytics |
+| **Plugin**                                             | **Purpose**                      |
+| ------------------------------------------------------ | -------------------------------- |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim) | Git Version History              |
+| [showkeys](https://github.com/NvChad/showkeys)         | Prints keystrokes (for teaching) |
+| [Wakatime](https://github.com/wakatime/vim-wakatime)   | Developer Analytics              |
+| [which-key](https://github.com/folke/which-key.nvim)   | Keybind Lists (because I forget) |
 
-## Changing How I Neovim
+**Colorschemes**
 
-Every so often I find a new thing that fully changes how I Neovim. Since switching to `vim.pack`, I looked at all my plugins and decided what I did and didn't like and made a lot of decisions. More often than not, I went with the minimal plugin choice. I stayed with plugins that did small things _really well_. If you look at [folke's dotfiles](https://github.com/folke/dot/tree/master/nvim), he has like 50+ plugins. Sure, he probably wrote half of them, but still.
+| **Plugin**                                                    | **Purpose** |
+| ------------------------------------------------------------- | ----------- |
+| [catppuccin-mocha](https://github.com/catppuccin/nvim)        | Colorscheme |
+| [matteblack.nvim](https://github.com/tahayvr/matteblack.nvim) | Colorscheme |
+| [ronin.nvim](https://github.com/heavycircle/ronin.nvim)       | Colorscheme |
 
-Most of the UI "nice-to-haves" were the first things to go. `noice.nvim`, `nvim-notify`, `neo-tree`, etc. I'm somewhat a fan of the default Neovim look.
+## My Opinion
 
-I was a tmux-er first, so most of the buffer-related things went away next. `nvim-bufferline.lua`, `vim-tmux-navigator`, etc. I'd rather just open a new tmux pane and have a vim tab there. I found buffers are too annoying to deal with. Let one Neovim window be for one editor.
+The goal of this configuration is to maintain Neovim's speed while ensuring a powerful environment. There was a point where I stopped using Neovim in favor of VSCode's LSP support and cool built-in features. Happy to be back.
 
-> That second one doesn't make much sense, but since I'm not using Neovim buffers, I don't really need it.
+There are a few things I intentionally leave out of my configuration. Notably, NeoTree and Bufferline are two big ones. I don't like splitting Neovim windows, nor do I like having multiple tabs. I use Oil to change files, and Tmux to handle my windows and sessions. This isn't for everyone, but _I'm faster this way and that's what really matters_. I was a tmux-er first so that workflow comes more naturally.
 
-The only thing I can say I _sometimes_ miss is autocomplete. Especially with new languages and frameworks. But, diagnostics/LSP save the day _most_ of the time.
-
-Oil is slowly becoming my favorite plugin in the list, followed by LuaSnip. I'm still new at LuaSnip and it's not fully configured for all my use cases, but even already it has me moving faster than ever.
+I brought autocomplete back into the setup after a long debate. It's just too useful. It never auto-accepts, only shows up when I want to, and mainly serves as a more targeted LSP. Never will I ever put an AI in here.

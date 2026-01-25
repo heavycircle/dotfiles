@@ -10,7 +10,6 @@ function M.install()
 		{ src = "https://github.com/neovim/nvim-lspconfig" },
 		{ src = "https://github.com/mason-org/mason.nvim" },
 		{ src = "https://github.com/nvimtools/none-ls.nvim" },
-		{ src = "https://github.com/nvimtools/none-ls-extras.nvim" },
 	})
 end
 

@@ -1,28 +1,29 @@
-local lsp = require("plugins.lsp")
+local lspconfig = require("lspconfig")
+local utils = require("plugins.lsp.utils")
 
 local M = {}
 
 function M.setup()
-    vim.lsp.config("clangd", {
-        capabilities = lsp.capabilities,
-        cmd = {
-            "clangd",
-            "--background-index",
-            "--clang-tidy",
-            "--completion-style=detailed",
-            "--header-insertion=never",
-        },
-        init_options = {
-            fallbackFlags = { "-std=c99" },
-            compilationDatabasePath = "build",
-        },
-    })
+	lspconfig.clangd.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+		cmd = {
+			"clangd",
+			"--background-index",
+			"--clang-tidy",
+			"--completion-style=detailed",
+			"--header-insertion=never",
+		},
+		init_options = {
+			fallbackFlags = { "-std=c99" },
+			compilationDatabasePath = "build",
+		},
+	})
 
-    vim.lsp.config("cmake", {
-        capabilities = lsp.capabilities,
-    })
-
-    vim.lsp.enable({ "clangd", "cmake"  })
+	lspconfig.cmake.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+	})
 end
 
 return M

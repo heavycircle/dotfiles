@@ -1,26 +1,38 @@
-local lsp = require("plugins.lsp")
+local lspconfig = require("lspconfig")
+local utils = require("plugins.lsp.utils")
 
 local M = {}
 
 function M.setup()
-    vim.lsp.config("vtsls", {
-        capabilities = capabilities,
-        settings = {
-            typescript = {
-                inlayHints = {
-                    parameterNames = { enabled = "all" },
-                    variableTypes = { enabled = true },
-                },
-            },
-        },
-    })
+	lspconfig.vtsls.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+		settings = {
+			typescript = {
+				inlayHints = {
+					parameterNames = { enabled = "all" },
+					parameterTypes = { enabled = true },
+					propertyDeclarationTypes = { enabled = true },
+					functionLikeReturnTypes = { enabled = true },
+					enumMemberValues = { enabled = true },
+				},
+			},
+		},
+	})
 
-    vim.lsp.config("prismals", { capabilities = capabilities })
+	lspconfig.prismals.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+	})
 
-    vim.lsp.config("cssls", { capabilities = capabilities })
-    vim.lsp.config("jsonls", { capabilities = capabilities })
-
-    vim.lsp.enable({ "vtsls", "prismals", "cssls", "jsonls" })
+	lspconfig.cssls.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+	})
+	lspconfig.jsonls.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+	})
 end
 
 return M

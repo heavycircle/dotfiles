@@ -1,40 +1,87 @@
-local lsp = require("plugins.lsp")
+local utils = require("plugins.lsp.utils")
+local lspconfig = require("lspconfig")
+local null_ls = require("null-ls")
 
 local M = {}
 
 function M.setup()
-    vim.lsp.config("pyright", {
-        capabilities = lsp.capabilities,
-        settings = {
-            python = { 
-                analysis = {
-                    typeCheckingMode = "strict",
-                    autoSearchPaths = true,
-                    useLibraryCodeForTypes = true,
-                    diagnosticMode = "workspace",
-                    inlayHints = {
-                        variableTypes = true,
-                        functionReturnTypes = true,
-                    },
-                },
-            },
-        },
-    })
+	lspconfig.basedpyright.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+		root_dir = lspconfig.util.root_pattern("pyproject.toml", ".git"),
+		settings = {
+			basedpyright = {
+				analysis = {
+					typeCheckingMode = "strict",
+					diagnosticMode = "openFilesOnly",
+					useLibraryCodeForTypes = true,
+					autoSearchPaths = true,
+					inlayHints = {
+						variableTypes = true,
+						functionReturnTypes = true,
+					},
+				},
+			},
+		},
+		before_init = function(_, config)
+			config.settings.basedpyright.pythonPath = "./.venv/bin/python"
+		end,
+	})
 
-    vim.lsp.config("ruff", {
-        capabilities = lsp.capabilities,
-    })
+	lspconfig.ruff.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+	})
 
-    vim.lsp.config("taplo", {
-        capabilities = lsp.capabilities,
-        settings = {
-            evenBetterToml = {
-                schema = { enabled = true },
-            },
-        },
-    })
+	-- Pylint doesn't have an LSP so none-ls makes it
+	null_ls.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+		sources = {
+			null_ls.builtins.diagnostics.pylint,
+			null_ls.builtins.diagnostics.mypy.with({
+				prefer_local = ".venv/bin",
+			}),
+		},
+	})
 
-    vim.lsp.enable({ "pyright", "ruff", "taplo" })
+	-- TOML (for pyproject.toml)
+	lspconfig.taplo.setup({
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
+	})
+
+	-- Format on Save
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		pattern = "*.py",
+		callback = function()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.organizeImports" } },
+				apply = true,
+			})
+
+			vim.lsp.buf.format({
+				async = false,
+				filter = function(client)
+					return client.name == "ruff"
+				end,
+			})
+		end,
+	})
+
+	vim.diagnostic.config({
+		virtual_text = {
+			-- Only show the first diagnostic if multiple exist on one line
+			format = function(diagnostic)
+				if diagnostic.source == "pylint" then
+					return string.format("󰈚 %s", diagnostic.message)
+				end
+				return diagnostic.message
+			end,
+		},
+	})
+
+	vim.lsp.inlay_hint.enable(true)
 end
 
 return M

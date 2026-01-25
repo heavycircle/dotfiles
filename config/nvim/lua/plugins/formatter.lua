@@ -8,46 +8,51 @@
 local M = {}
 
 function M.install()
-    vim.pack.add({
-        { src = 'https://github.com/stevearc/conform.nvim' },
-    })
+	vim.pack.add({
+		{ src = "https://github.com/stevearc/conform.nvim" },
+	})
 end
 
 function M.setup()
-    M.install()
+	M.install()
 
-    local conform = require "conform"
-    conform.setup({
-        formatters = {
-            -- shfmt should use 4 spaces
-            shfmt = {
-                append_args = { "-i", "4" },
-            }
-        },
-        formatters_by_ft = {
-            -- The web stack should use prettier
-            typescript = { "prettier" },
-            typescriptreact = { "prettier" },
-            javascript = { "prettier" },
-            javascriptreact = { "prettier" },
-            markdown = { "prettier" },
-            json = { "prettier" },
-            jsonc = { "prettier" },
-            css = { "prettier" },
-            html = { "prettier" },
-            -- The shells should use shfmt
-            sh = { "shfmt" },
-            bash = { "shfmt" },
-            zsh = { "shfmt" },
-            -- The C langs should use clang-format
-            c = { "clang-format" },
-            cpp = { "clang-format" },
-            -- Python needs isort and black
-            python = { "isort", "black" },
-        }
-    })
+	local conform = require("conform")
+	conform.setup({
+		formatters = {
+			-- shfmt should use 4 spaces
+			shfmt = {
+				append_args = { "-i", "4" },
+			},
+		},
+		formatters_by_ft = {
+			-- python: ruff
+			python = { "ruff_format", "ruff_organize_imports" },
+			-- c: clang-format
+			c = { "clang-format" },
+			cpp = { "clang-format" },
+			-- web: prettier
+			typescript = { "prettier" },
+			javascript = { "prettier" },
+			markdown = { "prettier" },
+			json = { "prettier" },
+			jsonc = { "prettier" },
+			css = { "prettier" },
+			html = { "prettier" },
+			-- sh: shfmt
+			sh = { "shfmt" },
+			bash = { "shfmt" },
+			zsh = { "shfmt" },
+			-- lua: stylua
+			lua = { "stylua" },
+		},
+		format_on_save = function(bufnr)
+			return { timeout_ms = 500, lsp_fallback = true }
+		end,
+	})
 
-    vim.keymap.set('n', '<leader>cf', function() conform.format({ lsp_fallback = true }) end)
+	vim.keymap.set("n", "<leader>cf", function()
+		conform.format({ lsp_fallback = true })
+	end)
 end
 
 return M

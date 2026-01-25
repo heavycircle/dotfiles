@@ -1,7 +1,6 @@
--- Core configuration
-require "core.autocmds"
-require "core.keymaps"
-require "core.options"
+require("core.autocmds")
+require("core.keymaps")
+require("core.options")
 
--- Plugins
-require "plugins"
+require("plugins")
+require("ui")

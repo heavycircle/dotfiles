@@ -37,6 +37,10 @@
       "rev": "82ec629ca108c7b96b8b9bb733d235b39e137690",
       "src": "https://github.com/echasnovski/mini.pick"
     },
+    "none-ls.nvim": {
+      "rev": "3c206dfedf5f1385e9d29f85ffaec7874358592a",
+      "src": "https://github.com/nvimtools/none-ls.nvim"
+    },
     "nvim": {
       "rev": "3aaf3ab60221bca8edb1354e41bd514a22c89de2",
       "src": "https://github.com/catppuccin/nvim"

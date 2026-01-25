@@ -28,12 +28,14 @@ vim.opt.winborder = "rounded"
 
 -- Remove the original status line
 vim.opt.cmdheight = 0
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 vim.opt.showcmd = true
 vim.opt.showmode = false
 
 vim.opt.number = true
+vim.opt.numberwidth = 2
 vim.opt.relativenumber = true
+vim.opt.ruler = false
 vim.opt.signcolumn = "yes"
 
 -- Scrolling: Always keep 8 lines

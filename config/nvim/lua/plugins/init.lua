@@ -21,6 +21,7 @@ require("plugins.transparency")
 -- Utility
 require("plugins.autocomplete").setup()
 require("plugins.formatter").setup()
+require("plugins.gitsigns").setup()
 require("plugins.telescope").setup()
 require("plugins.lsp").setup()
 require("plugins.luasnip").setup()

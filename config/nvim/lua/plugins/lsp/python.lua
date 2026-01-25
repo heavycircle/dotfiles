@@ -38,7 +38,9 @@ function M.setup()
 		on_attach = utils.on_attach,
 		capabilities = utils.capabilities,
 		sources = {
-			null_ls.builtins.diagnostics.pylint,
+			null_ls.builtins.diagnostics.pylint.with({
+				prefer_local = ".venv/bin",
+			}),
 			null_ls.builtins.diagnostics.mypy.with({
 				prefer_local = ".venv/bin",
 			}),

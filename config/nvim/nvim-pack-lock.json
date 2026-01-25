@@ -37,6 +37,10 @@
       "rev": "82ec629ca108c7b96b8b9bb733d235b39e137690",
       "src": "https://github.com/echasnovski/mini.pick"
     },
+    "none-ls-extras.nvim": {
+      "rev": "6ced4fc4072c7b269ba95bb596196cc76e00b280",
+      "src": "https://github.com/nvimtools/none-ls-extras.nvim"
+    },
     "none-ls.nvim": {
       "rev": "3c206dfedf5f1385e9d29f85ffaec7874358592a",
       "src": "https://github.com/nvimtools/none-ls.nvim"
@@ -45,9 +49,29 @@
       "rev": "3aaf3ab60221bca8edb1354e41bd514a22c89de2",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "nvim-dap": {
+      "rev": "085386b9359ddf8d76ad89b98973b8e332dc5ba3",
+      "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-dap-python": {
+      "rev": "1808458eba2b18f178f990e01376941a42c7f93b",
+      "src": "https://github.com/mfussenegger/nvim-dap-python"
+    },
+    "nvim-dap-ui": {
+      "rev": "cf91d5e2d07c72903d052f5207511bf7ecdb7122",
+      "src": "https://github.com/rcarriga/nvim-dap-ui"
+    },
+    "nvim-dap-virtual-text": {
+      "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
+      "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
+    },
     "nvim-lspconfig": {
       "rev": "d89f4891f0720cd2598e4bdd60010d8784b2ac8a",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-nio": {
+      "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
+      "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
       "rev": "42fc28ba918343ebfd5565147a42a26580579482",
@@ -101,6 +125,10 @@
     "vim-wakatime": {
       "rev": "d7973b157a632d1edeff01818f18d67e584eeaff",
       "src": "https://github.com/wakatime/vim-wakatime"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+
 local utils = require("plugins.lsp.utils")
 
 local M = {}

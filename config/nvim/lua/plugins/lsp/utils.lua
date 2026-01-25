@@ -19,4 +19,17 @@ M.on_attach = function(client, bufnr)
 	end, { desc = "LSP: Toggle Inlay Hints" })
 end
 
+M.spelling = function()
+	require("lspconfig").harper_ls.setup({
+		settings = {
+			["harper-ls"] = {
+				linters = {
+					SentenceCapitalization = false,
+					SpellCheck = false,
+				},
+			},
+		},
+	})
+end
+
 return M

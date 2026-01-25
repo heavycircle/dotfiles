@@ -20,6 +20,7 @@ require("plugins.transparency")
 
 -- Utility
 require("plugins.autocomplete").setup()
+require("plugins.dap").setup()
 require("plugins.formatter").setup()
 require("plugins.gitsigns").setup()
 require("plugins.telescope").setup()
@@ -27,6 +28,4 @@ require("plugins.lsp").setup()
 require("plugins.luasnip").setup()
 require("plugins.statusbar").setup()
 require("plugins.treesitter").setup()
-
--- Custom stuff (gitignored)
--- require "plugins.custom"
+require("plugins.which-key").setup()

@@ -1,9 +1,7 @@
-local signature = require("ui.signature")
-
 local M = {}
 
 function M.get_langs()
-	return { "bash", "c", "lua", "python", "typescript" }
+	return { "bash", "c", "lua", "markdown", "python", "typescript" }
 end
 
 function M.install()
@@ -12,6 +10,7 @@ function M.install()
 		{ src = "https://github.com/neovim/nvim-lspconfig" },
 		{ src = "https://github.com/mason-org/mason.nvim" },
 		{ src = "https://github.com/nvimtools/none-ls.nvim" },
+		{ src = "https://github.com/nvimtools/none-ls-extras.nvim" },
 	})
 end
 
@@ -25,16 +24,15 @@ function M.setup()
 	for _, lsp in ipairs(langs) do
 		require("plugins.lsp." .. lsp).setup()
 	end
+	require("plugins.lsp.utils").spelling()
 
 	-- Error lens
 	vim.diagnostic.config({ virtual_text = true })
 
-	vim.keymap.set("n", "[q", function()
-		vim.diagnostic.jump({ count = -1, float = true })
-	end)
-	vim.keymap.set("n", "]q", function()
-		vim.diagnostic.jump({ count = 1, float = true })
-	end)
+    -- stylua: ignore start
+    vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end)
+    vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end)
+	-- stylua: ignore end
 
 	-- Show source in open_float
 	vim.keymap.set("n", "<leader>xf", function()

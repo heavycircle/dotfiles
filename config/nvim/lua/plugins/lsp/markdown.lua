@@ -4,7 +4,15 @@ local null_ls = require("null-ls")
 
 local M = {}
 
+function M.install()
+	vim.pack.add({
+		{ src = "https://github.com/OXY2DEV/markview.nvim" },
+	})
+end
+
 function M.setup()
+	M.install()
+
 	null_ls.setup({
 		on_attach = utils.on_attach,
 		capabilities = utils.capabilities,

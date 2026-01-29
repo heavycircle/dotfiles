@@ -32,6 +32,8 @@ vim.opt.laststatus = 3
 vim.opt.showcmd = true
 vim.opt.showmode = false
 
+-- Line Numbers
+vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.numberwidth = 2
 vim.opt.relativenumber = true

@@ -23,6 +23,14 @@ function M.setup()
 			shfmt = {
 				append_args = { "-i", "4" },
 			},
+			prettier = {
+				condition = function(self, ctx)
+					return vim.fs.find(
+						{ ".prettierrc", ".prettierrc.json", "prettier.config.js" },
+						{ path = ctx.filename, upward = true }
+					)[1] ~= nil
+				end,
+			},
 		},
 		formatters_by_ft = {
 			-- python: ruff
@@ -32,7 +40,9 @@ function M.setup()
 			cpp = { "clang-format" },
 			-- web: prettier
 			typescript = { "prettier" },
+			typescriptreact = { "prettier" },
 			javascript = { "prettier" },
+			javascriptreact = { "prettier" },
 			markdown = { "prettier" },
 			json = { "prettier" },
 			jsonc = { "prettier" },

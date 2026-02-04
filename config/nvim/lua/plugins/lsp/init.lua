@@ -28,9 +28,9 @@ function M.setup()
 	-- Error lens
 	vim.diagnostic.config({ virtual_text = true })
 
-    -- stylua: ignore start
-    vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end)
-    vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end)
+	-- stylua: ignore start
+	vim.keymap.set("n", "[q", function() vim.diagnostic.jump({ count = -1, float = true }) end)
+	vim.keymap.set("n", "]q", function() vim.diagnostic.jump({ count = 1, float = true }) end)
 	-- stylua: ignore end
 
 	-- Show source in open_float

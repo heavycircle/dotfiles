@@ -11,10 +11,6 @@ function M.setup()
 		filetypes = { "sh", "bash" },
 	})
 
-	null_ls.register({
-		null_ls.builtins.diagnostics.shellcheck,
-	})
-
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = { "*.sh", "*.bash" },
 		callback = function()

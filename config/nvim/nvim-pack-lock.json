@@ -37,6 +37,10 @@
       "rev": "3bfd406f3b2e41eb3458fe735e06447c08b67d03",
       "src": "https://github.com/tahayvr/matteblack.nvim"
     },
+    "mini.nvim": {
+      "rev": "f28cd08c8be826355d64080400fab1764c9693dd",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
     "mini.pick": {
       "rev": "82ec629ca108c7b96b8b9bb733d235b39e137690",
       "src": "https://github.com/echasnovski/mini.pick"

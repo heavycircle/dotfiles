@@ -12,15 +12,20 @@ with Neovim 0.11.6. This configuration also has a number of external "dependenci
 | `codelldb`        | C: Debugging             | Mason                                    |
 | `clangd`          | C: LSP                   | OS Package Manager                       |
 | `clang-format`    | C: Formatting            | OS Package Manager                       |
+| `shfmt`           | Bash: Formatting         | OS Package Manager                       |
 | `basedpyright`    | Python: LSP              | `uv tool install basedpyright`           |
 | `debugpy`         | Python: Debugging        | `uv tool install debugpy`                |
 | `mypy`            | Python: LSP              | `uv tool install mypy`                   |
-| `ruff`            | Python: LSP              | `uv tool install ruff`                   |
 | `pylint`          | Python: LSP              | `uv tool install pylint`                 |
+| `ruff`            | Python: LSP              | `uv tool install ruff`                   |
 | `bash-ls`         | Bash: LSP                | `npm i -g bash-language-server`          |
-| `prettier`        | Web: Debugging           | `npm i -g prettier`                      |
+| `prettier`        | Web: Formatting          | `npm i -g prettier`                      |
+| `prisma-ls`       | Prisma: LSP              | `npm i -g @prisma/language-server`       |
 | `vtsls`           | Web: LSP                 | `npm i -g @vtsls/language-server`        |
 | `emmylua_ls`      | Lua: LSP                 | `cargo install --locked emmylua_ls`      |
+| `neocmakelsp`     | CMake: LSP               | `cargo install --locked neocmakelsp`     |
+| `stylua`          | Lua: Formatting          | `cargo install --locked stylua`          |
+| `taplo`           | TOML: LSP                | `cargo install --locked taplo-cli`       |
 | `tree-sitter-cli` | Tree-sitter: Compilation | `cargo install --locked tree-sitter-cli` |
 
 ## Installed Plugins
@@ -33,6 +38,7 @@ with Neovim 0.11.6. This configuration also has a number of external "dependenci
 | [conform.nvim](https://github.com/stevearc/conform.nvim)              | Formatting Registry        |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                        | Snippets                   |
 | [mini.nvim](https://github.com/nvim-mini/mini.nvim)                   | QoL Plugins                |
+| [neogen](https://github.com/danymat/neogen)                           | Auto Docstrings            |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap)                  | Debugging                  |
 | [nvim-lint](https://github.com/mfussenegger/nvim-lint)                | Linting Registry           |
 | [nvim-lspconfig](https://github.com/nvim-lspconfig/nvim-lspconfig)    | Default LSP Configurations |

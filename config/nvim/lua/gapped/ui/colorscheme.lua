@@ -7,7 +7,7 @@ require("catppuccin").setup({
 	term_colors = false,
 	integrations = {
 		fzf = true,
-		native_lsp = { enabled = true },
+		-- native_lsp = { enabled = true },
 	},
 })
 

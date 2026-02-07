@@ -9,7 +9,7 @@ vim.lsp.config("*", {
 })
 
 local servers =
-	{ "basedpyright", "bashls", "clangd", "cssls", "emmylua_ls", "neocmake", "jsonls", "prismals", "ruff", "taplo" }
+	{ "basedpyright", "bashls", "clangd", "cssls", "emmylua_ls", "neocmake", "jsonls", "prismals", "ruff", "taplo", "vtsls" }
 
 local utils = require("gapped.utils")
 for _, server in ipairs(servers) do

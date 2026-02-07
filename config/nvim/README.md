@@ -4,58 +4,54 @@ This configuration is designed to be minimal, yet powerful.
 
 ## Requirements
 
-This configuration uses the [Neovim default package manager](https://github.com/neovim/neovim/pull/34009). Therefore, you'll need to install Neovim nightly release if you want to use this. I maintain the nightly release using [bob.nvim](https://github.com/MordechaiHadad/bob).
+This configuration uses [mini.deps](https://github.com/nvim-mini/mini.deps) to maintain backward-compatibility
+with Neovim 0.11.6. This configuration also has a number of external "dependencies" that are expected to be in $PATH somewhere.
 
-This configuration also has a number of external "dependencies" that are expected to be in $PATH somewhere.
-
-| Tool           | Reason            | How I installed it             |
-| -------------- | ----------------- | ------------------------------ |
-| `clangd`       | C: LSP            | OS Package Manager             |
-| `clang-format` | C: Formatting     | OS Package Manager             |
-| `codelldb`     | C: Debugging      | Mason                          |
-| `debugpy`      | Python: Debugging | `uv tool install debugpy`      |
-| `basedpyright` | Python: LSP       | `uv tool install basedpyright` |
-| `mypy`         | Python: LSP       | `uv tool install mypy`         |
-| `ruff`         | Python: LSP       | `uv tool install ruff`         |
-| `pylint`       | Python: LSP       | `uv tool install pylint`       |
-| `prettier`     | Web: Debugging    | Mason                          |
-| `vtsls`        | Web: LSP          | Mason                          |
+| Tool              | Reason                   | How I installed it                       |
+| ----------------- | ------------------------ | ---------------------------------------- |
+| `codelldb`        | C: Debugging             | Mason                                    |
+| `clangd`          | C: LSP                   | OS Package Manager                       |
+| `clang-format`    | C: Formatting            | OS Package Manager                       |
+| `basedpyright`    | Python: LSP              | `uv tool install basedpyright`           |
+| `debugpy`         | Python: Debugging        | `uv tool install debugpy`                |
+| `mypy`            | Python: LSP              | `uv tool install mypy`                   |
+| `ruff`            | Python: LSP              | `uv tool install ruff`                   |
+| `pylint`          | Python: LSP              | `uv tool install pylint`                 |
+| `bash-ls`         | Bash: LSP                | `npm i -g bash-language-server`          |
+| `prettier`        | Web: Debugging           | `npm i -g prettier`                      |
+| `vtsls`           | Web: LSP                 | `npm i -g @vtsls/language-server`        |
+| `emmylua_ls`      | Lua: LSP                 | `cargo install --locked emmylua_ls`      |
+| `tree-sitter-cli` | Tree-sitter: Compilation | `cargo install --locked tree-sitter-cli` |
 
 ## Installed Plugins
 
-**Major Plugins**
+**Coding Plugins**
 
 | **Plugin**                                                            | **Purpose**                |
 | --------------------------------------------------------------------- | -------------------------- |
 | [blink.cmp](https://github.com/sahgen/blink.cmp)                      | Autocompletion             |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)          | Status Bar                 |
+| [conform.nvim](https://github.com/stevearc/conform.nvim)              | Formatting Registry        |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                        | Snippets                   |
-| [mason.nvim](https://github.com/mason-org/mason.nvim)                 | LSP/Formatter Installation |
-| [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)             | Bridging non-native LSPs   |
+| [mini.nvim](https://github.com/nvim-mini/mini.nvim)                   | QoL Plugins                |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap)                  | Debugging                  |
-| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                | Debugging UI               |
+| [nvim-lint](https://github.com/mfussenegger/nvim-lint)                | Linting Registry           |
 | [nvim-lspconfig](https://github.com/nvim-lspconfig/nvim-lspconfig)    | Default LSP Configurations |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax Highlighting        |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                      | File Navigation            |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)    | Find things Faster         |
 
-**Dependency Plugins**
+**UI Plugins**
 
-| **Plugin**                                                          | **Purpose**              |
-| ------------------------------------------------------------------- | ------------------------ |
-| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | Icon Support             |
-| [nvim-nio](https://github.com/nvim-neotext/nvim-io)                 | Dependency for DapUI     |
-| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)            | Dependency for Telescope |
-| [ripgrep](https://github.com/BurntSushi/ripgrep)                    | Dependency for Telescope |
+| **Plugin**                                                   | **Purpose**         |
+| ------------------------------------------------------------ | ------------------- |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)       | Git Version History |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Status Bar          |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)       | Debugging UI        |
 
 **Personal Plugins**
 
-| **Plugin**                                             | **Purpose**                      |
-| ------------------------------------------------------ | -------------------------------- |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim) | Git Version History              |
-| [showkeys](https://github.com/NvChad/showkeys)         | Prints keystrokes (for teaching) |
-| [Wakatime](https://github.com/wakatime/vim-wakatime)   | Developer Analytics              |
-| [which-key](https://github.com/folke/which-key.nvim)   | Keybind Lists (because I forget) |
+| **Plugin**                                           | **Purpose**         |
+| ---------------------------------------------------- | ------------------- |
+| [Wakatime](https://github.com/wakatime/vim-wakatime) | Developer Analytics |
 
 **Colorschemes**
 

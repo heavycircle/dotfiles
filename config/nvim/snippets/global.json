@@ -1,0 +1,7 @@
+{
+  "Current Date": {
+    "prefix": "cdate",
+    "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+    "description": "Insert current date (YYYY-mm-dd)"
+  }
+}

@@ -1,33 +1,34 @@
-local italic_groups = {
-	"@comment",
-	"@function",
-	"@function.builtin",
-	"@function.call",
-	"@method",
-	"@method.call",
-}
-
-local function update_hl(group, tbl)
-	local old_hl = vim.api.nvim_get_hl_by_name(group, true)
-	local new_hl = vim.tbl_extend("force", old_hl, tbl)
+local function update_hl(group, opts)
+	local cur_hl = vim.api.nvim_get_hl(0, { name = group, link = false, create = false })
+	local new_hl = vim.tbl_extend("force", cur_hl, opts)
 	vim.api.nvim_set_hl(0, group, new_hl)
 end
 
--- Make special items italic
-local function apply_italics()
+local function apply_overrides()
+	-- Make groups transparent
+	local transparent_groups = { "Normal", "NormalFloat", "NormalNC", "FloatBorder", "FloatTitle", "Pmenu" }
+	for _, group in ipairs(transparent_groups) do
+		update_hl(group, { bg = "NONE" })
+	end
+
+	-- Fix link tweaks
+	vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+	vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
+
+	-- Fix italics
+	local italic_groups = { "@comment", "@function", "@method" }
 	for _, group in ipairs(italic_groups) do
 		update_hl(group, { italic = true })
 	end
 
-	update_hl("LspInlayHint", { fg = "#585b70", bg = "none", italic = true })
+	-- Manually override LspInlayHint
+	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#585b70", bg = "NONE", italic = true })
 end
 
-apply_italics()
-_G.Config.new_autocmd({ "UIEnter", "ColorScheme" }, "*", apply_italics, "Use italics")
-
--- Flush Floats
-_G.Config.new_autocmd({ "UIEnter", "ColorScheme" }, "*", function()
-	update_hl("Normal", { bg = "NONE" })
-	update_hl("NormalFloat", { link = "Normal" })
-	update_hl("FloatBorder", { bg = "NONE" })
-end, "Use italics")
+-- Make the autocommand
+local augroup = vim.api.nvim_create_augroup("ThemeOverride", { clear = true })
+vim.api.nvim_create_autocmd({ "UiEnter", "ColorScheme" }, {
+	group = augroup,
+	pattern = "*",
+	callback = apply_overrides,
+})

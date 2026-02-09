@@ -2,8 +2,8 @@ MiniDeps.add({ source = "https://github.com/catppuccin/nvim" })
 
 require("catppuccin").setup({
 	flavour = "mocha",
-	transparent_background = false,
-	show_end_of_buffer = false,
+	transparent_background = true,
+	show_end_of_buffer = true,
 	term_colors = false,
 	integrations = {
 		fzf = true,

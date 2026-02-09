@@ -8,14 +8,23 @@ vim.lsp.config("*", {
 	end,
 })
 
-local servers =
-	{ "basedpyright", "bashls", "clangd", "cssls", "emmylua_ls", "neocmake", "jsonls", "prismals", "ruff", "taplo", "vtsls" }
+local servers = {
+	"basedpyright",
+	"bashls",
+	"clangd",
+	"cssls",
+	"emmylua_ls",
+	"neocmake",
+	"jsonls",
+	"prismals",
+	"ruff",
+	"taplo",
+	"vtsls",
+}
 
-local utils = require("gapped.utils")
 for _, server in ipairs(servers) do
 	vim.lsp.config[server] = vim.tbl_deep_extend("force", vim.lsp.config[server] or {}, {
-		on_attach = utils.on_attach,
-		capabilities = utils.capabilities,
+		capabilities = require("blink.cmp").get_lsp_capabilities(),
 	})
 
 	vim.lsp.enable(server)

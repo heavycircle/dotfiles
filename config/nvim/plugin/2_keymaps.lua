@@ -41,8 +41,12 @@ local new_scratch = function()
 end
 
 local toggle_inlay_hints = function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end
+
+-- Non-traditional
+vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", { desc = "LSP: Code Actions" })
+vim.keymap.set("i", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", { desc = "LSP: Signature Help" })
 
 -- b: Buffer
 map_normal("bs", new_scratch, "Scratch Buffer")
@@ -53,11 +57,12 @@ map_normal("cd", "<CMD>lua vim.lsp.buf.definition()<CR>", "LSP: Goto Implementat
 map_normal("cD", "<CMD>lua vim.lsp.buf.implementation()<CR>", "LSP: Goto Definition")
 map_normal("cf", "<CMD>lua require('conform').format()<CR>", "LSP: Format")
 map_normal("cg", "<CMD>lua require('neogen').generate()<CR>", "LSP: Generate Comment")
+map_normal("ch", "<CMD>lua vim.lsp.buf.signature_help()<CR>", "LSP: Signature Help")
 map_normal("ci", "<CMD>lua vim.lsp.buf.incoming_calls()<CR>", "LSP: Incoming Calls")
+map_normal("cn", "<CMD>lua vim.lsp.buf.rename()<CR>", "LSP: Rename")
 map_normal("co", "<CMD>lua vim.lsp.buf.outgoing_calls()<CR>", "LSP: Outgoing Calls")
 map_normal("cq", toggle_inlay_hints, "LSP: Toggle Inlay Hints")
 map_normal("cr", "<CMD>lua vim.lsp.buf.references()<CR>", "LSP: References")
-map_normal("cR", "<CMD>lua vim.lsp.buf.rename()<CR>", "LSP: Rename")
 map_normal("cs", "<CMD>lua vim.lsp.buf.document_symbol()<CR>", "LSP: Document Symbols")
 map_normal("cS", "<CMD>lua vim.lsp.buf.workspace_symbol()<CR>", "LSP: Workspace Symbols")
 map_normal("ct", "<CMD>lua vim.lsp.buf.type_definition()<CR>", "LSP: Type Definition")

@@ -15,6 +15,7 @@ vim.o.breakindent    = true                -- Indent wrapped lines to match line
 vim.o.breakindentopt = "list:-1"           -- Add padding for lists
 vim.o.colorcolumn    = "+1"                -- Draw column right of max width
 vim.o.cursorline     = true                -- Highlight current line
+vim.o.laststatus     = 3                   -- The last window gets a status line
 vim.o.linebreak      = true                -- Wrap lines at 'breakat'
 vim.o.list           = true                -- Show list text indicators
 vim.o.number         = true                -- Line numbers
@@ -79,7 +80,7 @@ _G.Config.new_autocmd("FileType", "*", format_options, "Proper 'formatoptions'")
 
 -- Diagnostics -------------------------------------------------
 
-local diagnostic_opts = { virtual_lines = false, }
+vim.highlight.priorities.semantic_tokens = 95 -- Lower than treesitter
 
 -- Don't load on startup
 MiniDeps.later(function()

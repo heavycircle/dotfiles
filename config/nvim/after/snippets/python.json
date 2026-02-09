@@ -1,6 +1,0 @@
-{
-  "Dictionary comprehension": {
-    "prefix": "dc",
-    "body": "{${4:new_key}: ${5:new_value} for ${1:key}, ${2:value} in ${3:iterable}}$0"
-  }
-}

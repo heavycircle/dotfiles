@@ -32,4 +32,4 @@ conform.setup({
 local doc_format = function(ev)
         conform.format()	
 end
-_G.Config.new_autocmd("BufWritePre", "<filetype>", doc_format, "Format on Save")
+_G.Config.new_autocmd("BufWritePre", "*", doc_format, "Format on Save")

@@ -37,17 +37,20 @@ if vim.fn.has("nvim-0.10") == 0 then
 end
 
 if vim.fn.has("nvim-0.11") == 1 then
-    vim.o.winborder = "bold" -- Show a (round) border
+    vim.o.winborder = "single"
 end
 
 if vim.fn.has("nvim-0.12") == 1 then
-    vim.o.pummaxwidth     = 100       -- Limit maximum width of popups
-    vim.o.completetimeout = 100       -- Time out completions
-    vim.o.pumborder       = "rounded" -- Use border in completion
+    vim.o.pummaxwidth     = 100             -- Limit maximum width of popups
+    vim.o.completetimeout = 100             -- Time out completions
+    vim.o.pumborder       = vim.o.winborder -- Use window border for completion
 end
 
 -- Editing -----------------------------------------------------
 
+---Wrapper to set indent for a file.
+---Assumes that the file requires using spaces.
+---@param width integer Width of the space.
 _G.Config.set_indent = function(width)
     vim.opt.shiftwidth  = width -- Use two spaces for indenting
     vim.opt.tabstop     = width -- Show tabs as four spaces
@@ -79,8 +82,6 @@ end
 _G.Config.new_autocmd("FileType", "*", format_options, "Proper 'formatoptions'")
 
 -- Diagnostics -------------------------------------------------
-
-vim.highlight.priorities.semantic_tokens = 95 -- Lower than treesitter
 
 -- Don't load on startup
 MiniDeps.later(function()

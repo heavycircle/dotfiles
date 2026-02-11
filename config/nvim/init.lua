@@ -38,16 +38,31 @@ _G.Config = {}
 
 -- Autocommmand group for our custom commands
 local gap_group = vim.api.nvim_create_augroup("gapped", {})
+
+---Wrapper for nvim_create_autocmd to group our local commands.
+---@param event string|string[] The event or events to trigger this callback.
+---@param pattern string|string[] The pattern(s) to match.
+---@param callback fun(args: vim.api.keyset.create_autocmd.callback_args) The function to call on trigger.
+---@param desc? string Optional description for the autocommand.
 _G.Config.new_autocmd = function(event, pattern, callback, desc)
 	local opts = { group = gap_group, pattern = pattern, callback = callback, desc = desc }
 	vim.api.nvim_create_autocmd(event, opts)
 end
 
--- Add vim.pack.add helper
+---@class PackChangedArgs
+---@field data { spec: { name: string }, kind: string, active: boolean }
+
+---Register a callback for package changes. Used to replace vim.pack.add.
+---@param plugin_name string The name of the plugin to watch.
+---@param kinds string[] List of change kinds to listen for.
+---@param callback fun() The function to execute on change.
+---@param desc? string Optional description for the autocommand.
 _G.Config.on_pack_change = function(plugin_name, kinds, callback, desc)
 	if vim.fn.has("nvim-0.12") == 0 then
 		return
 	end
+
+	---@param ev PackChangedArgs
 	local f = function(ev)
 		local name, kind = ev.data.spec.name, ev.data.kind
 		if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then
@@ -61,6 +76,7 @@ _G.Config.on_pack_change = function(plugin_name, kinds, callback, desc)
 	_G.Config.new_autocmd("PackChanged", "*", f, desc)
 end
 
--- Option to load now when nvim has an argument.
--- This assumes that a user wants to edit when you open a file directly.
+---Option to load now when nvim has an argument.
+---This assumes that a user wants to edit when you open a file directly.
+---@type fun(task: fun())
 _G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later

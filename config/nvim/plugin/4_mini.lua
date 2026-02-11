@@ -54,7 +54,15 @@ later(function()
 end)
 
 later(function()
-	require("mini.notify").setup()
+	require("mini.notify").setup({
+		window = {
+			winblend = vim.o.winblend,
+		},
+	})
+end)
+
+later(function()
+	require("mini.tabline").setup()
 end)
 
 later(function()

@@ -1,11 +1,11 @@
-MiniDeps.add({
-	source = "https://github.com/mfussenegger/nvim-dap",
-	depends = { "https://github.com/nvim-neotest/nvim-nio" },
+vim.pack.add({
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/mfussenegger/nvim-dap",
 })
 
-MiniDeps.add({
-	source = "https://github.com/rcarriga/nvim-dap-ui",
-	depends = { "https://github.com/theHamsta/nvim-dap-virtual-text" },
+vim.pack.add({
+	"https://github.com/theHamsta/nvim-dap-virtual-text",
+	"https://github.com/rcarriga/nvim-dap-ui",
 })
 
 local dap, dapui = require("dap"), require("dapui")

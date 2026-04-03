@@ -1,17 +1,20 @@
-local function build_blink(params)
-	vim.notify("Building blink.cmp", vim.log.levels.INFO)
-	local obj = vim.system({ "cargo", "build", "--release" }, { cwd = params.path }):wait()
-	if obj.code == 0 then
-		vim.notify("Building blink.cmp done", vim.log.levels.INFO)
-	else
-		vim.notify("Building blink.cmp failed", vim.log.levels.ERROR)
+local hooks = function(ev)
+	local name, kind = ev.data.spec.name, ev.data.kind
+
+	-- Run build script after plugin's code has changed
+	if name == "blink.cmp" and (kind == "install" or kind == "update") then
+		local obj = vim.system({ "cargo", "build", "--release" }, { cwd = params.path }):wait()
+		if obj.code == 0 then
+			vim.notify("Building blink.cmp done", vim.log.levels.INFO)
+		else
+			vim.notify("Building blink.cmp failed", vim.log.levels.ERROR)
+		end
 	end
 end
 
-MiniDeps.add({
-	source = "https://github.com/saghen/blink.cmp",
-	hooks = { post_install = build_blink, post_checkout = build_blink },
-})
+vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
+
+vim.pack.add({ "https://github.com/saghen/blink.cmp" })
 require("gapped.plugins.luasnip")
 
 require("blink.cmp").setup({

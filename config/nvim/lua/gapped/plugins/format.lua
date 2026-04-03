@@ -1,4 +1,4 @@
-MiniDeps.add({ source = "https://github.com/stevearc/conform.nvim" })
+vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 conform = require("conform")
 
 conform.setup({
@@ -6,11 +6,16 @@ conform.setup({
 		lsp_format = "fallback",
 	},
 	formatters = {
+		["cmake-format"] = {
+			command = "cmake-format",
+			prepend_args = { "-i" },
+		},
 		shfmt = { append_args = { "-i", "4" } },
 	},
 	formatters_by_ft = {
 		bash = { "shfmt" },
 		c = { "clang-format" },
+		cmake = { "cmake-format" },
 		cpp = { "clang-format" },
 		css = { "prettier" },
 		html = { "prettier" },
@@ -30,6 +35,6 @@ conform.setup({
 
 -- Format on save
 local doc_format = function(ev)
-        conform.format()	
+	conform.format()
 end
 _G.Config.new_autocmd("BufWritePre", "*", doc_format, "Format on Save")

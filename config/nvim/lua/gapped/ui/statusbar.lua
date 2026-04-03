@@ -13,7 +13,7 @@ local function python_interpreter()
 	end
 end
 
-MiniDeps.add({ source = "https://github.com/nvim-lualine/lualine.nvim" })
+vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
 
 require("lualine").setup({
 	options = {

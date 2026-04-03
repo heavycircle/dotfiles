@@ -1,4 +1,4 @@
-MiniDeps.add({ source = "https://github.com/neovim/nvim-lspconfig" })
+vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 require("gapped.plugins.autocomplete")
 
 vim.lsp.config("*", {

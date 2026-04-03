@@ -1,32 +1,19 @@
-add = vim.pack.add
-later = MiniDeps.later
-now = MiniDeps.now
-now_if_args = _G.Config.now_if_args
+require("gapped.plugins.files")
+require("gapped.plugins.other")
 
-now(function()
-	require("gapped.plugins.files")
-	require("gapped.plugins.other")
+require("gapped.ui.appearance")
+require("gapped.ui.colorscheme")
+require("gapped.ui.diagnostics")
+require("gapped.ui.statusbar")
+require("gapped.ui.statuscolumn")
 
-	require("gapped.ui.appearance")
-	require("gapped.ui.colorscheme")
-	require("gapped.ui.diagnostics")
-	require("gapped.ui.statusbar")
-	require("gapped.ui.statuscolumn")
-end)
+require("gapped.plugins.treesitter")
+require("gapped.plugins.dap")
+require("gapped.plugins.lsp")
 
-now_if_args(function()
-	require("gapped.plugins.treesitter")
-	require("gapped.plugins.dap")
-	require("gapped.plugins.lsp")
-end)
-
-later(function()
-	require("gapped.plugins.autocomplete")
-	require("gapped.plugins.docs")
-	require("gapped.plugins.format")
-	require("gapped.plugins.lint")
-	require("gapped.plugins.luasnip")
-	require("gapped.plugins.telescope")
-
-	require("gapped.plugins.local")
-end)
+require("gapped.plugins.autocomplete")
+require("gapped.plugins.docs")
+require("gapped.plugins.format")
+require("gapped.plugins.lint")
+require("gapped.plugins.luasnip")
+require("gapped.plugins.telescope")

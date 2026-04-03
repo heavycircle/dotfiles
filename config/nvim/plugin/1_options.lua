@@ -83,10 +83,7 @@ _G.Config.new_autocmd("FileType", "*", format_options, "Proper 'formatoptions'")
 
 -- Diagnostics -------------------------------------------------
 
--- Don't load on startup
-MiniDeps.later(function()
-    vim.diagnostic.config({ virtual_text = true })
-    vim.lsp.inlay_hint.enable(true)
-end)
+vim.diagnostic.config({ virtual_text = true })
+vim.lsp.inlay_hint.enable(true)
 
 -- stylua: ignore end

@@ -1,6 +1,6 @@
-MiniDeps.add({
-	source = "https://github.com/nvim-telescope/telescope.nvim",
-	depends = { "https://github.com/nvim-lua/plenary.nvim" },
+vim.pack.add({
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-telescope/telescope.nvim",
 })
 
 -- Conversion of normal vim.o.winblend options. Does not include `shadow`.

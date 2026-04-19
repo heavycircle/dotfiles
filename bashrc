@@ -1,17 +1,13 @@
-#!/usr/bin/env bash
+# .bashrc
 
-# Standard bash configuration using bashplug for plugin management.
-#
-# Author: heavycircle
-# Date: 2025
-# License: MIT
-
-# ---- GENERAL -------------------------------------------------
-
-# If not running interactively, don't do anything
+# Don't source anything if we're not running interactively
 [[ -n "$PS1" ]] || return
 
-# Set Editor
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
 if [[ -n "$SSH_CONNECTION" ]]; then
     export EDITOR="vim"
     export VISUAL="vim"
@@ -25,33 +21,40 @@ export MANPAGER="nvim +Man!"
 
 # History Settings
 export HISTCONTROL=ignoreboth
-export HISTFILE="$HOME"/.bash_history
+export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=5000
 export HISTFILESIZE=5000
 
-# Shell options
+# Shell Options
 shopt -s cdspell
 shopt -s checkwinsize
 shopt -s extglob
 shopt -s histappend
+shopt -s globstar
+shopt -s nullglob
 
-# ---- BASH CONFIGURATION ---------------------------------------
+# ---- Custom Configuration ------------------------------------
 
-BASH_CONFIG="$HOME"/.config/bash
+safe-source() {
+    [[ -n "$1" ]] && source "$1"
+}
 
-# Source custom files
-. "$BASH_CONFIG"/bash-prompt    # Terminal Prompt
-. "$BASH_CONFIG"/bash-aliases   # Function aliases
+safe-source "$HOME/.config/bash/bash-aliases"
+safe-source "$HOME/.config/bash/bash-prompt"
 
-# ---- UTILITIES -----------------------------------------------
+export GRC_ALIASES=true
+safe-source "/etc/profile.d/grc.sh"
 
-plugins=(copyfile copypath follow fzf z)
+# ---- Plugins -------------------------------------------------
 
-# Bashplug
-. "$HOME"/.bashplug/bashplug -v
+path-add() {
+    [[ ":$PATH:" == *":$1:"* ]] || export PATH="$1:$PATH"
+}
 
-# Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
+path-add "$HOME/.cargo/bin"
+path-add "$HOME/.bun/bin"
+path-add "$HOME/.local/bin"
+path-add "$HOME/scripts"
 
-# Source packages
-. "$HOME"/.local/share/bob/env/env.sh
+eval "$(fzf --bash)"
+eval "$(zoxide init bash)"

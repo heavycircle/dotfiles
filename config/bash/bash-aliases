@@ -1,24 +1,16 @@
 #!/usr/bin/env bash
 
-# A list of bash command remaps and additional shortcuts I use to
-# make my coding experience faster.
-#
-# Author: heavycircle
-# Date: Sometime 2024
-# License: MIT
-
 # Bash config edits
 alias bsrc='source ~/.bashrc'
 alias bedit='$EDITOR ~/.bashrc'
 
-# Rebind ls to eza
-alias ls='eza -l --group-directories-first --icons=auto'
-alias lsa='ls -a'
-alias lt='eza --tree --level=2 --long --icons --git'
-alias lta='lt -a'
+# # Rebind ls to eza
+# alias ls='eza -l --group-directories-first --icons=auto'
+# alias lsa='ls -a'
+# alias lt='eza --tree --level=2 --long --icons --git'
+# alias lta='lt -a'
 
 # Color rebinds
-alias grep='grep --color=auto'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 # Flag rebinds
@@ -34,7 +26,9 @@ alias c='clear'
 alias cl='clear && ls'
 alias r="ranger"
 alias nv='nvim $(fzf)'
+alias mkenv='uv venv --prompt "$(basename "$PWD")"'
 alias venv='source .venv/bin/activate'
 
 # Simple functions
-q() { mkdir "$1" && cd "$1" || return $?; }
+q() { mkdir -p "$2" && cd "$1" || return $?; }
+root() { cd "$(tmux display-message -p '#{session_path}')" || return $?; }

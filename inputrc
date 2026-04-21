@@ -1,0 +1,19 @@
+set editing-mode vi
+set keyseq-timeout 100
+set show-mode-in-prompt on
+
+set vi-ins-mode-string "[\1\e[1;92m\2I\1\e[0m\2] "
+set vi-cmd-mode-string "[\1\e[1;93m\2C\1\e[0m\2] "
+
+set bell-style none
+
+set completion-ignore-case on
+set show-all-if-ambiguous on
+
+set colored-stats on
+set visible-stats on
+
+$if mode=vi
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+$endif

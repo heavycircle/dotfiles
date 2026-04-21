@@ -17,29 +17,26 @@ the files tracked via `sync`.
 Use `./sync pull` to pull changes from your config directories into the
 dotfiles folder.
 
-> _The goal of this configuration is to be as portable as possible. This
-comes with the side effect that not every system I use is configured the
-same. For example, my Debian 12 doesn't use Wayland, so hyprland/waybar
-don't matter._
+> _Note: Future commits here will remove the Hyprland suite. I moved away
+> from Hyprland after not using it to its full potential. I'm a tmux user
+> first. I don't really use a tiling window manager the way I should, so
+> it offers more annoyance than convenience._
 
 ## Configurations
 
 I use the following stack:
 
 1. Bash - The latest version
-- I am using `bashplug`, a hand-written plugin management system, for
-holding my bash plugins. There aren't that many at the moment. The
-      ones inside are copies of core oh-my-zsh plugins that I missed when
-      I migrated back to bash.
-2. Neovim - The nightly release
-    - My current Neovim configuration **only** works on the nightly release.
-      0.12.0-dev introduced a native package manager that removed my need for
-      a LazyVim-based configuration.
+      - Still using GNU readline with vi mode (see [inputrc](./inputrc)).
+        Nothing fancy, just pure bash. I just like it.
+2. Neovim - At least v0.12.0 (`latest`)
+      - This configuration uses `vim.pack` for package management, which only
+        exists in nvim 0.12.0. @echasnovski provides a good bridge in his nvim
+        configuration for older versions of nvim.
 3. Tmux - At least v3.5
-    - The current configuration uses tpm for plugin management. I'm not sure
-how much longer I'll keep it around because I want almost my entire 
-      configuration to be hand-written. It brings a lot of bloat I just don't
-need.
+      - Expects a custom theme at `themes/current.conf` for the custom prompt.
+        I'll spend more time minimizing how much code actually needs to go into
+        this file, but it's a patchwork solution for now.
 
 ## Theme
 

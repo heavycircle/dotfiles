@@ -45,6 +45,8 @@ safe-source "$HOME/.config/bash/bash-prompt"
 export GRC_ALIASES=true
 safe-source "/etc/profile.d/grc.sh"
 
+safe-source "/usr/share/bash-completion/bash_completion"
+
 # ---- Plugins -------------------------------------------------
 
 path-add() {

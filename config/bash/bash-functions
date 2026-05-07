@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Make a directory and go inside.
+q() { mkdir -p "$1" && cd "$1" || return $?; }
+
+# Goto the root of the tmux session, or print if it's to a tty.
+root() {
+    local path
+    path="$(tmux display-message -p '#{session_path}')" || return $?
+
+    if [[ -t 1 ]]; then
+        cd "$path" || return $?
+    else
+        echo "$path"
+    fi
+}

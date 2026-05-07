@@ -40,6 +40,7 @@ safe-source() {
 }
 
 safe-source "$HOME/.config/bash/bash-aliases"
+safe-source "$HOME/.config/bash/bash-functions"
 safe-source "$HOME/.config/bash/bash-prompt"
 
 export GRC_ALIASES=true

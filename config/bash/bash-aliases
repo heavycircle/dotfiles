@@ -28,7 +28,3 @@ alias r="ranger"
 alias nv='nvim $(fzf)'
 alias mkenv='uv venv --prompt "$(basename "$PWD")"'
 alias venv='source .venv/bin/activate'
-
-# Simple functions
-q() { mkdir -p "$2" && cd "$1" || return $?; }
-root() { cd "$(tmux display-message -p '#{session_path}')" || return $?; }

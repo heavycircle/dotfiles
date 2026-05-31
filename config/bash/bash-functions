@@ -14,3 +14,16 @@ root() {
         echo "$path"
     fi
 }
+
+bell() {
+    if (($# == 0)); then
+        echo -e "\a"
+        return 0
+    fi
+
+    # Run subcommand and ring bell
+    "$@"
+    local exit_code=$?
+    echo -ne "\a"
+    return "$exit_code"
+}

@@ -30,6 +30,9 @@ vim.keymap.set({ "x", "v" }, "<leader>d", '"_d')
 vim.keymap.set("i", "<C-Space>", "<C-x><C-o>", { noremap = true })
 vim.keymap.set("i", "<C-e>", "<C-e>", { noremap = true })
 
+-- Highlight end-of-line
+vim.keymap.set("n", "T", "v$h")
+
 -- Leader Keymaps ----------------------------------------------
 
 local map_normal = function(suffix, cmd, desc)

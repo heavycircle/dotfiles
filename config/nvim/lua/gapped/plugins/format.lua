@@ -1,6 +1,12 @@
 vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 conform = require("conform")
 
+conform.formatters.mdformat = {
+	command = "mdformat",
+	args = { "--stdin" },
+	stdin = true,
+}
+
 conform.setup({
 	default_format_opts = {
 		lsp_format = "fallback",
@@ -22,7 +28,7 @@ conform.setup({
 		lua = { "stylua" },
 		json = { "prettier" },
 		jsonc = { "prettier" },
-		markdown = { "prettier" },
+		markdown = { "mdformat" },
 		javascript = { "prettier" },
 		javascriptreact = { "prettier" },
 		typescript = { "prettier" },

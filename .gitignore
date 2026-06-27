@@ -14,3 +14,5 @@ config/ranger/colorschemes/current.py
 config/tmux/themes/current.conf
 config/waybar/current.css
 config/zsh/theme.zsh
+
+.DS_Store

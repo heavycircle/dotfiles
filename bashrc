@@ -36,7 +36,7 @@ shopt -s nullglob
 # ---- Custom Configuration ------------------------------------
 
 safe-source() {
-    [[ -n "$1" ]] && source "$1"
+    [[ -f "$1" ]] && source "$1"
 }
 
 safe-source "$HOME/.config/bash/bash-aliases"
@@ -44,9 +44,13 @@ safe-source "$HOME/.config/bash/bash-functions"
 safe-source "$HOME/.config/bash/bash-prompt"
 
 export GRC_ALIASES=true
-safe-source "/etc/profile.d/grc.sh"
 
-safe-source "/usr/share/bash-completion/bash_completion"
+if [[ "$(uname)" = "Darwin" ]]; then
+    safe-source "/opt/homebrew/etc/grc.sh"
+else
+    safe-source "/etc/profile.d/grc.sh"
+    safe-source "/usr/share/bash-completion/bash_completion"
+fi
 
 # ---- Plugins -------------------------------------------------
 
@@ -58,6 +62,10 @@ path-add "$HOME/.cargo/bin"
 path-add "$HOME/.bun/bin"
 path-add "$HOME/.local/bin"
 path-add "$HOME/scripts"
+
+if [[ "$(uname)" = "Darwin" ]]; then
+    path-add "/opt/homebrew/bin:$PATH"
+fi
 
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"

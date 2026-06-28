@@ -12,7 +12,9 @@ config/btop/themes/current.theme
 config/nvim/lua/plugins/colorscheme.lua
 config/ranger/colorschemes/current.py
 config/tmux/themes/current.conf
-config/waybar/current.css
-config/zsh/theme.zsh
 
+# Private Files
+config/bash/bash-private
+
+# OS Files
 .DS_Store

@@ -3,10 +3,16 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 
 -- General
+config.color_scheme = "catppuccin-mocha"
+config.enable_wayland = true
+config.scrollback_lines = 5000
+config.use_dead_keys = false
+
+-- Font
+config.font = wezterm.font("Monaspace Argon NF")
+config.font_rules = { { italic = true, font = wezterm.font("Monaspace Radon NF") } }
 config.font_size = 16
 config.line_height = 1.2
-config.font = wezterm.font("CodeNewRoman Nerd Font")
-config.color_scheme = "catppuccin-mocha"
 
 -- Windows
 config.window_background_opacity = 0.9
@@ -16,7 +22,8 @@ config.macos_window_background_blur = 50
 -- Tab Bar
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
-config_tab_max_width = 32
+config.show_new_tab_button_in_tab_bar = false
+config.tab_max_width = 32
 
 local colorscheme = wezterm.color.get_builtin_schemes()["catppuccin-mocha"]
 config.colors = {
@@ -35,14 +42,6 @@ config.colors = {
 			fg_color = colorscheme.selection_bg,
 			underline = "Single",
 		},
-		new_tab = {
-			bg_color = colorscheme.background,
-			fg_color = colorscheme.foreground,
-		},
-		new_tab_hover = {
-			bg_color = colorscheme.selection_fg,
-			fg_color = colorscheme.foreground,
-		},
 	},
 }
 
@@ -59,7 +58,7 @@ config.default_prog = { fish_path(), "-l" }
 
 -- Keybinds
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
-config.keys = require("keybinds")
+config.keys = require("keybinds").setup()
 
 -- SSH
 config.ssh_domains = require("domains")

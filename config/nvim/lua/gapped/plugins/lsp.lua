@@ -9,16 +9,18 @@ vim.lsp.config("*", {
 })
 
 local servers = {
-	"basedpyright",
+	-- "basedpyright",
 	"bashls",
 	"clangd",
 	"cssls",
 	"emmylua_ls",
+	"fish_lsp",
 	"neocmake",
 	"jsonls",
 	"prismals",
 	"ruff",
 	"taplo",
+	"ty",
 	"vtsls",
 }
 

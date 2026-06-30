@@ -25,3 +25,16 @@ new_autocmd("LspAttach", "*", function(args)
 		})
 	end
 end, "Format on Save")
+
+new_autocmd("VimEnter", "*", function()
+	if vim.fn.argc() == 0 then
+		return
+	end
+
+	local arg = vim.fn.argv(0)
+	local path = arg:gsub("^oil://", "")
+
+	if vim.fn.isdirectory(path) == 1 then
+		vim.api.nvim_set_current_dir(path)
+	end
+end, "Fix Current Directory given argument")

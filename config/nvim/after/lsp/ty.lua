@@ -13,7 +13,7 @@ return {
 		-- Check for .venv virtualenv
 		local virtualenv = ".venv/bin/python"
 		if vim.uv.fs_stat(virtualenv) then
-			confing.settings.python.pythonPath = virtualenv
+			config.settings.python.pythonPath = virtualenv
 			return
 		end
 	end,

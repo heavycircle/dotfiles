@@ -1,15 +1,21 @@
-abbr fsrc 'source ~/.config/fish/config.fish'
-abbr fedit '$EDITOR ~/.config/fish/config.fish'
+abbr reload 'source ~/.config/fish/config.fish'
 
-# Color rebinds
-alias fzf "fzf --preview 'bat --style=numbers --color=always {}'"
+# Configurations
+abbr fishconf '$EDITOR ~/.config/fish/config.fish'
+abbr nvimconf '$EDITOR ~/.config/nvim/'
+abbr wezconf '$EDITOR ~/.config/wezterm/wezterm.lua'
 
 # Flag rebinds
+abbr ff "fzf --preview 'bat --style=numbers --color=always {}'"
 abbr fzf 'fzf --tmux'
 abbr shfmt 'shfmt -ci -i=4'
 
+# Bash-like things
+abbr !! --position anywhere --function history_last
+
 # Remaps
 abbr sl ls
+abbr bat batcat
 
 # Shortcuts
 abbr c clear
@@ -18,9 +24,6 @@ abbr n nvim
 abbr r ranger
 abbr cl 'clear && ls'
 abbr nv 'nvim (fzf)'
-
-# Fish
-abbr reload 'source ~/.config/fish/config.fish'
 
 # Python virtualenv
 abbr mkenv 'uv venv --prompt "$(basename "$PWD")"'

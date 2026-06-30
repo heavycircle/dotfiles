@@ -39,19 +39,14 @@ usage() {
 # Base items to sync
 BASE_CONFIG=(
     # Directories to sync
-    alacritty
-    bash
     btop
+    fish
     ghidra
-    hypr
     nvim
     ranger
     theme
-    tmux
-    waybar
-    zsh
+    wezterm
     # Files to sync
-    bashrc
     clang-format
 )
 

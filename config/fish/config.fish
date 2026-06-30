@@ -11,24 +11,19 @@ set fish_cursor_visual block
 
 # --- EDITOR -------------------
 
-if set -q SSH_CONNECTION
-    set -gx EDITOR vim
-    set -gx VISUAL vim
-else
-    set -gx EDITOR nvim
-    set -gx VISUAL nvim
-end
-
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 set -gx MANPAGER 'nvim +Man!'
 
 # --- PATH ---------------------
 
-fish_add_path "$HOME/scripts"
 fish_add_path "$HOME/.bun/bin"
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "$HOME/.local/bin"
 fish_add_path /usr/local/bin
 fish_add_path /opt/homebrew/bin
+
+source "$HOME/scripts/init.fish"
 
 if status is-interactive
     fzf --fish | source

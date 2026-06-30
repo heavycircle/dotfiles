@@ -34,7 +34,7 @@ function fish_prompt
     # --- last exit code ---
     if test $code -ne 0
         set_color --bold $fish_color_status
-        echo -n " $code"
+        echo -n "  $code"
         set_color normal
     end
 

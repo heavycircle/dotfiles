@@ -11,7 +11,7 @@ config.use_dead_keys = false
 -- Font
 config.font = wezterm.font("Monaspace Argon NF")
 config.font_rules = { { italic = true, font = wezterm.font("Monaspace Radon NF") } }
-config.font_size = 16
+config.font_size = 18
 config.line_height = 1.2
 
 -- Windows
@@ -61,6 +61,6 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = require("keybinds").setup()
 
 -- SSH
-config.ssh_domains = require("domains")
+config.ssh_domains = wezterm.default_ssh_domains()
 
 return config

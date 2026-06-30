@@ -1,9 +1,17 @@
 local wezterm = require("wezterm")
+local sessioneer = require("sessioneer")
 
 local M = {}
 
 M.keys = {
-	-- Window creation
+	-- Session Creation
+	{ key = "g", mods = "LEADER", action = sessioneer.project_select() },
+	{ key = "G", mods = "LEADER|SHIFT", action = sessioneer.ssh_select() },
+	-- Session Navigation
+	{ key = "(", mods = "LEADER|SHIFT", action = wezterm.action.SwitchWorkspaceRelative(-1) },
+	{ key = ")", mods = "LEADER|SHIFT", action = wezterm.action.SwitchWorkspaceRelative(1) },
+	{ key = "s", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+	-- Window Creation
 	{ key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
 	{ key = "X", mods = "LEADER|SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
 	-- Window Navigation

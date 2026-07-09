@@ -15,6 +15,7 @@ config.font_size = 18
 config.line_height = 1.2
 
 -- Windows
+config.adjust_window_size_when_changing_font_size = false
 config.window_background_opacity = 0.9
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.macos_window_background_blur = 50

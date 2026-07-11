@@ -20,6 +20,17 @@ config.window_background_opacity = 0.9
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.macos_window_background_blur = 50
 
+-- Set right status to workspace
+wezterm.on("update-right-status", function(window, _pane)
+	local workspace = window:active_workspace()
+
+	window:set_right_status(wezterm.format({
+		{ Attribute = { Intensity = "Bold" } },
+		{ Foreground = { AnsiColor = "Fuchsia" } },
+		{ Text = " ⎋ " .. workspace .. " " },
+	}))
+end)
+
 -- Tab Bar
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false

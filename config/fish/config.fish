@@ -23,7 +23,9 @@ fish_add_path "$HOME/.local/bin"
 fish_add_path /usr/local/bin
 fish_add_path /opt/homebrew/bin
 
-source "$HOME/scripts/init.fish"
+if test -f "$HOME/scripts/init.fish"
+    source "$HOME/scripts/init.fish"
+end
 
 if status is-interactive
     fzf --fish | source

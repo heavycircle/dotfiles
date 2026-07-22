@@ -8,6 +8,7 @@ abbr wezconf '$EDITOR ~/.config/wezterm/wezterm.lua'
 # Flag rebinds
 abbr ff "fzf --preview 'bat --style=numbers --color=always {}'"
 abbr fzf 'fzf --tmux'
+abbr gdb 'gdb -q'
 abbr shfmt 'shfmt -ci -i=4'
 
 # Bash-like things
@@ -15,7 +16,6 @@ abbr !! --position anywhere --function history_last
 
 # Remaps
 abbr sl ls
-abbr bat batcat
 
 # Shortcuts
 abbr c clear

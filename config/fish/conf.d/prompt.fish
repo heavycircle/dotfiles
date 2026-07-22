@@ -11,6 +11,16 @@ function fish_prompt
 
     echo ""
 
+    # --- user@host ---
+    set_color --bold $fish_color_user
+    echo -n (whoami)
+    set_color normal
+    echo -n "@"
+    set_color --bold $fish_color_host
+    echo -n (hostname -s)
+    set_color normal
+    echo -n " "
+
     # --- CWD ---
     set_color --bold $fish_color_command
     echo -n (prompt_pwd)

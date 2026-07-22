@@ -27,6 +27,10 @@ if test -f "$HOME/scripts/init.fish"
     source "$HOME/scripts/init.fish"
 end
 
+if test -f "$HOME/tools/init.fish"
+    source "$HOME/tools/init.fish"
+end
+
 if status is-interactive
     fzf --fish | source
     zoxide init fish | source

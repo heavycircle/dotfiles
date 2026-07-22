@@ -1,5 +1,4 @@
 require("gapped.plugins.files")
-require("gapped.plugins.other")
 
 require("gapped.ui.appearance")
 require("gapped.ui.colorscheme")

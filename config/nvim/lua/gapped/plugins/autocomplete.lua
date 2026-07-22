@@ -14,10 +14,12 @@ end
 
 vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
 
-vim.pack.add({ "https://github.com/saghen/blink.cmp" })
+vim.pack.add({ "https://github.com/saghen/blink.lib", "https://github.com/saghen/blink.cmp" })
 require("gapped.plugins.luasnip")
 
-require("blink.cmp").setup({
+local cmp = require("blink.cmp")
+cmp.build():pwait()
+cmp.setup({
 	keymap = {
 		preset = "default",
 		["<Up>"] = { "select_prev", "fallback" },

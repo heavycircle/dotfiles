@@ -3,13 +3,6 @@ local sessioneer = require("sessioneer")
 
 local M = {}
 
--- Forcing `command.cwd` makes wezterm build a concrete CommandBuilder, whose
--- constructor eagerly snapshots this *local* client process's entire
--- environment (including $HOME) and ships it to wherever the pane spawns.
--- That's a no-op for the local domain (it IS the correct env) but corrupts
--- splits on remote mux domains (e.g. SSHMUX:*), which resolve cwd correctly
--- on their own server-side anyway since source and new pane are on the same
--- remote host. So only override cwd for local-domain splits.
 local function split_pane(direction)
 	return wezterm.action_callback(function(window, pane)
 		if pane:get_domain_name() == "local" then

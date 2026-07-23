@@ -4,8 +4,6 @@ config.automatically_reload_config = true
 
 -- General
 config.color_scheme = "catppuccin-mocha"
--- Native Wayland has multiple unresolved KDE/KWin bugs around window
--- decorations and sizing/positioning; XWayland is far more reliable.
 config.enable_wayland = false
 config.scrollback_lines = 5000
 config.use_dead_keys = false

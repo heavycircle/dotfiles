@@ -4,7 +4,9 @@ config.automatically_reload_config = true
 
 -- General
 config.color_scheme = "catppuccin-mocha"
-config.enable_wayland = true
+-- Native Wayland has multiple unresolved KDE/KWin bugs around window
+-- decorations and sizing/positioning; XWayland is far more reliable.
+config.enable_wayland = false
 config.scrollback_lines = 5000
 config.use_dead_keys = false
 
@@ -17,7 +19,7 @@ config.line_height = 1.2
 -- Windows
 config.adjust_window_size_when_changing_font_size = false
 config.window_background_opacity = 0.9
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_decorations = "RESIZE"
 config.macos_window_background_blur = 50
 
 -- Set right status to workspace

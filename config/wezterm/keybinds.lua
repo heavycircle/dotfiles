@@ -3,14 +3,22 @@ local sessioneer = require("sessioneer")
 
 local M = {}
 
--- wezterm's automatic OSC-7 cwd inheritance for splits does a hostname
--- check that misbehaves over `wezterm ssh`, so grab the cwd ourselves and
--- pass it explicitly.
+-- Forcing `command.cwd` makes wezterm build a concrete CommandBuilder, whose
+-- constructor eagerly snapshots this *local* client process's entire
+-- environment (including $HOME) and ships it to wherever the pane spawns.
+-- That's a no-op for the local domain (it IS the correct env) but corrupts
+-- splits on remote mux domains (e.g. SSHMUX:*), which resolve cwd correctly
+-- on their own server-side anyway since source and new pane are on the same
+-- remote host. So only override cwd for local-domain splits.
 local function split_pane(direction)
 	return wezterm.action_callback(function(window, pane)
-		local cwd_url = pane:get_current_working_dir()
-		local cwd = cwd_url and cwd_url:path() or nil
-		window:perform_action(wezterm.action.SplitPane({ direction = direction, command = { cwd = cwd } }), pane)
+		if pane:get_domain_name() == "local" then
+			local cwd_url = pane:get_current_working_dir()
+			local cwd = cwd_url and cwd_url.file_path or nil
+			window:perform_action(wezterm.action.SplitPane({ direction = direction, command = { cwd = cwd } }), pane)
+		else
+			window:perform_action(wezterm.action.SplitPane({ direction = direction }), pane)
+		end
 	end)
 end
 

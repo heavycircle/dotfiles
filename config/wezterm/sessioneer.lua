@@ -56,14 +56,19 @@ M.ssh_select = function()
 				title = "Choose SSH Host",
 				choices = get_ssh_hosts(),
 				fuzzy = true,
-				action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
+				action = wezterm.action_callback(function(_inner_window, _inner_pane, id, _label)
 					if not id then
 						wezterm.log_info("ssh_select: cancelled")
 						return
 					end
-					wezterm.log_info("ssh_select: attaching domain " .. id)
-					inner_window:perform_action(wezterm.action.SwitchToWorkspace({ name = label }), inner_pane)
-					inner_window:perform_action(wezterm.action.AttachDomain(id), inner_pane)
+					-- Attaching to a mux domain in-place (SwitchToWorkspace with a
+					-- domain spawn, or AttachDomain) from inside this callback hangs
+					-- indefinitely -- confirmed via WEZTERM_LOG=trace that the same
+					-- attach completes in well under a second as a fresh `wezterm
+					-- connect` process instead. Spawn that in the background so it
+					-- opens its own window without blocking this one.
+					wezterm.log_info("ssh_select: connecting to domain " .. id)
+					wezterm.background_child_process({ "wezterm", "connect", id })
 				end),
 			}),
 			pane

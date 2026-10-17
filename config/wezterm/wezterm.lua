@@ -1,23 +1,29 @@
 local wezterm = require("wezterm")
+package.path = package.path .. ";" .. wezterm.config_dir .. "/?.wezterm/init.lua"
 local config = wezterm.config_builder()
 config.automatically_reload_config = true
 
+-- Environment
+local font_variant = "Var"
+local font_size = 16
+local colorscheme = "catppuccin-mocha"
+
 -- General
-config.color_scheme = "catppuccin-mocha"
+config.color_scheme = colorscheme
 config.enable_wayland = false
 config.scrollback_lines = 5000
 config.use_dead_keys = false
 
 -- Font
-config.font = wezterm.font("Monaspace Argon NF")
-config.font_rules = { { italic = true, font = wezterm.font("Monaspace Radon NF") } }
-config.font_size = 18
+config.font = wezterm.font("Monaspace Argon " .. font_variant)
+config.font_rules = { { italic = true, font = wezterm.font("Monaspace Radon " .. font_variant) } }
+config.font_size = font_size
 config.line_height = 1.2
 
 -- Windows
 config.adjust_window_size_when_changing_font_size = false
 config.window_background_opacity = 0.9
-config.window_decorations = "RESIZE"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.macos_window_background_blur = 50
 
 -- Set right status to workspace
@@ -31,46 +37,48 @@ wezterm.on("update-right-status", function(window, _pane)
 	}))
 end)
 
--- Tab Bar
-config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = false
-config.show_new_tab_button_in_tab_bar = false
-config.tab_max_width = 32
+local colorscheme = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 
-local colorscheme = wezterm.color.get_builtin_schemes()["catppuccin-mocha"]
+-- Tab Bar
+config.use_fancy_tab_bar = true
+config.window_frame = {
+	font = wezterm.font("Monaspace Argon " .. font_variant, { weight = "Bold" }),
+	font_size = font_size,
+	active_titlebar_bg = colorscheme.background,
+	inactive_titlebar_bg = colorscheme.background,
+	button_bg = colorscheme.background,
+	button_fg = colorscheme.selection_bg,
+	button_hover_bg = colorscheme.selection_bg,
+	button_hover_fg = colorscheme.foreground,
+}
 config.colors = {
 	tab_bar = {
 		background = colorscheme.background,
-		active_tab = {
-			bg_color = colorscheme.background,
-			fg_color = colorscheme.selection_fg,
-		},
-		inactive_tab = {
-			bg_color = colorscheme.background,
-			fg_color = colorscheme.selection_bg,
-		},
+		inactive_tab_edge = colorscheme.background,
+		active_tab = { bg_color = colorscheme.background, fg_color = colorscheme.selection_fg },
+		inactive_tab = { bg_color = colorscheme.background, fg_color = colorscheme.selection_bg },
 		inactive_tab_hover = {
 			bg_color = colorscheme.background,
 			fg_color = colorscheme.selection_bg,
 			underline = "Single",
 		},
+		new_tab = { bg_color = colorscheme.background, fg_color = colorscheme.selection_bg },
+		new_tab_hover = { bg_color = colorscheme.background, fg_color = colorscheme.foreground },
 	},
 }
-
--- Default program
-local function fish_path()
-	local triple = wezterm.target_triple
-	if triple:find("darwin") then
-		return "/opt/homebrew/bin/fish"
-	else
-		return "/usr/bin/fish"
-	end
-end
-config.default_prog = { fish_path(), "-l" }
 
 -- Keybinds
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = require("keybinds").setup()
+
+-- resurrect.wezterm
+local resurrect = require("resurrect")
+resurrect.periodic_save_all(600)
+-- Save the workspace being left whenever sessioneer switches away from it
+wezterm.on("sessioneer.leaving", function(window, workspace)
+	resurrect.save_workspace(workspace)
+	window:toast_notification("resurrect", "Saved workspace " .. workspace, nil, 3000)
+end)
 
 -- SSH
 config.ssh_domains = wezterm.default_ssh_domains()

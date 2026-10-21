@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local sessioneer = require("sessioneer")
 local resurrect = require("resurrect")
+local notify = require("notify")
 
 local M = {}
 
@@ -57,9 +58,8 @@ M.keys = {
 		key = "w",
 		mods = "ALT",
 		action = wezterm.action_callback(function(win, _pane)
-			local name = win:active_workspace()
-			resurrect.save_workspace(name)
-			win:toast_notification("resurrect", "Saved workspace " .. name, nil, 3000)
+			resurrect.save_workspace(win:active_workspace())
+			notify.send(win, "resurrect", "Saved workspace: " .. name)
 		end),
 	},
 	{
@@ -67,7 +67,7 @@ M.keys = {
 		mods = "ALT|SHIFT",
 		action = wezterm.action_callback(function(win, _pane)
 			local n = resurrect.save_all_workspaces()
-			win:toast_notification("resurrect", "Saved " .. n .. " workspaces", nil, 3000)
+			notify.send(win, "resurrect", "Saved " .. n .. " workspaces")
 		end),
 	},
 	{

@@ -4,8 +4,18 @@ local mux = wezterm.mux
 
 local M = {}
 
+-- TODO: Add Windows Equivalent (?)
+function M.get_path(bin)
+    local triple = wezterm.target_triple
+    if triple:find("darwin") then
+        return "/opt/homebrew/bin/" .. bin
+    else
+        return "/usr/bin/" .. bin
+    end
+end
+
 M.config = {
-	zoxide_path = "/opt/homebrew/bin/zoxide",
+	zoxide_path = M.get_path("zoxide"),
 	remote_shell_args = { "/usr/bin/env", "-u", "HOME", "fish", "-l" },
 	format = {
 		current = { { Foreground = { AnsiColor = "Fuchsia" } }, { Attribute = { Intensity = "Bold" } } },

@@ -9,6 +9,7 @@ abbr wezconf '$EDITOR ~/.config/wezterm/wezterm.lua'
 abbr ff "fzf --preview 'bat --style=numbers --color=always {}'"
 abbr fzf 'fzf --tmux'
 abbr gdb 'gdb -q'
+abbr less 'less -R'
 abbr shfmt 'shfmt -ci -i=4'
 
 # Bash-like things

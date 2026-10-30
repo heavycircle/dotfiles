@@ -22,7 +22,7 @@ local function apply_overrides()
 	end
 
 	-- Manually override LspInlayHint
-	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#585b70", bg = "NONE", italic = true })
+	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#625e5a", bg = "NONE", italic = true })
 end
 
 -- Make the autocommand

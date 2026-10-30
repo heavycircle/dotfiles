@@ -6,12 +6,12 @@ local M = {}
 
 -- TODO: Add Windows Equivalent (?)
 function M.get_path(bin)
-    local triple = wezterm.target_triple
-    if triple:find("darwin") then
-        return "/opt/homebrew/bin/" .. bin
-    else
-        return "/usr/bin/" .. bin
-    end
+	local triple = wezterm.target_triple
+	if triple:find("darwin") then
+		return "/opt/homebrew/bin/" .. bin
+	else
+		return "/usr/bin/" .. bin
+	end
 end
 
 M.config = {
@@ -71,7 +71,7 @@ local function zoxide_argv(domain)
 	return { "ssh", host, "zoxide", "query", "-l" }
 end
 
-M.get_project_choices = function(pane)
+function M.get_project_choices(pane)
 	local domain = pane:get_domain_name()
 	local current = mux.get_active_workspace()
 	local existing = workspace_set()
@@ -121,7 +121,7 @@ end
 M.switch = switch
 
 -- Select a project workspace.
-M.project_select = function()
+function M.project_select()
 	return wezterm.action_callback(function(window, pane)
 		local choices, domain = M.get_project_choices(pane)
 		window:perform_action(
@@ -153,7 +153,7 @@ M.project_select = function()
 end
 
 -- SSH-select a SSHMUX connection.
-M.ssh_select = function()
+function M.ssh_select()
 	return wezterm.action_callback(function(window, pane)
 		local choices = {}
 		-- FIXME: Repeated code?
@@ -184,7 +184,7 @@ M.ssh_select = function()
 end
 
 -- Endpoint to switch to the previous workspace
-M.switch_to_prev = function()
+function M.switch_to_prev()
 	return wezterm.action_callback(function(window, pane)
 		local prev = wezterm.GLOBAL.sessioneer_prev
 		if not prev or prev == window:active_workspace() or not workspace_set()[prev] then
@@ -197,7 +197,7 @@ M.switch_to_prev = function()
 end
 
 -- Switch to a relative workspace, recording the previous one for switch_to_prev
-M.switch_relative = function(offset)
+function M.switch_relative(offset)
 	return wezterm.action_callback(function(window, pane)
 		local prev = window:active_workspace()
 		wezterm.GLOBAL.sessioneer_prev = prev

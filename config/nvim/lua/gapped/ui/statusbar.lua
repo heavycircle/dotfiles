@@ -25,7 +25,7 @@ require("lualine").setup({
 		lualine_b = { { "branch", icon = "" }, "diff" },
 		lualine_c = { { "filename", path = 4 } },
 		lualine_x = {
-			{ python_interpreter, color = { fg = "#585b70" } },
+			{ python_interpreter, color = { fg = "#625e5a" } },
 			{ "diagnostics", sources = { "nvim_diagnostic" } },
 			"filetype",
 		},

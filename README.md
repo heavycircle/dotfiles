@@ -4,7 +4,7 @@ This is what I use day-to-day. It should be portable to most machines.
 
 ## Installation
 
-``` bash
+```bash
 git clone https://github.com/heavycircle/dotfiles ~/dotfiles
 cd ~/dotfiles
 ./sync push
@@ -22,7 +22,7 @@ folder.
 I have to different stacks based on my work environment. They're meant to act
 very similarly.
 
-1.  Terminal Setup
+1. Terminal Setup
 
 - *Option 1*: Alacritty + `tmux`. This is my original setup and the one I've
   been using for many years. Any terminal emulator can replace Alacritty here,
@@ -33,13 +33,13 @@ very similarly.
   management. I still have some upgrading to do to my config, namely with
   session management like my `tmux-sessioneer` script.
 
-2.  Shell
+2. Shell
 
 - Both configurations use `fish >= 4.3.0`. This version added support for
   dynamic colorscheme registration and added more native colorschemes (i.e.,
   `catppuccin-mocha`).
 
-3.  Editor
+3. Editor
 
 - Both configurations use `neovim` as the text editor. My two environments use
   different versions. One uses `nvim 0.11.6` and the other uses `nvim 0.12.3`.
@@ -57,6 +57,6 @@ The available themes are inside [config/theme]. Other programs reference
 [current] whose symlink is changed each time the theme is switched. Most
 applications require restart.
 
-  [theme]: config/bash/theme
-  [config/theme]: ./config/theme
-  [current]: ./config/theme/current
+[config/theme]: ./config/theme
+[current]: ./config/theme/current
+[theme]: config/bash/theme

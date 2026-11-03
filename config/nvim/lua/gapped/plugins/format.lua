@@ -1,12 +1,6 @@
 vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 conform = require("conform")
 
-conform.formatters.mdformat = {
-	command = "mdformat",
-	args = { "--stdin" },
-	stdin = true,
-}
-
 conform.setup({
 	default_format_opts = {
 		lsp_format = "fallback",
@@ -16,7 +10,11 @@ conform.setup({
 			command = "cmake-format",
 			prepend_args = { "-i" },
 		},
-		shfmt = { append_args = { "-i", "4" } },
+		fish_indent_tabs = {
+			command = "sh",
+			args = { "-c", "fish_indent | unexpand --first-only -t 4" },
+		},
+		mdformat = { prepend_args = { "--wrap", "keep" } },
 	},
 	formatters_by_ft = {
 		bash = { "shfmt" },
@@ -24,6 +22,7 @@ conform.setup({
 		cmake = { "cmake-format" },
 		cpp = { "clang-format" },
 		css = { "prettier" },
+		fish = { "fish_indent_tabs" },
 		html = { "prettier" },
 		lua = { "stylua" },
 		json = { "prettier" },

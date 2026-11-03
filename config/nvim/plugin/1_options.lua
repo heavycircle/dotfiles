@@ -10,6 +10,17 @@ vim.o.switchbuf      = "usetab"       -- Use opened buffers when switching
 
 vim.schedule(function() vim.o.clipboard = "unnamedplus" end) -- Use global clipboard
 
+if vim.env.DISPLAY == nil and vim.env.WAYLAND_DISPLAY == nil then
+	-- WezTerm ignores OSC 52 reads, so paste from the unnamed register instead of waiting on a reply
+	local osc52 = require("vim.ui.clipboard.osc52")
+	local function paste() return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") } end
+	vim.g.clipboard = {
+		name  = "OSC 52",
+		copy  = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+		paste = { ["+"] = paste, ["*"] = paste },
+	}
+end
+
 -- UI Changes --------------------------------------------------
 
 vim.o.breakindent    = true                -- Indent wrapped lines to match line start
@@ -55,12 +66,12 @@ end
 _G.Config.set_indent = function(width)
     vim.opt.shiftwidth  = width -- Use two spaces for indenting
     vim.opt.tabstop     = width -- Show tabs as four spaces
-    vim.opt.softtabstop = width
+    vim.opt.softtabstop = 0
 end
 
 _G.Config.set_indent(4)
 vim.o.autoindent    = true               -- Enable autoindent
-vim.o.expandtab     = true               -- Convert tabs to spaces
+vim.o.expandtab     = false              -- Convert tabs to spaces
 vim.o.formatoptions = "rqnl1j"           -- Improve comment editing
 vim.o.ignorecase    = true               -- Ignore case during search
 vim.o.incsearch     = true               -- Show matches while typing

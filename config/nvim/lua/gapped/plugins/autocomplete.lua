@@ -3,7 +3,7 @@ local hooks = function(ev)
 
 	-- Run build script after plugin's code has changed
 	if name == "blink.cmp" and (kind == "install" or kind == "update") then
-		local obj = vim.system({ "cargo", "build", "--release" }, { cwd = params.path }):wait()
+		local obj = vim.system({ "cargo", "build", "--release" }, { cwd = ev.data.path }):wait()
 		if obj.code == 0 then
 			vim.notify("Building blink.cmp done", vim.log.levels.INFO)
 		else

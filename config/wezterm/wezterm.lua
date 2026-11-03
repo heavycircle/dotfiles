@@ -4,12 +4,16 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 
 -- Environment
-local font_variant = "Var"
+local font_variant = "NF"
 local font_size = 16
-local colorscheme = "catppuccin-mocha"
+local colorscheme = "Kanagawa Dragon"
+-- Official scheme from rebelot/kanagawa.nvim extras/wezterm
+local kanagawa_dragon = require("kanagawa-dragon")
 
 -- General
+config.color_schemes = { [colorscheme] = kanagawa_dragon.colors }
 config.color_scheme = colorscheme
+config.force_reverse_video_cursor = kanagawa_dragon.force_reverse_video_cursor
 config.enable_wayland = false
 config.scrollback_lines = 5000
 config.use_dead_keys = false
@@ -22,7 +26,7 @@ config.line_height = 1.2
 
 -- Windows
 config.adjust_window_size_when_changing_font_size = false
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.macos_window_background_blur = 50
 
@@ -37,7 +41,7 @@ wezterm.on("update-right-status", function(window, _pane)
 	}))
 end)
 
-local colorscheme = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
+local colorscheme = kanagawa_dragon.colors
 
 -- Tab Bar
 config.use_fancy_tab_bar = true
@@ -77,7 +81,7 @@ resurrect.periodic_save_all(600)
 -- Save the workspace being left whenever sessioneer switches away from it
 wezterm.on("sessioneer.leaving", function(window, workspace)
 	resurrect.save_workspace(workspace)
-	window:toast_notification("resurrect", "Saved workspace " .. workspace, nil, 3000)
+	require("notify").send(window, "resurrect", "Saved workspace " .. workspace)
 end)
 
 -- SSH

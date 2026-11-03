@@ -6,8 +6,8 @@ set fish_cursor_insert line
 set fish_cursor_replace_one underscore
 set fish_cursor_visual block
 
-# fish_config theme choose catppuccin-mocha
-# fish_config theme save catppuccin-mocha
+# fish_config theme choose kanagawa-dragon  # theme file in ~/.config/fish/themes
+# fish_config theme save kanagawa-dragon
 
 # --- EDITOR -------------------
 
@@ -22,10 +22,7 @@ fish_add_path "$HOME/.cargo/bin"
 fish_add_path "$HOME/.local/bin"
 fish_add_path /usr/local/bin
 fish_add_path /opt/homebrew/bin
-
-if test -f "$HOME/scripts/init.fish"
-    source "$HOME/scripts/init.fish"
-end
+fish_add_path "$HOME/scripts"
 
 if test -f "$HOME/tools/init.fish"
     source "$HOME/tools/init.fish"
@@ -35,3 +32,7 @@ if status is-interactive
     fzf --fish | source
     zoxide init fish | source
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

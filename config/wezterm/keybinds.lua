@@ -58,7 +58,8 @@ M.keys = {
 		key = "w",
 		mods = "ALT",
 		action = wezterm.action_callback(function(win, _pane)
-			resurrect.save_workspace(win:active_workspace())
+			local name = win:active_workspace()
+			resurrect.save_workspace(name)
 			notify.send(win, "resurrect", "Saved workspace: " .. name)
 		end),
 	},
@@ -100,7 +101,7 @@ M.keys = {
 	},
 }
 
-M.setup = function()
+function M.setup()
 	local keys = M.keys
 
 	for i = 1, 8 do

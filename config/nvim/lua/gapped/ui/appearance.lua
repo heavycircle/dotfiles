@@ -1,3 +1,19 @@
+local muted_fg = {
+	["catppuccin-mocha"] = "#585b70",
+	-- kanagawa reports its name without the variant
+	["kanagawa"] = "#625e5a",
+}
+
+---Subdued foreground for the active colorscheme, falling back to its Comment color.
+---@return string|nil
+_G.Config.muted_fg = function()
+	if muted_fg[vim.g.colors_name] then
+		return muted_fg[vim.g.colors_name]
+	end
+	local fg = vim.api.nvim_get_hl(0, { name = "Comment", link = false }).fg
+	return fg and string.format("#%06x", fg)
+end
+
 local function update_hl(group, opts)
 	local cur_hl = vim.api.nvim_get_hl(0, { name = group, link = false, create = false })
 	local new_hl = vim.tbl_extend("force", cur_hl, opts)
@@ -22,7 +38,7 @@ local function apply_overrides()
 	end
 
 	-- Manually override LspInlayHint
-	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#625e5a", bg = "NONE", italic = true })
+	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = Config.muted_fg(), bg = "NONE", italic = true })
 end
 
 -- Make the autocommand

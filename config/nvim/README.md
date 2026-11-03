@@ -60,9 +60,10 @@ This configuration also has a number of external "dependencies" that are expecte
 
 **Colorschemes**
 
-| **Plugin**                                             | **Purpose** |
-| ------------------------------------------------------ | ----------- |
-| [catppuccin-mocha](https://github.com/catppuccin/nvim) | Colorscheme |
+| **Plugin**                                                  | **Purpose** |
+| ----------------------------------------------------------- | ----------- |
+| [catppuccin-mocha](https://github.com/catppuccin/nvim)      | Colorscheme |
+| [kanagawa-dragon](https://github.com/rebelot/kanagawa.nvim) | Colorscheme |
 
 **Dependencies**: [blink.lib](https://github.com/saghen/blink.lib), [plenary.nvim](https://github.com/nvim-lua/plenary.nvim), [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
 

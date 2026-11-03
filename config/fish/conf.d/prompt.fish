@@ -22,14 +22,14 @@ function fish_prompt
     echo -n " "
 
     # --- CWD ---
-    set_color --bold $fish_color_command
+    set_color --bold $fish_color_cwd
     echo -n (prompt_pwd)
     set_color normal
 
     # --- git branch ---
     set -l branch (prompt_git)
     if test -n "$branch"
-        set_color --bold $fish_color_comment
+        set_color --bold $fish_color_keyword
         echo -n " [ $branch]"
         set_color normal
     end

@@ -6,10 +6,10 @@ config.automatically_reload_config = true
 -- Environment
 local font_variant = "NF"
 local font_size = 16
-local colorscheme = "Kanagawa Dragon (Gogh)"
+local theme = "Kanagawa Dragon (Gogh)" -- or "nightfox" or "catppuccin-mocha"
 
 -- General
-config.color_scheme = colorscheme
+config.color_scheme = theme
 config.enable_wayland = false
 config.scrollback_lines = 5000
 config.use_dead_keys = false
@@ -26,6 +26,11 @@ config.window_background_opacity = 0.95
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.macos_window_background_blur = 50
 
+-- Colorscheme
+local colorscheme = wezterm.color.get_builtin_schemes()[theme]
+colorscheme.selection_bg = colorscheme.selection_bg or colorscheme.brights[1]
+colorscheme.selection_fg = colorscheme.selection_fg or colorscheme.cursor_bg or colorscheme.foreground
+
 -- Set right status to workspace
 wezterm.on("update-right-status", function(window, _pane)
 	local workspace = window:active_workspace()
@@ -36,10 +41,6 @@ wezterm.on("update-right-status", function(window, _pane)
 		{ Text = " ⎋ " .. workspace .. " " },
 	}))
 end)
-
-local colorscheme = wezterm.color.get_builtin_schemes()[colorscheme]
-colorscheme.selection_bg = colorscheme.selection_bg or colorscheme.brights[1]
-colorscheme.selection_fg = colorscheme.selection_fg or colorscheme.cursor_bg or colorscheme.foreground
 
 -- Tab Bar
 config.use_fancy_tab_bar = true

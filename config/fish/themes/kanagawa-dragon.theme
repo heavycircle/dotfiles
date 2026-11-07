@@ -20,7 +20,7 @@ fish_color_autosuggestion 737c73
 fish_color_option 8a9a7b
 fish_color_cancel c4746e
 fish_color_status c4746e
-fish_color_user 87a987
+fish_color_user 87a1987
 fish_color_host 8ba4b0
 fish_color_host_remote 8a9a7b
 fish_color_cwd c4b28a

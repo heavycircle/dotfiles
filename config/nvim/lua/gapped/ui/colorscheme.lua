@@ -1,5 +1,10 @@
-vim.pack.add({ "https://github.com/catppuccin/nvim", "https://github.com/rebelot/kanagawa.nvim" })
+vim.pack.add({
+	"https://github.com/catppuccin/nvim",
+	"https://github.com/rebelot/kanagawa.nvim",
+	"https://github.com/EdenEast/nightfox.nvim",
+})
 
+-- Default Theme
 require("catppuccin").setup({
 	flavour = "mocha",
 	transparent_background = true,
@@ -8,6 +13,7 @@ require("catppuccin").setup({
 	integrations = { fzf = true },
 })
 
+-- Ultron
 require("kanagawa").setup({
 	theme = "dragon",
 	transparent = true,
@@ -18,5 +24,12 @@ require("kanagawa").setup({
 	},
 })
 
--- Set the colorscheme (switch at runtime with `:colorscheme catppuccin-mocha`)
-vim.cmd.colorscheme("kanagawa-dragon")
+-- Samurai
+require("nightfox").setup({
+	options = {
+		transparent = true,
+	},
+})
+
+-- Set the colorscheme
+vim.cmd.colorscheme("catppuccin-mocha")

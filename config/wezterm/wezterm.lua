@@ -6,14 +6,10 @@ config.automatically_reload_config = true
 -- Environment
 local font_variant = "NF"
 local font_size = 16
-local colorscheme = "Kanagawa Dragon"
--- Official scheme from rebelot/kanagawa.nvim extras/wezterm
-local kanagawa_dragon = require("kanagawa-dragon")
+local colorscheme = "Kanagawa Dragon (Gogh)"
 
 -- General
-config.color_schemes = { [colorscheme] = kanagawa_dragon.colors }
 config.color_scheme = colorscheme
-config.force_reverse_video_cursor = kanagawa_dragon.force_reverse_video_cursor
 config.enable_wayland = false
 config.scrollback_lines = 5000
 config.use_dead_keys = false
@@ -41,7 +37,9 @@ wezterm.on("update-right-status", function(window, _pane)
 	}))
 end)
 
-local colorscheme = kanagawa_dragon.colors
+local colorscheme = wezterm.color.get_builtin_schemes()[colorscheme]
+colorscheme.selection_bg = colorscheme.selection_bg or colorscheme.brights[1]
+colorscheme.selection_fg = colorscheme.selection_fg or colorscheme.cursor_bg or colorscheme.foreground
 
 -- Tab Bar
 config.use_fancy_tab_bar = true

@@ -4,21 +4,34 @@ local mux = wezterm.mux
 
 local M = {}
 
+local function run(argv)
+	local success, ok, stdout, stderr = pcall(wezterm.run_child_process, argv)
+	if not success then
+		wezterm.log_error("sessioneer: " .. table.concat(argv, " ") .. ": " .. tostring(ok))
+		return ""
+	end
+	if not ok then
+		wezterm.log_error("sessioneer: " .. table.concat(argv, " ") .. ": " .. (stderr or ""))
+		return ""
+	end
+	return stdout
+end
+
 -- TODO: Add Windows Equivalent (?)
 -- GUI launches (macOS launchd especially) don't inherit the login shell's PATH, so ask the shell.
 function M.get_path(bin)
 	local key = "sessioneer_path_" .. bin
 	if not wezterm.GLOBAL[key] then
-		local shell = os.getenv("SHELL") or "/bin/sh"
-		local success, ok, stdout = pcall(wezterm.run_child_process, { shell, "-lc", "command -v " .. bin })
-		local path = success and ok and stdout:gsub("%s+$", "") or ""
-		wezterm.GLOBAL[key] = path ~= "" and path or bin
+		local path = run({ os.getenv("SHELL") or "/bin/sh", "-lc", "command -v " .. bin }):gsub("%s+$", "")
+		if path == "" then
+			return bin
+		end
+		wezterm.GLOBAL[key] = path
 	end
 	return wezterm.GLOBAL[key]
 end
 
 M.config = {
-	zoxide_path = M.get_path("zoxide"),
 	format = {
 		current = { { Foreground = { AnsiColor = "Fuchsia" } }, { Attribute = { Intensity = "Bold" } } },
 		active = { { Foreground = { AnsiColor = "Green" } } },
@@ -31,19 +44,6 @@ function M.setup(opts)
 	for k, v in pairs(opts or {}) do
 		M.config[k] = v
 	end
-end
-
-local function run(argv)
-	local success, ok, stdout, stderr = pcall(wezterm.run_child_process, argv)
-	if not success then
-		wezterm.log_error("sessioneer: " .. table.concat(argv, " ") .. ": " .. tostring(ok))
-		return ""
-	end
-	if not ok then
-		wezterm.log_error("sessioneer: " .. table.concat(argv, " ") .. ": " .. (stderr or ""))
-		return ""
-	end
-	return stdout
 end
 
 -- Format names of items in <leader>-g display.
@@ -67,7 +67,7 @@ end
 -- Choose whether to query local or remote host.
 local function zoxide_argv(domain)
 	if domain == "local" then
-		return { M.config.zoxide_path, "query", "-l" }
+		return { M.config.zoxide_path or M.get_path("zoxide"), "query", "-l" }
 	end
 	local host = domain:gsub("^SSHMUX:", "")
 	return { "ssh", host, "zoxide", "query", "-l" }
@@ -145,7 +145,7 @@ function M.project_select()
 						local name = id:gsub("^" .. wezterm.home_dir, "~")
 						switch(iw, ip, name, spawn_for(domain, id))
 						wezterm.emit("sessioneer.created", iw, name, id)
-						run({ M.config.zoxide_path, "add", id })
+						run({ M.config.zoxide_path or M.get_path("zoxide"), "add", id })
 					end
 				end),
 			}),

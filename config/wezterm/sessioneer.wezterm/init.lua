@@ -5,18 +5,20 @@ local mux = wezterm.mux
 local M = {}
 
 -- TODO: Add Windows Equivalent (?)
+-- GUI launches (macOS launchd especially) don't inherit the login shell's PATH, so ask the shell.
 function M.get_path(bin)
-	local triple = wezterm.target_triple
-	if triple:find("darwin") then
-		return "/opt/homebrew/bin/" .. bin
-	else
-		return "/usr/bin/" .. bin
+	local key = "sessioneer_path_" .. bin
+	if not wezterm.GLOBAL[key] then
+		local shell = os.getenv("SHELL") or "/bin/sh"
+		local success, ok, stdout = pcall(wezterm.run_child_process, { shell, "-lc", "command -v " .. bin })
+		local path = success and ok and stdout:gsub("%s+$", "") or ""
+		wezterm.GLOBAL[key] = path ~= "" and path or bin
 	end
+	return wezterm.GLOBAL[key]
 end
 
 M.config = {
 	zoxide_path = M.get_path("zoxide"),
-	remote_shell_args = { "/usr/bin/env", "-u", "HOME", "fish", "-l" },
 	format = {
 		current = { { Foreground = { AnsiColor = "Fuchsia" } }, { Attribute = { Intensity = "Bold" } } },
 		active = { { Foreground = { AnsiColor = "Green" } } },

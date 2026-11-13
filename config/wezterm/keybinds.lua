@@ -25,6 +25,7 @@ M.keys = {
 	{ key = "(", mods = "LEADER|SHIFT", action = sessioneer.switch_relative(-1) },
 	{ key = ")", mods = "LEADER|SHIFT", action = sessioneer.switch_relative(1) },
 	{ key = "s", mods = "LEADER", action = sessioneer.switch_to_prev() },
+	{ key = "S", mods = "LEADER|SHIFT", action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
 	-- Window Creation
 	{ key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
 	{ key = "X", mods = "LEADER|SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = false }) },

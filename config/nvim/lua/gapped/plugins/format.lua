@@ -40,6 +40,9 @@ conform.setup({
 
 -- Format on save
 local doc_format = function(ev)
-	conform.format()
+	if vim.g.disable_autoformat then
+		return
+	end
+	conform.format({ bufnr = ev.buf })
 end
 _G.Config.new_autocmd("BufWritePre", "*", doc_format, "Format on Save")

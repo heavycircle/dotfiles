@@ -47,6 +47,11 @@ local toggle_inlay_hints = function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end
 
+local toggle_format_on_save = function()
+	vim.g.disable_autoformat = not vim.g.disable_autoformat
+	vim.notify("Format on save: " .. (vim.g.disable_autoformat and "off" or "on"))
+end
+
 -- Non-traditional
 vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", { desc = "LSP: Code Actions" })
 vim.keymap.set("i", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", { desc = "LSP: Signature Help" })
@@ -60,6 +65,7 @@ map_normal("ca", "<CMD>lua vim.lsp.buf.code_action()<CR>", "LSP: Code Actions")
 map_normal("cd", "<CMD>lua vim.lsp.buf.definition()<CR>", "LSP: Goto Implementation")
 map_normal("cD", "<CMD>lua vim.lsp.buf.implementation()<CR>", "LSP: Goto Definition")
 map_normal("cf", "<CMD>lua require('conform').format()<CR>", "LSP: Format")
+map_normal("cF", toggle_format_on_save, "LSP: Toggle Format on Save")
 map_normal("cg", "<CMD>lua require('neogen').generate()<CR>", "LSP: Generate Comment")
 map_normal("ch", "<CMD>lua vim.lsp.buf.signature_help()<CR>", "LSP: Signature Help")
 map_normal("ci", "<CMD>lua vim.lsp.buf.incoming_calls()<CR>", "LSP: Incoming Calls")

@@ -7,6 +7,7 @@ vim.g.mapleader      = " "            -- Space is the leader key
 vim.o.mouse          = "a"            -- Enable mouse
 vim.o.mousemodel     = "extend"       -- Right-click only for extending selection
 vim.o.switchbuf      = "usetab"       -- Use opened buffers when switching
+vim.o.exrc           = true           -- Per-project overrides via trusted .nvim.lua
 
 vim.schedule(function() vim.o.clipboard = "unnamedplus" end) -- Use global clipboard
 

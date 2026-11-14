@@ -17,6 +17,8 @@ end
 
 _G.Config = {}
 
+vim.o.exrc = true -- Must be set before startup reaches the exrc check, which runs before plugin/
+
 -- Autocommmand group for our custom commands
 local gap_group = vim.api.nvim_create_augroup("gapped", {})
 

@@ -64,13 +64,14 @@ local function workspace_set()
 	return set
 end
 
--- Choose whether to query local or remote host.
-local function zoxide_argv(domain)
-	if domain == "local" then
-		return { M.config.zoxide_path or M.get_path("zoxide"), "query", "-l" }
+-- Run zoxide on the local or remote host.
+local function zoxide_argv(domain, ...)
+	local argv = domain == "local" and { M.config.zoxide_path or M.get_path("zoxide") }
+		or { "ssh", (domain:gsub("^SSHMUX:", "")), "zoxide" }
+	for _, arg in ipairs({ ... }) do
+		argv[#argv + 1] = arg
 	end
-	local host = domain:gsub("^SSHMUX:", "")
-	return { "ssh", host, "zoxide", "query", "-l" }
+	return argv
 end
 
 function M.get_project_choices(pane)
@@ -90,7 +91,7 @@ function M.get_project_choices(pane)
 		end
 	end
 
-	for _, path in ipairs(wezterm.split_by_newlines(run(zoxide_argv(domain)))) do
+	for _, path in ipairs(wezterm.split_by_newlines(run(zoxide_argv(domain, "query", "-l")))) do
 		local name = path:gsub("^" .. wezterm.home_dir, "~")
 		if not existing[name] then
 			choices[#choices + 1] = {
@@ -103,12 +104,8 @@ function M.get_project_choices(pane)
 	return choices, domain
 end
 
--- Decide where to spawn commands.
-local function spawn_for(domain, cwd)
-	if domain == "local" then
-		return { cwd = cwd, domain = "DefaultDomain" }
-	end
-	return { cwd = cwd, domain = { DomainName = domain }, args = M.config.remote_shell_args }
+local function shell_quote(s)
+	return "'" .. s:gsub("'", "'\\''") .. "'"
 end
 
 -- Switch to a new pane, emitting a sessioneer.leaving event.
@@ -143,9 +140,16 @@ function M.project_select()
 						wezterm.emit("sessioneer.chosen", iw, id)
 					else
 						local name = id:gsub("^" .. wezterm.home_dir, "~")
-						switch(iw, ip, name, spawn_for(domain, id))
+						if domain == "local" then
+							switch(iw, ip, name, { cwd = id, domain = "DefaultDomain" })
+						else
+							-- A cwd/args spawn ships this machine's env (HOME, SHELL, PATH) to the remote mux.
+							local _, remote_pane = mux.spawn_window({ workspace = name, domain = { DomainName = domain } })
+							remote_pane:send_text(" cd " .. shell_quote(id) .. " && clear\n")
+							switch(iw, ip, name, nil)
+						end
 						wezterm.emit("sessioneer.created", iw, name, id)
-						run({ M.config.zoxide_path or M.get_path("zoxide"), "add", id })
+						run(zoxide_argv(domain, "add", id))
 					end
 				end),
 			}),

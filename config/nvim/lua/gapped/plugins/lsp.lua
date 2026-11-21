@@ -23,6 +23,7 @@ local servers = {
 	"taplo",
 	"ty",
 	"vtsls",
+	"zls",
 }
 
 for _, server in ipairs(servers) do

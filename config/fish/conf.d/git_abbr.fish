@@ -10,6 +10,7 @@ abbr gbd 'git branch -d'
 abbr gbD 'git branch -D'
 
 abbr gc 'git commit'
+abbr gca 'git commit --amend'
 abbr gc! 'git commit -v --amend'
 abbr gcm 'git commit -m'
 
@@ -45,6 +46,7 @@ abbr gpl 'git pull'
 abbr gplo 'git pull origin'
 
 abbr grb 'git rebase'
+abbr grbc 'git rebase --continue'
 abbr grbi 'git rebase -i'
 abbr grbir 'git rebase -i --root'
 

@@ -93,6 +93,9 @@ local format_options = function()
 end
 _G.Config.new_autocmd("FileType", "*", format_options, "Proper 'formatoptions'")
 
+vim.filetype.add({ extension = { notes = "notes" } })
+vim.treesitter.language.register("markdown", "notes")
+
 -- Diagnostics -------------------------------------------------
 
 vim.diagnostic.config({ virtual_text = true })

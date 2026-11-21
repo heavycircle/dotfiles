@@ -34,6 +34,7 @@ conform.setup({
 		typescriptreact = { "prettier" },
 		python = { "ruff_format", "ruff_organize_imports" },
 		sh = { "shfmt" },
+		zig = { "zigfmt" },
 		zsh = { "shfmt" },
 	},
 })

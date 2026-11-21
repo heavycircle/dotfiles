@@ -40,36 +40,36 @@ set -l bun_builtin_cmds_without_run dev create help bun upgrade discord install 
 set -l bun_builtin_cmds_accepting_flags create help bun upgrade discord run init
 
 function __bun_complete_bins_scripts --inherit-variable bun_builtin_cmds_without_run -d "Emit bun completions for bins and scripts"
-    # Do nothing if we already have a builtin subcommand,
-    # or any subcommand other than "run".
-    if __fish_seen_subcommand_from $bun_builtin_cmds_without_run
-    or not __fish_use_subcommand && not __fish_seen_subcommand_from run
-        return
-    end
-    # Do we already have a bin or script subcommand?
-    set -l bins (__fish__get_bun_bins)
-    if __fish_seen_subcommand_from $bins
-        return
-    end
-    # Scripts have descriptions appended with a tab separator.
-    # Strip off descriptions for the purposes of subcommand testing.
-    set -l scripts (__fish__get_bun_scripts)
-    if __fish_seen_subcommand_from (string split \t -f 1 -- $scripts)
-        return
-    end
-    # Emit scripts.
-    for script in $scripts
-        echo $script
-    end
-    # Emit binaries and JS files (but only if we're doing `bun run`).
-    if __fish_seen_subcommand_from run
-        for bin in $bins
-            echo "$bin"\t"package bin"
-        end
-        for file in (__fish__get_bun_bun_js_files)
-            echo "$file"\t"Bun.js"
-        end
-    end
+	# Do nothing if we already have a builtin subcommand,
+	# or any subcommand other than "run".
+	if __fish_seen_subcommand_from $bun_builtin_cmds_without_run
+	or not __fish_use_subcommand && not __fish_seen_subcommand_from run
+		return
+	end
+	# Do we already have a bin or script subcommand?
+	set -l bins (__fish__get_bun_bins)
+	if __fish_seen_subcommand_from $bins
+		return
+	end
+	# Scripts have descriptions appended with a tab separator.
+	# Strip off descriptions for the purposes of subcommand testing.
+	set -l scripts (__fish__get_bun_scripts)
+	if __fish_seen_subcommand_from (string split \t -f 1 -- $scripts)
+		return
+	end
+	# Emit scripts.
+	for script in $scripts
+		echo $script
+	end
+	# Emit binaries and JS files (but only if we're doing `bun run`).
+	if __fish_seen_subcommand_from run
+		for bin in $bins
+			echo "$bin"\t"package bin"
+		end
+		for file in (__fish__get_bun_bun_js_files)
+			echo "$file"\t"Bun.js"
+		end
+	end
 end
 
 

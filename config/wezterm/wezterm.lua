@@ -33,7 +33,10 @@ colorscheme.selection_fg = colorscheme.selection_fg or colorscheme.cursor_bg or 
 
 -- Set right status to workspace
 wezterm.on("update-right-status", function(window, _pane)
-	local workspace = window:active_workspace()
+	-- The window's own workspace, not the GUI process's active one (they
+	-- differ in `wezterm connect` windows while the remote mux syncs).
+	local mux_win = window:mux_window()
+	local workspace = mux_win and mux_win:get_workspace() or window:active_workspace()
 
 	window:set_right_status(wezterm.format({
 		{ Attribute = { Intensity = "Bold" } },
@@ -76,11 +79,20 @@ config.keys = require("keybinds").setup()
 
 -- resurrect.wezterm
 local resurrect = require("resurrect")
-resurrect.periodic_save_all(600)
--- Save the workspace being left whenever sessioneer switches away from it
+-- Config reloads re-run this file; only start one timer chain per process.
+if not wezterm.GLOBAL.resurrect_periodic_started then
+	wezterm.GLOBAL.resurrect_periodic_started = true
+	resurrect.periodic_save_all(600)
+end
+-- Save the workspace being left whenever sessioneer switches away from it.
+-- A save failure must never block the switch itself.
 wezterm.on("sessioneer.leaving", function(window, workspace)
-	resurrect.save_workspace(workspace)
-	require("notify").send(window, "resurrect", "Saved workspace " .. workspace)
+	local ok, err = pcall(resurrect.save_workspace, workspace)
+	if ok then
+		require("notify").send(window, "resurrect", "Saved workspace " .. workspace)
+	else
+		wezterm.log_error("resurrect: saving " .. workspace .. " failed: " .. tostring(err))
+	end
 end)
 
 -- SSH

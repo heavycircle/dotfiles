@@ -25,7 +25,10 @@ usage() {
     echo -e "    File Location:\t\$HOME=$LOC_FILE"
     echo
     echo "OPTIONS:"
-    echo "    -d        Dry-run: Show the desired move"
+    echo "    -a        Sync every item in the base config."
+    echo "    -d        Dry-run: Show what would change, change nothing."
+    echo "    -f        Force: make the destination match the source exactly,"
+    echo "              discarding the destination's changes (the old behavior)."
     echo "    -h        Display this help message."
     echo "    -v        Verbose output."
     echo
@@ -54,6 +57,9 @@ BASE_CONFIG=(
 LOC_FOLDER="${XDG_CONFIG_HOME:-$HOME/.config}"
 LOC_FILE="$HOME"
 
+# Where the last-synced copy of each file is kept (the merge base)
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles-sync"
+
 ################################################################
 #   LOGGERS                                                    #
 ################################################################
@@ -73,33 +79,135 @@ debug() {
     echo -e "[\033[32m+\033[0m] $1" >>"$OUT"
 }
 
+info() {
+    echo -e "[\033[34m=\033[0m] $1" >>"$OUT"
+}
+
 ################################################################
 #   UTILITIES                                                  #
 ################################################################
 
-# Sync files based on the SYNC_DIR environment
+# Sync is a three-way merge, not an overwrite. After every sync the agreed
+# content of each file is saved as its "base" under $STATE_DIR. Next time,
+# the base tells us which side changed:
+#
+#   only the source changed  -> destination is updated
+#   only the destination did -> destination is left alone
+#   both changed             -> merged with git merge-file; if the changes
+#                               overlap, the destination is left untouched
+#                               and the file is reported as a conflict
+#
+# Git-ignored files and .git directories are never synced.
+
+# Print the files under a directory, relative to it.
+list-files() {
+    [[ -d "$1" ]] || return 0
+    (cd "$1" && find . -name .git -prune -o -type f -print) | sed 's|^\./||'
+}
+
+# Read repo-relative paths on stdin, print those git does not ignore.
+drop-ignored() {
+    local all
+    all="$(LC_ALL=C sort -u)"
+    [[ -n "$all" ]] || return 0
+    LC_ALL=C comm -23 <(echo "$all") <(git check-ignore --stdin <<<"$all" | LC_ALL=C sort -u)
+}
+
+# Copy a file, creating parent directories.
+put() {
+    mkdir -p "$(dirname "$2")" && cp -p "$1" "$2"
+}
+
+conflict() {
+    warning "CONFLICT: $1 ($2)"
+    CONFLICTS+=("$1")
+}
+
+# Sync one file. Arguments: source, destination, base, display name.
+sync-file() {
+    local src="$1" dst="$2" base="$3" name="$4"
+    local dry=$DRY_RUN
+
+    # Nothing on either side
+    if [[ ! -f "$src" && ! -f "$dst" ]]; then
+        ((dry)) || rm -f "$base"
+        return
+    fi
+
+    # Only in the destination
+    if [[ ! -f "$src" ]]; then
+        if ((FORCE)) || { [[ -f "$base" ]] && cmp -s "$base" "$dst"; }; then
+            debug "  deleted:   $name"
+            ((dry)) || rm -f "$dst" "$base"
+        elif [[ -f "$base" ]]; then
+            conflict "$name" "deleted in source, modified in destination"
+        else
+            info "  kept:      $name (only in destination)"
+        fi
+        return
+    fi
+
+    # Only in the source
+    if [[ ! -f "$dst" ]]; then
+        if ((!FORCE)) && [[ -f "$base" ]] && cmp -s "$base" "$src"; then
+            info "  kept:      $name (deleted in destination)"
+        else
+            debug "  new:       $name"
+            ((dry)) || { put "$src" "$dst" && put "$src" "$base"; }
+        fi
+        return
+    fi
+
+    # In both
+    if cmp -s "$src" "$dst"; then
+        ((dry)) || put "$src" "$base"
+    elif ((FORCE)) || { [[ -f "$base" ]] && cmp -s "$base" "$dst"; }; then
+        debug "  updated:   $name"
+        ((dry)) || { put "$src" "$dst" && put "$src" "$base"; }
+    elif [[ ! -f "$base" ]]; then
+        conflict "$name" "both sides differ, no base recorded yet"
+    elif cmp -s "$base" "$src"; then
+        info "  kept:      $name (changed in destination only)"
+    else
+        local tmp
+        tmp="$(mktemp)"
+        cat "$dst" >"$tmp"
+        if git merge-file -q "$tmp" "$base" "$src" 2>/dev/null; then
+            debug "  merged:    $name"
+            ((dry)) || { cat "$tmp" >"$dst" && put "$src" "$base"; }
+        else
+            conflict "$name" "both sides changed the same lines"
+        fi
+        rm -f "$tmp"
+    fi
+}
+
+# Sync an item based on the SYNC_DIR environment
 # set in main().
 sync() {
     local item="$1"
 
-    # Check for rsync
-    if ! command -v rsync >/dev/null; then
-        fatal "missing command: rsync"
-    fi
+    command -v git >/dev/null || fatal "missing command: git"
 
     is-dir "$item"
     local kind=$?
 
     # Get the local and remote names
     local home repo
+    local -a paths=()
     case "$kind" in
     0)
         home="$LOC_FILE/.$item"
         repo="$item"
+        paths=("$repo")
         ;;
     1)
-        home="$LOC_FOLDER/$item/"
-        repo="config/$item/"
+        home="$LOC_FOLDER/$item"
+        repo="config/$item"
+        mapfile -t paths < <({
+            list-files "$home"
+            list-files "$repo"
+        } | sed "s|^|$repo/|" | drop-ignored)
         ;;
     2)
         warning "Could not find item: $item"
@@ -108,24 +216,20 @@ sync() {
         ;;
     esac
 
-    # Get the sync direction
-    local src dst
     case "$SYNC_DIR" in
-    push)
-        src="$repo"
-        dst="$home"
-        ;;
-    pull)
-        src="$home"
-        dst="$repo"
-        ;;
+    push) debug "Sync: $repo -> $home" ;;
+    pull) debug "Sync: $home -> $repo" ;;
     esac
 
-    debug "Sync: $src -> $dst"
-    ((DRY_RUN == 0)) || return 0
-
-    # Perform the sync
-    rsync -ah --delete "$src" "$dst" 2>/dev/null
+    local path there base
+    for path in "${paths[@]}"; do
+        there="$home${path#"$repo"}"
+        base="$STATE_DIR/base/$path"
+        case "$SYNC_DIR" in
+        push) sync-file "$path" "$there" "$base" "$path" ;;
+        pull) sync-file "$there" "$path" "$base" "$path" ;;
+        esac
+    done
 }
 
 # Check if the syncing item is a directory.
@@ -146,8 +250,12 @@ is-dir() {
 ################################################################
 
 main() {
-    declare -g DRY_RUN=0 SYNC_ALL=0
+    declare -g DRY_RUN=0 SYNC_ALL=0 FORCE=0
     declare -g SYNC_DIR
+    declare -ga CONFLICTS=()
+
+    # Repository paths are relative to this script
+    cd "$(dirname "$(realpath "$0")")" || fatal "cannot enter the repository"
 
     local -a positional=() items=()
 
@@ -158,6 +266,7 @@ main() {
         # Flags
         -a | --all) SYNC_ALL=1 ;;
         -d | --dry-run) DRY_RUN=1 ;;
+        -f | --force) FORCE=1 ;;
         -v | --quiet) OUT=/dev/null ;;
         -h | --help) usage ;;
         # Positional
@@ -192,6 +301,13 @@ main() {
     for item in "${items[@]}"; do
         sync "$item"
     done
+
+    if ((${#CONFLICTS[@]} > 0)); then
+        warning "${#CONFLICTS[@]} conflict(s); those files were left untouched."
+        warning "Make the two copies agree by hand, or re-run with -f to take"
+        warning "the source side ($SYNC_DIR) for the items you name."
+        exit 1
+    fi
 
     debug "Sync complete!"
 }

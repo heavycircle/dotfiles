@@ -25,12 +25,12 @@ fish_add_path /opt/homebrew/bin
 fish_add_path "$HOME/scripts"
 
 if test -f "$HOME/tools/init.fish"
-    source "$HOME/tools/init.fish"
+	source "$HOME/tools/init.fish"
 end
 
 if status is-interactive
-    fzf --fish | source
-    zoxide init fish | source
+	fzf --fish | source
+	zoxide init fish | source
 end
 
 # bun

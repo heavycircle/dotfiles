@@ -41,7 +41,10 @@ end
 -- Like state_manager.periodic_save, but saves all workspaces, not just the active one.
 function M.periodic_save_all(interval_seconds)
 	wezterm.time.call_after(interval_seconds, function()
-		M.save_all_workspaces()
+		local ok, err = pcall(M.save_all_workspaces)
+		if not ok then
+			wezterm.log_error("resurrect: periodic save failed: " .. tostring(err))
+		end
 		M.periodic_save_all(interval_seconds)
 	end)
 end

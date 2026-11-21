@@ -1,43 +1,43 @@
 # Completions for ~/scripts/obssink
 
 function __obssink_tokens
-    commandline -opc
+	commandline -opc
 end
 
 function __obssink_at --argument-names n
-    test (count (__obssink_tokens)) -eq $n
+	test (count (__obssink_tokens)) -eq $n
 end
 
 function __obssink_pos2_is --argument-names val
-    set -l t (__obssink_tokens)
-    test (count $t) -ge 2; and test "$t[2]" = $val
+	set -l t (__obssink_tokens)
+	test (count $t) -ge 2; and test "$t[2]" = $val
 end
 
 function __obssink_toplevel
-    __obssink_at 1
+	__obssink_at 1
 end
 
 function __obssink_app_pos2
-    __obssink_at 2; and __obssink_pos2_is app
+	__obssink_at 2; and __obssink_pos2_is app
 end
 
 function __obssink_app_wants_program
-    set -l t (__obssink_tokens)
-    __obssink_at 3; and __obssink_pos2_is app; and contains -- $t[3] add del
+	set -l t (__obssink_tokens)
+	__obssink_at 3; and __obssink_pos2_is app; and contains -- $t[3] add del
 end
 
 function __obssink_bare_wants_program
-    set -l t (__obssink_tokens)
-    __obssink_at 2; and contains -- $t[2] add del
+	set -l t (__obssink_tokens)
+	__obssink_at 2; and contains -- $t[2] add del
 end
 
 function __obssink_mic_pos2
-    __obssink_at 2; and __obssink_pos2_is mic
+	__obssink_at 2; and __obssink_pos2_is mic
 end
 
 function __obssink_mic_wants_source
-    set -l t (__obssink_tokens)
-    __obssink_at 3; and __obssink_pos2_is mic; and test "$t[3]" = add
+	set -l t (__obssink_tokens)
+	__obssink_at 3; and __obssink_pos2_is mic; and test "$t[3]" = add
 end
 
 # top level

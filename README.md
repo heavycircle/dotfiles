@@ -17,6 +17,11 @@ tracked via `sync`.
 Use `./sync pull` to pull changes from your config directories into the dotfiles
 folder.
 
+Syncing merges rather than overwrites. Changes made only on the receiving side
+are kept, changes on both sides are merged, and a file whose changes overlap is
+left untouched and reported as a conflict. Pass `-f` to make the receiving side
+match the source exactly, and `-d` to preview. Git-ignored files are not synced.
+
 ## Configurations
 
 I have to different stacks based on my work environment. They're meant to act

@@ -1,0 +1,18 @@
+# Requires: Git 2.36+
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+        path = github.inc
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+        path = github.inc
+
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:*/**"]
+        path = gitlab.inc
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
+        path = gitlab.inc
+
+[user]
+	useConfigOnly = true
+[init]
+	defaultBranch = main	# Requires: Git 2.28+
+[push]
+	autoSetupRemote = true	# Requires: Git 2.37+
+	followTags = true

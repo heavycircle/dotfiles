@@ -1,0 +1,11 @@
+# AI Stuff
+**/.claude/settings.local.json
+/CLAUDE.md
+
+# Local Editor
+/.nvim.lua
+
+# Local Notes
+/*.notes
+/docs/superpowers/
+/.superpowers/

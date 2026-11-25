@@ -14,7 +14,7 @@ conform.setup({
 			command = "sh",
 			args = { "-c", "fish_indent | unexpand --first-only -t 4" },
 		},
-		mdformat = { prepend_args = { "--wrap", "keep" } },
+		prettier = { prepend_args = { "--prose-wrap", "preserve" } },
 	},
 	formatters_by_ft = {
 		bash = { "shfmt" },
@@ -27,7 +27,7 @@ conform.setup({
 		lua = { "stylua" },
 		json = { "prettier" },
 		jsonc = { "prettier" },
-		markdown = { "mdformat" },
+		markdown = { "prettier" },
 		javascript = { "prettier" },
 		javascriptreact = { "prettier" },
 		typescript = { "prettier" },
